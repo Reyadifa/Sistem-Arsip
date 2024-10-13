@@ -37,9 +37,11 @@ class UserController extends Controller
     // Menampilkan daftar semua pengguna
     public function index()
     {
-        $users = User::all(); // Mengambil semua pengguna
+        // Mengambil semua pengguna dengan pagination, 10 pengguna per halaman
+        $users = User::paginate(10); 
         return view('users.index', compact('users'));
     }
+    
 
     // Menampilkan form edit untuk pengguna
     public function edit($id_user) // Ganti parameter ke id_user untuk konsistensi

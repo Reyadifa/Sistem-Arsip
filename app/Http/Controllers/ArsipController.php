@@ -9,121 +9,128 @@ use Illuminate\Support\Facades\Storage;
 
 class ArsipController extends Controller
 {
-    public function index()
-    {
-        $arsips = Arsip::all(); // Mengambil semua data arsip
-        return view('arsip.index', compact('arsips')); // Mengirim data ke view
-    }
+    public function index(Request $request)
+{
+    // Ambil query pencarian dari request
+    $search = $request->input('search');
+
+    // Mengambil arsip dengan kategori, terurut berdasarkan ID secara menurun
+    // dan menerapkan pencarian jika ada
+    $arsips = Arsip::with('kategori')
+        ->when($search, function ($query) use ($search) {
+            return $query->where('nama_usaha', 'like', '%' . $search . '%')
+                         ->orWhere('alamat_usaha', 'like', '%' . $search . '%')
+                         ->orWhere('nama_pemilik', 'like', '%' . $search . '%')
+                         ->orWhere('npwp', 'like', '%' . $search . '%');
+        })
+        ->orderBy('id', 'desc')
+        ->paginate(10);
+    
+    return view('arsip.index', compact('arsips', 'search'));
+}
+
 
     public function create()
     {
-        $kategoris = Kategori::all(); // Ambil semua kategori untuk ditampilkan di dropdown
-        return view('arsip.create', compact('kategoris')); // Kirim data kategori ke view
+        // Mengambil semua kategori untuk ditampilkan di dropdown
+        $kategoris = Kategori::all();
+        return view('arsip.create', compact('kategoris'));
     }
 
     public function store(Request $request)
     {
         // Validasi input
         $request->validate([
-            'id_kategori' => 'required', // Gunakan id_kategori untuk validasi
+            'id_kategori' => 'required|exists:kategoris,id_kategori', // Validasi ID kategori
             'nama_usaha' => 'required',
             'alamat_usaha' => 'required',
             'nama_pemilik' => 'required',
-            'alamat_pemilik' => 'required', // Tambahkan validasi untuk alamat pemilik
-            'npwp' => 'required', // Tambahkan validasi untuk NPWP
+            'alamat_pemilik' => 'required',
+            'npwp' => 'required',
             'bulan' => 'required',
-            'tahun' => 'required',
+            'tahun' => 'required|integer',
             'file' => 'nullable|file|mimes:pdf,doc,docx,jpg,png|max:2048',
         ]);
 
         // Membuat instance Arsip baru
         $arsip = new Arsip();
-        $arsip->id_kategori = $request->id_kategori; // Simpan ID kategori
-        $arsip->nama_usaha = $request->nama_usaha;
-        $arsip->alamat_usaha = $request->alamat_usaha;
-        $arsip->nama_pemilik = $request->nama_pemilik;
-        $arsip->alamat_pemilik = $request->alamat_pemilik; // Menyimpan alamat pemilik
-        $arsip->npwp = $request->npwp; // Menyimpan NPWP
-        $arsip->bulan = $request->bulan; // Menyimpan bulan
-        $arsip->tahun = $request->tahun; // Menyimpan tahun
+        $arsip->fill($request->only(['id_kategori', 'nama_usaha', 'alamat_usaha', 'nama_pemilik', 'alamat_pemilik', 'npwp', 'bulan', 'tahun']));
 
         // Menyimpan file jika ada
         if ($request->hasFile('file')) {
-            $arsip->file_path = $request->file('file')->store('uploads'); // Simpan file di folder 'uploads'
+            $arsip->file_path = $this->storeFile($request->file('file'));
         }
 
         // Simpan data arsip ke database
         $arsip->save();
-        return redirect()->route('arsip.index')->with('success', 'Arsip berhasil ditambahkan.'); // Redirect dengan pesan sukses
+        return redirect()->route('arsip.index')->with('success', 'Arsip berhasil ditambahkan.');
     }
 
     public function edit(Arsip $arsip)
     {
-        $kategoris = Kategori::all(); // Ambil semua kategori untuk ditampilkan di dropdown
-        return view('arsip.edit', compact('arsip', 'kategoris')); // Kirim data arsip dan kategori ke view
+        // Mengambil semua kategori untuk ditampilkan di dropdown
+        $kategoris = Kategori::all();
+        return view('arsip.edit', compact('arsip', 'kategoris'));
     }
 
     public function update(Request $request, Arsip $arsip)
     {
         // Validasi input
         $request->validate([
-            'id_kategori' => 'required', // Gunakan id_kategori untuk validasi
+            'id_kategori' => 'required|exists:kategoris,id_kategori',
             'nama_usaha' => 'required',
             'alamat_usaha' => 'required',
             'nama_pemilik' => 'required',
-            'alamat_pemilik' => 'required', // Tambahkan validasi untuk alamat pemilik
-            'npwp' => 'required', // Tambahkan validasi untuk NPWP
+            'alamat_pemilik' => 'required',
+            'npwp' => 'required',
             'bulan' => 'required',
-            'tahun' => 'required',
+            'tahun' => 'required|integer',
             'file' => 'nullable|file|mimes:pdf,doc,docx,jpg,png|max:2048',
         ]);
 
         // Memperbarui data arsip
-        $arsip->id_kategori = $request->id_kategori; // Memperbarui ID kategori
-        $arsip->nama_usaha = $request->nama_usaha;
-        $arsip->alamat_usaha = $request->alamat_usaha;
-        $arsip->nama_pemilik = $request->nama_pemilik;
-        $arsip->alamat_pemilik = $request->alamat_pemilik; // Memperbarui alamat pemilik
-        $arsip->npwp = $request->npwp; // Memperbarui NPWP
-        $arsip->bulan = $request->bulan; // Memperbarui bulan
-        $arsip->tahun = $request->tahun; // Memperbarui tahun
+        $arsip->fill($request->only(['id_kategori', 'nama_usaha', 'alamat_usaha', 'nama_pemilik', 'alamat_pemilik', 'npwp', 'bulan', 'tahun']));
 
         // Menyimpan file baru jika ada
         if ($request->hasFile('file')) {
             // Hapus file lama jika ada
             if ($arsip->file_path) {
-                Storage::delete($arsip->file_path); // Hapus file lama
+                Storage::disk('public')->delete($arsip->file_path); // Hapus file lama
             }
-            $arsip->file_path = $request->file('file')->store('uploads'); // Simpan file baru
+            $arsip->file_path = $this->storeFile($request->file('file'));
         }
 
         // Simpan perubahan ke database
         $arsip->save();
-        return redirect()->route('arsip.index')->with('success', 'Arsip berhasil diperbarui.'); // Redirect dengan pesan sukses
+        return redirect()->route('arsip.index')->with('success', 'Arsip berhasil diperbarui.');
     }
 
     public function destroy(Arsip $arsip)
+{
+    // Hapus file jika ada
+    if ($arsip->file_path) {
+        Storage::disk('public')->delete($arsip->file_path); // Hapus file dari penyimpanan
+    }
+    $arsip->delete(); // Hapus arsip dari database
+    
+    // Tambahkan notifikasi untuk penghapusan arsip
+    return redirect()->route('arsip.index')->with('success', 'Arsip berhasil dihapus.');
+}
+
+
+    public function show(Arsip $arsip)
     {
-        // Hapus file jika ada
-        if ($arsip->file_path) {
-            Storage::delete($arsip->file_path); // Hapus file dari penyimpanan
-        }
-        $arsip->delete(); // Hapus arsip dari database
-        return redirect()->route('arsip.index')->with('success', 'Arsip berhasil dihapus.'); // Redirect dengan pesan sukses
+        // Mengambil kategori untuk ditampilkan
+        $kategori = $arsip->kategori; 
+        return view('arsip.show', compact('arsip', 'kategori'));
     }
 
-
-// Di dalam ArsipController.php
-
-public function show($id)
-{
-    // Cari arsip berdasarkan ID
-    $arsip = Arsip::findOrFail($id);
-
-    // Mengambil kategori untuk ditampilkan jika perlu
-    $kategori = Kategori::find($arsip->id_kategori);
-
-    // Mengembalikan view dengan data arsip dan kategori
-    return view('arsip.show', compact('arsip', 'kategori'));
-}
+    private function storeFile($file)
+    {
+        // Menyimpan file dengan nama unik dan mengembalikan path
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = $file->getClientOriginalExtension();
+        $newName = $originalName . '_' . time() . '.' . $extension; // Tambahkan timestamp untuk menghindari duplikat
+        return $file->storeAs('uploads', $newName, 'public'); // Simpan file dengan nama unik
+    }
 }

@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Arsip;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
     public function index()
-    {
-        $kategoris = Kategori::all(); // Ambil semua data kategori
-        return view('kategori.index', compact('kategoris'));
-    }
+{
+    $kategoris = Kategori::paginate(10); // Menampilkan 10 kategori per halaman
+    return view('kategori.index', compact('kategoris'));
+}
+
 
     public function create()
     {
@@ -49,10 +51,19 @@ class KategoriController extends Controller
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diperbarui.');
     }
 
-    public function destroy(Kategori $kategori)
-    {
-        $kategori->delete(); // Hapus kategori
+    public function destroy($id_kategori)
+{
+    // Temukan kategori
+    $kategori = Kategori::findOrFail($id_kategori);
+    
+    // Perbarui arsip yang terkait dengan mengubah id_kategori menjadi null
+    Arsip::where('id_kategori', $id_kategori)->update(['id_kategori' => null]);
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus.');
-    }
+    // Hapus kategori
+    $kategori->delete();
+
+    return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus dan arsip terkait tetap ada.');
+}
+
+
 }

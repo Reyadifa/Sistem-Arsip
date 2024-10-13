@@ -10,7 +10,7 @@ class CreateArsipsTable extends Migration
     {
         Schema::create('arsips', function (Blueprint $table) {
             $table->id(); // ID Arsip
-            $table->unsignedBigInteger('id_kategori'); // Foreign key for kategori
+            $table->unsignedBigInteger('id_kategori')->nullable(); // Atur kolom ini menjadi nullable
             $table->foreign('id_kategori')->references('id_kategori')->on('kategoris')->onDelete('cascade');
             $table->string('nama_usaha');
             $table->string('alamat_usaha');

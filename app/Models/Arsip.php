@@ -17,4 +17,10 @@ class Arsip extends Model
     {
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }
+
+    public function peminjam()
+{
+    return $this->belongsToMany(Peminjam::class, 'peminjam_arsip', 'arsip_id', 'peminjam_no_ktp_peminjam')
+                ->withPivot('tgl_pinjam', 'tgl_kembali', 'status_peminjaman', 'file');
+}
 }
