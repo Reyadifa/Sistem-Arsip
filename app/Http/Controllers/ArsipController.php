@@ -38,33 +38,33 @@ class ArsipController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'id_kategori' => 'required|exists:kategoris,id_kategori', // Validasi ID kategori
-            'nama_usaha' => 'required',
-            'alamat_usaha' => 'required',
-            'nama_pemilik' => 'required',
-            'alamat_pemilik' => 'required',
-            'npwp' => 'required',
-            'bulan' => 'required',
-            'tahun' => 'required|integer',
-            'file' => 'nullable|file|mimes:pdf,doc,docx,jpg,png|max:2048',
-        ]);
+{
+    // Validasi input
+    $request->validate([
+        'id_kategori' => 'required|exists:kategoris,id_kategori', // Validasi ID kategori
+        'nama_usaha' => 'required',
+        'alamat_usaha' => 'required',
+        'nama_pemilik' => 'required',
+        'alamat_pemilik' => 'required',
+        'npwp' => 'required',
+        'bulan' => 'required',
+        'tahun' => 'required|integer',
+        'file' => 'nullable|file|mimes:pdf|max:2048', // Hanya izinkan file PDF
+    ]);
 
-        // Membuat instance Arsip baru
-        $arsip = new Arsip();
-        $arsip->fill($request->only(['id_kategori', 'nama_usaha', 'alamat_usaha', 'nama_pemilik', 'alamat_pemilik', 'npwp', 'bulan', 'tahun']));
+    // Membuat instance Arsip baru
+    $arsip = new Arsip();
+    $arsip->fill($request->only(['id_kategori', 'nama_usaha', 'alamat_usaha', 'nama_pemilik', 'alamat_pemilik', 'npwp', 'bulan', 'tahun']));
 
-        // Menyimpan file jika ada
-        if ($request->hasFile('file')) {
-            $arsip->file_path = $this->storeFile($request->file('file'));
-        }
-
-        // Simpan data arsip ke database
-        $arsip->save();
-        return redirect()->route('arsip.index')->with('success', 'Arsip berhasil ditambahkan.');
+    // Menyimpan file jika ada
+    if ($request->hasFile('file')) {
+        $arsip->file_path = $this->storeFile($request->file('file'));
     }
+
+    // Simpan data arsip ke database
+    $arsip->save();
+    return redirect()->route('arsip.index')->with('success', 'Arsip berhasil ditambahkan.');
+}
 
     public function edit(Arsip $arsip)
     {

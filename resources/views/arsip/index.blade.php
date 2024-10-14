@@ -61,14 +61,15 @@
                 <table class="min-w-full table-auto divide-y divide-gray-300">
                     <thead class="bg-blue-50">
                         <tr>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">NPWP</th>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">Kategori</th>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">Nama Usaha</th>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">Alamat Usaha</th>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">Nama Pemilik</th>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">Tahun</th>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">Bulan</th>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">File</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700">NPWP</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Kategori</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Nama Usaha</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Alamat Usaha</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Nama Pemilik</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Alamat Pemilik</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Tahun</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Bulan</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700">File</th>
                             <th class="px-5 py-3 text-center text-xs font text-gray-700">Aksi</th>
                         </tr>
                     </thead>
@@ -80,6 +81,7 @@
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->nama_usaha }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->alamat_usaha }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->nama_pemilik }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->alamat_pemilik }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->tahun }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->bulan }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">

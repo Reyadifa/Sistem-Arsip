@@ -47,6 +47,19 @@
             <form action="{{ route('arsip.store') }}" method="POST" enctype="multipart/form-data"> 
                 @csrf
 
+                                    {{-- Pesan Kesalahan --}}
+                    @if ($errors->any())
+                    <div class="mb-4">
+                        <div class="bg-red-200 border border-red-600 text-red-600 p-3 rounded-lg">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    @endif
+
  {{-- Kotak --}}
                 <main class="grid grid-cols-2 gap-x-6 ">
 
