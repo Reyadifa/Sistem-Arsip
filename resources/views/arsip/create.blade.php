@@ -122,7 +122,7 @@
 
 {{-- Upload File --}}
                 <div class="mb-4 mt-4">
-                    <label for="file" class="block mb-2 text-sm font-medium text-gray-700">Upload File</label>
+                    <label for="file" class="block mb-2 text-sm font-medium text-gray-700 ">Upload File</label>
                     <input type="file" name="file" id="file" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-white" required>
                 </div>
                 
@@ -131,8 +131,8 @@
 
 
                 <div class="justify-left flex space-x-4 mt-14">
-                    <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition text-xl font-semibold">Simpan</button>
-                    <a href="/arsip" class="bg-blue-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition text-center text-xl font-semibold">Kembali</a>
+                    <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700  text-xl font-semibold transform transition-transform duration-300 hover:scale-110">Simpan</button>
+                    <a href="/arsip" class="bg-blue-400 text-white px-6 py-2 rounded-lg hover:bg-blue-500 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">Kembali</a>
                 </div>
             </form>
         </div>

@@ -3,9 +3,10 @@
 @section('content')
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div class="flex">
+    
+<div class="flex ">
     <!-- Sidebar -->
-    <aside class="w-64 bg-gradient-to-b from-blue-500 to-blue-700 text-white p-6">
+    <aside class=" bg-gradient-to-b from-blue-500 to-blue-700 text-white p-6">
         <h2 class="text-2xl font-bold mb-8">Manajemen Arsip</h2>
         <hr>
         <nav>
