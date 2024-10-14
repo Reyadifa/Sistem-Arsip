@@ -8,7 +8,7 @@
     {{-- tailwind config --}}
     @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-20 flex">
+<body class="bg-gray-20 flex ">
     <div class="flex w-full">
         <!-- Sidebar -->
         <aside class="w-64 bg-gradient-to-b from-blue-500 to-blue-700 text-white p-6 h-[1200px]">
@@ -38,19 +38,22 @@
             </nav>
         </aside>
 
-        <!-- Form Tambah Arsip -->
-        <div class="flex-grow bg-white p-6">
+<!-- Form Tambah Arsip -->
+        <div class="flex-grow p-6 bg-gray-200 ">
+
+            <main class="bg-white shadow-xl  rounded-xl p-10">
+
             <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl mb-4">Tambah Arsip</h1>
             <form action="{{ route('arsip.store') }}" method="POST" enctype="multipart/form-data"> 
                 @csrf
 
  {{-- Kotak --}}
-                <main class="grid grid-cols-2 gap-6 ">
+                <main class="grid grid-cols-2 gap-x-6 ">
 
                 <div class="mb-4 ">
                     <label for="id_kategori" class="block mb-2 text-sm font-medium text-gray-700 ">Kategori</label>
 {{-- Kategori --}} 
-                    <select name="id_kategori" id="id_kategori" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black" required>
+                    <select name="id_kategori" id="id_kategori" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black " required>
                         <option value="" disabled selected>Pilih Kategori</option>
                         @foreach ($kategoris as $kategori)
                             <option value="{{ $kategori->id_kategori }}">{{ $kategori->nama_kategori }}</option>
@@ -118,13 +121,14 @@
 
 
 {{-- Upload File --}}
-                <div class="mb-4 mt-8">
+                <div class="mb-4 mt-4">
                     <label for="file" class="block mb-2 text-sm font-medium text-gray-700">Upload File</label>
                     <input type="file" name="file" id="file" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-white" required>
                 </div>
                 
 
 {{-- Button Simpan dan Kembali --}}
+
 
                 <div class="justify-left flex space-x-4 mt-14">
                     <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition text-xl font-semibold">Simpan</button>
@@ -133,6 +137,10 @@
             </form>
         </div>
     </div>
+
+</main>
+
+
 </body>
 </html>
 
