@@ -45,9 +45,9 @@
                 @csrf
 
  {{-- Kotak --}}
-                <main class="flex  flex-wrap ">
+                <main class="grid grid-cols-2 gap-6 ">
 
-                <div class="mb-4 w-1/2 ">
+                <div class="mb-4 ">
                     <label for="id_kategori" class="block mb-2 text-sm font-medium text-gray-700 ">Kategori</label>
 {{-- Kategori --}} 
                     <select name="id_kategori" id="id_kategori" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black" required>
@@ -58,7 +58,7 @@
                     </select>
                 </div>
 {{-- Npwp --}}
-                <div class="mb-4 w-1/2 ">
+                <div class="mb-4  ">
                     <label for="npwp" class="block mb-2 text-sm font-medium text-gray-700">NPWP</label>
                     <input type="text" name="npwp" id="npwp" placeholder="Masukkan NPWP" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black" required>
                 </div>
@@ -67,27 +67,27 @@
 
 
 {{-- Nama Usaha --}}
-                <div class="mb-4 w-1/2">
+                <div class="mb-4 ">
                     <label for="nama_usaha" class="block mb-2 text-sm font-medium text-gray-700">Nama Usaha</label>
                     <input type="text" name="nama_usaha" id="nama_usaha" placeholder="Masukkan Nama Usaha" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black" required>
                 </div>
 {{-- Alamat Usaha --}}
-                <div class="mb-4 w-1/2">
+                <div class="mb-4 ">
                     <label for="alamat_usaha" class="block mb-2 text-sm font-medium text-gray-700">Alamat Usaha</label>
                     <input type="text" name="alamat_usaha" id="alamat_usaha" placeholder="Masukkan Alamat Usaha" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black" required>
                 </div>
 {{-- Nama Pemilik --}}
-                <div class="mb-4 w-1/2">
+                <div class="mb-4 ">
                     <label for="nama_pemilik" class="block mb-2 text-sm font-medium text-gray-700">Nama Pemilik</label>
                     <input type="text" name="nama_pemilik" id="nama_pemilik" placeholder="Masukkan Nama Pemilik" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black" required>
                 </div>
 {{-- Alamat Pemilik --}}
-                <div class="mb-4 w-1/2">
+                <div class="mb-4 ">
                     <label for="alamat_pemilik" class="block mb-2 text-sm font-medium text-gray-700">Alamat Pemilik</label>
                     <input type="text" name="alamat_pemilik" id="alamat_pemilik" placeholder="Masukkan Alamat Pemilik" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black" required>
                 </div>
 {{-- Bulan --}}
-                <div class="mb-4 w-1/2">
+                <div class="mb-4 ">
                     <label for="bulan" class="block mb-2 text-sm font-medium text-gray-700">Bulan</label>
                     <select name="bulan" id="bulan" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black" required>
                         <option value="" disabled selected>Pilih Bulan</option>
@@ -106,7 +106,7 @@
                     </select>
                 </div>
 {{-- Tahun --}}
-                <div class="mb-4 w-1/2">
+                <div class="mb-4 ">
                     <label for="tahun" class="block mb-2 text-sm font-medium text-gray-700">Tahun</label>
                     <input type="number" name="tahun" id="tahun" placeholder="Masukkan Tahun" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black" required>
                 </div>
@@ -118,17 +118,17 @@
 
 
 {{-- Upload File --}}
-                <div class="mb-4">
+                <div class="mb-4 mt-8">
                     <label for="file" class="block mb-2 text-sm font-medium text-gray-700">Upload File</label>
                     <input type="file" name="file" id="file" class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-white" required>
                 </div>
                 
 
+{{-- Button Simpan dan Kembali --}}
 
-
-                <div class="justify-left flex space-x-4">
-                    <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">Simpan</button>
-                    <a href="/arsip" class="bg-blue-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition text-center">Kembali</a>
+                <div class="justify-left flex space-x-4 mt-14">
+                    <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition text-xl font-semibold">Simpan</button>
+                    <a href="/arsip" class="bg-blue-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition text-center text-xl font-semibold">Kembali</a>
                 </div>
             </form>
         </div>
