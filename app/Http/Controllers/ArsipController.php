@@ -10,16 +10,13 @@ use Illuminate\Support\Facades\Storage;
 class ArsipController extends Controller
 {
     public function index(Request $request)
-{
+    {
+    // Ambil query pencarian dari request
     $search = $request->input('search');
     $bulan = $request->input('bulan');
     $tahun = $request->input('tahun');
-    $kategoriId = $request->input('kategori');
 
-    // Mengambil semua kategori untuk dropdown
-    $kategoris = Kategori::all();
-
-    // Mengambil arsip dengan kategori, terurut berdasarkan ID secara menurun
+    // Mengambil arsip dengan kategori
     $arsips = Arsip::with('kategori')
         ->when($search, function ($query) use ($search) {
             return $query->where('npwp', 'like', '%' . $search . '%');
@@ -30,15 +27,13 @@ class ArsipController extends Controller
         ->when($tahun, function ($query) use ($tahun) {
             return $query->where('tahun', $tahun);
         })
-        ->orderBy('id', 'desc')
-        ->paginate(10) // Mengambil 10 arsip per halaman
-        ->appends(request()->query()); // Menambahkan semua parameter query ke pagination
+        ->orderBy('tahun', 'desc')
+        ->orderByRaw("FIELD(bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari') ASC") // Urutkan bulan dari Desember ke Januari
+        ->paginate(10)
+        ->appends(request()->query());
 
     return view('arsip.index', compact('arsips', 'search', 'bulan', 'tahun'));
-}
-
-
-
+    }
 
     public function create()
     {
@@ -48,7 +43,7 @@ class ArsipController extends Controller
     }
 
     public function store(Request $request)
-{
+    {   
     // Validasi input
     $request->validate([
         'id_kategori' => 'required|exists:kategoris,id_kategori', // Validasi ID kategori
@@ -60,7 +55,7 @@ class ArsipController extends Controller
         'bulan' => 'required',
         'tahun' => 'required|integer',
         'file' => 'nullable|file|mimes:pdf|max:2048', // Hanya izinkan file PDF
-    ]);
+         ]);
 
     // Membuat instance Arsip baru
     $arsip = new Arsip();
@@ -74,7 +69,7 @@ class ArsipController extends Controller
     // Simpan data arsip ke database
     $arsip->save();
     return redirect()->route('arsip.index')->with('success', 'Arsip berhasil ditambahkan.');
-}
+    }
 
     public function edit(Arsip $arsip)
     {
@@ -116,7 +111,7 @@ class ArsipController extends Controller
     }
 
     public function destroy(Arsip $arsip)
-{
+    {
     // Hapus file jika ada
     if ($arsip->file_path) {
         Storage::disk('public')->delete($arsip->file_path); // Hapus file dari penyimpanan
@@ -125,7 +120,7 @@ class ArsipController extends Controller
     
     // Tambahkan notifikasi untuk penghapusan arsip
     return redirect()->route('arsip.index')->with('success', 'Arsip berhasil dihapus.');
-}
+    }
 
 
     public function show(Arsip $arsip)
