@@ -40,22 +40,35 @@
             <!-- Tombol Tambah Arsip -->
             <a href="{{ route('arsip.create') }}" class="mb-6 inline-block px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700">Tambah Arsip</a>
 
-            <form action="{{ route('arsip.index') }}" method="GET" class="mb-4">
-                <div class="relative">
-                    <input 
-                        type="search" 
-                        name="search" 
-                        placeholder="Search..." 
-                        value="{{ request('search') }}" 
-                        class="w-full py-3 pl-10 pr-4 border rounded-md text-gray-600 bg-white shadow focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                    <button 
-                        type="submit" 
-                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                        Cari
-                    </button>
-                </div>
+            <form method="GET" action="{{ route('arsip.index') }}">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari NPWP">               
+            
+                <label for="bulan">Bulan:</label>
+                    <select name="bulan" id="bulan">
+                        <option value="">Pilih Bulan</option>
+                        <option value="Januari" {{ request('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
+                        <option value="Februari" {{ request('bulan') == 'Februari' ? 'selected' : '' }}>Februari</option>
+                        <option value="Maret" {{ request('bulan') == 'Maret' ? 'selected' : '' }}>Maret</option>
+                        <option value="April" {{ request('bulan') == 'April' ? 'selected' : '' }}>April</option>
+                        <option value="Mei" {{ request('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
+                        <option value="Juni" {{ request('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
+                        <option value="Juli" {{ request('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
+                        <option value="Agustus" {{ request('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus</option>
+                        <option value="September" {{ request('bulan') == 'September' ? 'selected' : '' }}>September</option>
+                        <option value="Oktober" {{ request('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober</option>
+                        <option value="November" {{ request('bulan') == 'November' ? 'selected' : '' }}>November</option>
+                        <option value="Desember" {{ request('bulan') == 'Desember' ? 'selected' : '' }}>Desember</option>
+                    </select>
+
+            
+                <label for="tahun">Tahun:</label>
+                <input type="text" name="tahun" id="tahun" value="{{ request('tahun') }}" placeholder="Ketik Tahun" maxlength="4" title="Masukkan angka tahun" pattern="\d*" />
+
+            
+                <button type="submit">Cari</button>
+                <a href="{{ route('arsip.index') }}">Reset</a>
             </form>            
+                                              
 
             <div class="overflow-x-auto bg-white shadow-md rounded-lg">
                 <table class="min-w-full table-auto divide-y divide-gray-300">

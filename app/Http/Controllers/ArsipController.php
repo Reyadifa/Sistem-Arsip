@@ -11,23 +11,33 @@ class ArsipController extends Controller
 {
     public function index(Request $request)
 {
-    // Ambil query pencarian dari request
     $search = $request->input('search');
+    $bulan = $request->input('bulan');
+    $tahun = $request->input('tahun');
+    $kategoriId = $request->input('kategori');
+
+    // Mengambil semua kategori untuk dropdown
+    $kategoris = Kategori::all();
 
     // Mengambil arsip dengan kategori, terurut berdasarkan ID secara menurun
-    // dan menerapkan pencarian jika ada
     $arsips = Arsip::with('kategori')
         ->when($search, function ($query) use ($search) {
-            return $query->where('nama_usaha', 'like', '%' . $search . '%')
-                         ->orWhere('alamat_usaha', 'like', '%' . $search . '%')
-                         ->orWhere('nama_pemilik', 'like', '%' . $search . '%')
-                         ->orWhere('npwp', 'like', '%' . $search . '%');
+            return $query->where('npwp', 'like', '%' . $search . '%');
+        })
+        ->when($bulan, function ($query) use ($bulan) {
+            return $query->where('bulan', $bulan);
+        })
+        ->when($tahun, function ($query) use ($tahun) {
+            return $query->where('tahun', $tahun);
         })
         ->orderBy('id', 'desc')
-        ->paginate(10);
-    
-    return view('arsip.index', compact('arsips', 'search'));
+        ->paginate(10) // Mengambil 10 arsip per halaman
+        ->appends(request()->query()); // Menambahkan semua parameter query ke pagination
+
+    return view('arsip.index', compact('arsips', 'search', 'bulan', 'tahun'));
 }
+
+
 
 
     public function create()

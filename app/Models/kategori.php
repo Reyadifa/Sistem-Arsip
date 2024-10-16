@@ -15,6 +15,6 @@ class Kategori extends Model
 
     public function arsips()
     {
-        return $this->hasMany(Arsip::class, 'id_kategori', 'id_kategori');
+        return $this->hasMany(Arsip::class, 'id_kategori');
     }
 }
