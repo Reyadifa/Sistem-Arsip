@@ -102,9 +102,7 @@
                 </div>
     
                 <!-- Pagination -->
-                <div class="mt-6">
-                    {{ $arsips->links('pagination::tailwind') }}
-                </div>
+                {{ $arsips->links('vendor.pagination.tailwind') }}
             </div>
     </div>
 
