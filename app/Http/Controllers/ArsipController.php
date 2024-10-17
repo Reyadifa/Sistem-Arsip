@@ -12,8 +12,6 @@ class ArsipController extends Controller
     public function index(Request $request)
     {
 
-        $arsips = Arsip::paginate(10); // Menampilkan 10 kategori per halaman
-    return view('arsip.index', compact('arsips'));
     // Ambil query pencarian dari request
     $search = $request->input('search');
     $bulan = $request->input('bulan');
