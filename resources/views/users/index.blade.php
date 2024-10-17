@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100">
 
     <div class="flex h-screen"> <!-- Kontainer utama dengan tinggi penuh -->
-       
-         {{-- Include sidebar --}}
 
-         @include('layouts.sidebar')
+        {{-- Include sidebar --}}
+
+        @include('layouts.sidebar')
 
         <section class="py-4 flex-grow"> <!-- Penambahan padding untuk section -->
             <div class="max-w-10xl rounded-lg p-8">
@@ -22,7 +24,9 @@
                     <div class="p-6">
                         <h2 class="text-2xl font-semibold mb-6">Daftar User</h2>
                         <div class="flex justify-between items-center mb-4">
-                            <a href="/user/create" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Tambah User</a>
+                            <a href="/user/create"
+                                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Tambah
+                                User</a>
                         </div>
                         <table class="min-w-full bg-white border-collapse">
                             <thead class="bg-gray-200">
@@ -34,23 +38,25 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
-                                <tr class="hover:bg-gray-100 transition duration-300">
-                                    <td class="py-2 px-4 border-b border-gray-300">{{ $user->nama_user }}</td>
-                                    <td class="py-2 px-4 border-b border-gray-300">{{ $user->email }}</td>
-                                    <td class="py-2 px-4 border-b border-gray-300 flex space-x-2">
+                                    <tr class="hover:bg-gray-100 transition duration-300">
+                                        <td class="py-2 px-4 border-b border-gray-300">{{ $user->nama_user }}</td>
+                                        <td class="py-2 px-4 border-b border-gray-300">{{ $user->email }}</td>
+                                        <td class="py-2 px-4 border-b border-gray-300 flex space-x-2">
 
-                                        <div class="flex justify-center gap-5 w-96">
-                                        <a href="/user/{{ $user->id_user }}/edit" class="text-white bg-blue-500 hover:bg-blue-700 rounded-xl py-2 px-8 font-semibold">Edit</a>
-                                        
-                                        <form action="/user/{{ $user->id_user }}" method="POST" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-white bg-red-500 hover:bg-red-700 rounded-xl py-2 px-8 font-semibold">Hapus</button>
-                                        </form>
-                                    </div>
+                                            <div class="flex justify-center gap-5 w-96">
+                                                <a href="/user/{{ $user->id_user }}/edit"
+                                                    class="text-white bg-blue-500 hover:bg-blue-700 rounded-xl py-2 px-8 font-semibold">Edit</a>
 
-                                    </td>
-                                </tr>
+                                                <form action="/user/{{ $user->id_user }}" method="POST" class="inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="text-white bg-red-500 hover:bg-red-700 rounded-xl py-2 px-8 font-semibold">Hapus</button>
+                                                </form>
+                                            </div>
+
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -64,4 +70,5 @@
     </div>
 
 </body>
+
 </html>

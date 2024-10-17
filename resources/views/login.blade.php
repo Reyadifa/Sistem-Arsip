@@ -62,5 +62,6 @@
 
         typeWriter();
     </script>
+    
 </body>
 </html>
