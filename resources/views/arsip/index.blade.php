@@ -12,8 +12,10 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 p-10 bg-gray-100">
-            <h1 class="text-4xl font-bold text-gray-800 mb-6">Data Arsip</h1>
+        <div class="flex-1 p-10 bg-gray-100 ">
+            <h2 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent text-center h-20 ">Sistem Informasi Management Arsip</h2>
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Data Arsip</h1>
+            
 
             <!-- Tombol Tambah Arsip -->
 
