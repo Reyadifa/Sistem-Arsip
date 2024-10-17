@@ -1,19 +1,18 @@
 @extends('layouts.app')
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 @section('content')
 <div class="flex h-screen bg-gray-100"> <!-- Kontainer utama dengan latar belakang abu-abu -->
 
-     {{-- Include sidebar --}}
-
-     @include('layouts.sidebar')
-   
+    {{-- Include sidebar --}}
+    @include('layouts.sidebar')
 
     <!-- Konten Utama -->
     <div class="flex-1 p-8">
         <h1 class="text-3xl font-semibold mb-6">Edit User</h1>
         <div class="bg-white p-6 rounded-lg shadow-lg">
-            <form action="{{ route('user.update', $user->id_user) }}" method="POST">
+            <form action="{{ route('users.update', $user->id_user) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -42,7 +41,7 @@
 
                 <div class="flex items-center justify-between">
                     <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">Simpan</button>
-                    <a href="{{ route('user.index') }}" class="text-blue-500 hover:underline">Kembali</a>
+                    <a href="{{ route('users.index') }}" class="text-blue-500 hover:underline">Kembali</a>
                 </div>
             </form>
         </div>

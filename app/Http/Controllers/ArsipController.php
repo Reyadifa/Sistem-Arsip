@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Arsip;
-use App\Models\Kategori; // Pastikan model Kategori diimpor
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

@@ -10,16 +10,12 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    // Menentukan nama tabel jika bukan konvensi Laravel
     protected $table = 'users'; 
 
-    // Menentukan primary key
     protected $primaryKey = 'id_user'; 
 
-    // Menentukan apakah primary key adalah auto-increment
     public $incrementing = true; 
 
-    // Menentukan tipe data primary key
     protected $keyType = 'int'; 
 
     protected $fillable = [
@@ -33,12 +29,4 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 }
