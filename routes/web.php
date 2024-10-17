@@ -7,22 +7,29 @@ use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Middleware\CheckRole;
 
-
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
 
-    // Rute untuk admin
-    Route::middleware([CheckRole::class . ':admin'])->group(function () {
-        Route::resource('arsip', ArsipController::class);
-        Route::resource('kategori', KategoriController::class);
-        Route::resource('users', UserController::class);
+    
+        // Rute untuk admin
+        Route::middleware(['auth', CheckRole::class . ':admin'])->group(function () {
+            Route::resource('arsip', ArsipController::class);        
+            Route::resource('kategori', KategoriController::class);
+            Route::resource('users', UserController::class);
+        });
+    
+        Route::middleware(['auth', CheckRole::class . ':admin'])->group(function () {
+            Route::resource('arsip', ArsipController::class);
+            Route::resource('kategori', KategoriController::class);
+            Route::resource('users', UserController::class);
+        });
+        
+        // Rute untuk user biasa
+        Route::middleware(CheckRole::class . ':user')->group(function () {
+            Route::resource('arsip', ArsipController::class);
+        });
     });
-
-    // Rute untuk user biasa
-    Route::middleware([CheckRole::class . ':user'])->group(function () {
-        Route::resource('arsip', ArsipController::class);
-    });
-});
+    
