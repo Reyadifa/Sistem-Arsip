@@ -3,8 +3,10 @@
 @section('content')
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {{-- Font Awesome --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
+    
 
     <div class="flex ">
 
@@ -99,9 +101,9 @@
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">
                                     @if ($arsip->file_path)
                                         <div
-                                            class="bg-green-500 w-16 py-3 rounded-lg font-bold  flex items-center justify-center">
+                                            class="bg-green-500 hover:bg-green-600 w-12 text-base py-2 rounded-lg font-bold  flex items-center justify-center">
                                             <a href="{{ asset('storage/' . $arsip->file_path) }}"
-                                                class="text-white hover:underline" target="_blank">Lihat File</a>
+                                                class="text-white hover:underline" target="_blank"><i class="fa-solid fa-file"></i></a>
                                         </div>
                                     @else
                                         <span class="text-gray-500">Tidak ada file</span>
@@ -112,11 +114,11 @@
                                     <div class="flex items-center px-2   py-3 justify-center space-x-2 ">
                                         <!-- Tombol Detail -->
                                         <a href="{{ route('arsip.show', $arsip->id) }}"
-                                            class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg">Detail</a>
+                                            class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg"><i class="fa-solid fa-circle-info"></i></a>
 
                                         <!-- Tombol Edit -->
                                         <a href="{{ route('arsip.edit', $arsip->id) }}"
-                                            class="px-4 py-2 text-white bg-yellow-500 hover:bg-yellow-600 rounded-lg">Edit</a>
+                                            class="px-4 py-2 text-white bg-yellow-500 hover:bg-yellow-600 rounded-lg"><i class="fa-solid fa-pen-to-square"></i></a>
 
                                         <!-- Tombol Hapus -->
                                         <form action="{{ route('arsip.destroy', $arsip->id) }}" method="POST"
@@ -124,7 +126,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                class="px-4 py-2 text-white bg-red-600 hover:bg-red-700 rounded-lg">Hapus</button>
+                                                class="px-4 py-2 text-white bg-red-600 hover:bg-red-700 rounded-lg"><i class="fa-solid fa-trash-can"></i></button>
                                         </form>
                                     </div>
                                 </td>

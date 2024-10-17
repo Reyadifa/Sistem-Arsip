@@ -7,6 +7,9 @@
     <title>Daftar User</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    {{-- tailwind config --}}
+    @vite('resources/css/app.css')
 </head>
 
 <body class="bg-gray-100">
@@ -23,7 +26,7 @@
                         <h2 class="text-2xl font-semibold mb-6">Daftar User</h2>
                         <div class="flex justify-between items-center mb-4">
                             <a href="{{ route('users.create') }}" 
-                               class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Tambah User</a>
+                               class="bg-blue-500 text-white px-4 py-3 rounded-md hover:bg-blue-700 transition duration-300"><i class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah User</a>
                         </div>
                         <table class="min-w-full bg-white border-collapse">
                             <thead class="bg-gray-200">
@@ -42,13 +45,13 @@
 
                                             <div class="flex justify-center gap-5 w-96">
                                                 <a href="{{ route('users.edit', $user->id_user) }}" 
-                                                   class="text-white bg-blue-500 hover:bg-blue-700 rounded-xl py-2 px-8 font-semibold">Edit</a>
+                                                   class="text-white bg-blue-500 hover:bg-blue-700 rounded-xl py-2 px-8 font-semibold"><i class="fa-solid fa-pen-to-square"></i></a>
 
                                                 <form action="{{ route('users.destroy', $user->id_user) }}" method="POST" class="inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" 
-                                                        class="text-white bg-red-500 hover:bg-red-700 rounded-xl py-2 px-8 font-semibold">Hapus</button>
+                                                        class="text-white bg-red-500 hover:bg-red-700 rounded-xl py-2 px-8 font-semibold"><i class="fa-solid fa-trash-can"></i></button>
                                                 </form>
                                             </div>
 
