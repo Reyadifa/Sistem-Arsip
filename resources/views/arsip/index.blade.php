@@ -20,7 +20,6 @@
             
 
             <!-- Tombol Tambah Arsip -->
-
             <a href="{{ route('arsip.create') }}"
                 class="mb-6 inline-block px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700"> <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i>
             <span class="">Tambah Arsip</span></a>
