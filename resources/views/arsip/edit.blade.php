@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Arsip</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
@@ -14,7 +13,6 @@
     <div class="flex min-h-screen">
 
         {{-- Include sidebar --}}
-
         @include('layouts.sidebar')
 
         <div class="flex-grow p-6">
