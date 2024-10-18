@@ -20,12 +20,6 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('kategori', KategoriController::class);
             Route::resource('users', UserController::class);
         });
-    
-        Route::middleware(['auth', CheckRole::class . ':admin'])->group(function () {
-            Route::resource('arsip', ArsipController::class);
-            Route::resource('kategori', KategoriController::class);
-            Route::resource('users', UserController::class);
-        });
         
         // Rute untuk user biasa
         Route::middleware(CheckRole::class . ':user')->group(function () {

@@ -47,7 +47,8 @@
                                                 <a href="{{ route('users.edit', $user->id_user) }}" 
                                                    class="text-white bg-blue-500 hover:bg-blue-700 rounded-xl py-2 px-8 font-semibold"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                                                <form action="{{ route('users.destroy', $user->id_user) }}" method="POST" class="inline">
+                                                <form action="{{ route('users.destroy', $user->id_user) }}" method="POST" class="inline"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" 

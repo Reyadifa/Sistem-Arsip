@@ -55,7 +55,8 @@
                                     <div class="flex space-x-4 justify-center">
                                         {{-- edit --}}
                                         <a href="{{ route('kategori.edit', $kategori->id_kategori) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold  rounded-lg transition py-2 px-8"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <form action="{{ route('kategori.destroy', $kategori->id_kategori) }}" method="POST" class="inline">
+                                        <form action="{{ route('kategori.destroy', $kategori->id_kategori) }}" method="POST" class="inline"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold  rounded-lg transition py-2 px-8"><i class="fa-solid fa-trash-can"></i></button>
