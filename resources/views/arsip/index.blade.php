@@ -154,4 +154,8 @@
             {{ $arsips->links('vendor.pagination.tailwind') }}
         </div>
     </div>
+     {{-- Sweetalert --}}
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+     {{-- js --}}
+     <script src="{{ asset('js/arsip.js') }}"></script>
 @endsection
