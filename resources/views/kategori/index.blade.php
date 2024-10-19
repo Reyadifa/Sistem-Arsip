@@ -39,18 +39,18 @@
 
                 <div class="mb-6 flex justify-between items-center">
                     <a href="{{ route('kategori.create') }}"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition"><i
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition"><i
                             class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah Kategori</a>
                     <input type="text" placeholder="Cari kategori..."
                         class="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-500">
                 </div>
 
                 <div class="overflow-hidden bg-white shadow-md rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-blue-500 text-white">
-                            <tr>
-                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Nama
-                                    Kategori</th>
+                    <table class="min-w-full divide-y divide-gray-200 border-2 ">
+                        <thead class="bg-gray-200 text-black font-bold">
+                            <tr class="">
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"><span class="font-bold"> Nama
+                                    Kategori</span></th>
                                 <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Aksi</th>
                             </tr>
                         </thead>

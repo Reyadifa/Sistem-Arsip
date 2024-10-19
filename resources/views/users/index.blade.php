@@ -28,7 +28,7 @@
                         <h2 class="text-2xl font-semibold mb-6">Daftar User</h2>
                         <div class="flex justify-between items-center mb-4">
                             <a href="{{ route('users.create') }}"
-                                class="bg-blue-500 text-white px-4 py-3 rounded-md hover:bg-blue-700 transition duration-300"><i
+                                class="bg-green-500 text-white px-4 py-3 rounded-md hover:bg-green-600 font-bold transition duration-300"><i
                                     class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah User</a>
                         </div>
                         <table class="min-w-full bg-white border-collapse">

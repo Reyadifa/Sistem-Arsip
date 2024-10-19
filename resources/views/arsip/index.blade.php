@@ -18,18 +18,21 @@
         <!-- Main Content -->
         <div class="flex-1 p-10 bg-gray-100 ">
             <h2
-                class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent text-center h-20 ">
+                class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent text-center h-20 ">
                 Sistem Informasi Management Arsip</h2>
             <h1 class="text-2xl font-bold text-gray-800 mb-4">Data Arsip</h1>
 
 
             <!-- Tombol Tambah Arsip -->
             <a href="{{ route('arsip.create') }}"
-                class="mb-6 inline-block px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700">
+                class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600">
                 <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i>
                 <span class="">Tambah Arsip</span></a>
 
-            <form class="flex gap-16 lg:gap-20 " method="GET" action="{{ route('arsip.index') }}">
+                
+                
+
+            <form class="flex justify-between " method="GET" action="{{ route('arsip.index') }}">
                 {{-- cari Npwp --}}
                 <div>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari NPWP"
@@ -67,15 +70,15 @@
                 </div>
 
                 {{-- Reset --}}
-                <div class="bg-red-600 px-3 py-1 rounded-lg text-white font-semibold h-9">
+                <div class="bg-red-500 px-6 py-1 rounded-lg text-white font-semibold h-9 hover:bg-red-600 cursor-pointer">
                     <a href="{{ route('arsip.index') }}">Reset</a>
                 </div>
             </form>
 
 
-            <div class="overflow-x-auto bg-white shadow-md rounded-lg ">
+            <div class="overflow-x-auto bg-white shadow-md rounded-lg border-4">
                 <table class="min-w-full table-auto divide-y divide-gray-300">
-                    <thead class="bg-blue-50">
+                    <thead class="bg-gray-200">
                         <tr>
                             <th class="px-5 py-3 text-left text-xs font text-gray-700">NPWP</th>
                             <th class="px-5 py-3 text-left text-xs font text-gray-700">Kategori</th>
@@ -104,8 +107,9 @@
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->bulan }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">
                                     @if ($arsip->file_path)
+                                        {{-- Tombol file --}}
                                         <div
-                                            class="bg-green-500 hover:bg-green-600 w-12 text-base py-2 rounded-lg font-bold  flex items-center justify-center">
+                                            class="bg-yellow-500 hover:bg-yellow-600 w-12 text-base py-2 rounded-lg font-bold  flex items-center justify-center cursor-pointer">
                                             <a href="{{ asset('storage/' . $arsip->file_path) }}"
                                                 class="text-white hover:underline" target="_blank"><i
                                                     class="fa-solid fa-file"></i></a>
@@ -119,12 +123,12 @@
                                     <div class="flex items-center px-2   py-3 justify-center space-x-2 ">
                                         <!-- Tombol Detail -->
                                         <a href="{{ route('arsip.show', $arsip->id) }}"
-                                            class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg"><i
-                                                class="fa-solid fa-circle-info"></i></a>
+                                            class="px-4 py-2 text-white  bg-gray-500 hover:bg-gray-600 rounded-lg"><i
+                                                class="fa-solid fa-eye"></i></a>
 
                                         <!-- Tombol Edit -->
                                         <a href="{{ route('arsip.edit', $arsip->id) }}"
-                                            class="px-4 py-2 text-white bg-yellow-500 hover:bg-yellow-600 rounded-lg"><i
+                                            class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
 
                                         <!-- Tombol Hapus -->
@@ -134,7 +138,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="button"
-                                                class="px-4 py-2 text-white bg-red-600 hover:bg-red-700 rounded-lg"
+                                                class="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg"
                                                 onclick="confirmDelete({{ $arsip->id }})">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
@@ -154,8 +158,8 @@
             {{ $arsips->links('vendor.pagination.tailwind') }}
         </div>
     </div>
-     {{-- Sweetalert --}}
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-     {{-- js --}}
-     <script src="{{ asset('js/arsip.js') }}"></script>
+    {{-- Sweetalert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    {{-- js --}}
+    <script src="{{ asset('js/arsip.js') }}"></script>
 @endsection
