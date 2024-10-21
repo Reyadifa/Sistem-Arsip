@@ -30,7 +30,7 @@ class ArsipController extends Controller
         })
         ->orderBy('tahun', 'desc')
         ->orderByRaw("FIELD(bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari') ASC") // Urutkan bulan dari Desember ke Januari
-        ->paginate(10)
+        ->paginate(12)
         ->appends(request()->query());
 
     return view('arsip.index', compact('arsips', 'search', 'bulan', 'tahun'));

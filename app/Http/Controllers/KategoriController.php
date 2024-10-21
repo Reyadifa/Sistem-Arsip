@@ -10,7 +10,7 @@ class KategoriController extends Controller
 {
     public function index()
 {
-    $kategoris = Kategori::paginate(10); // Menampilkan 10 kategori per halaman
+    $kategoris = Kategori::paginate(12); // Menampilkan 10 kategori per halaman
     return view('kategori.index', compact('kategoris'));
 }
 

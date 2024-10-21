@@ -19,7 +19,7 @@
         <div class="flex-1 p-10 bg-gray-100 ">
             <h2
                 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent text-center h-20 ">
-                Sistem Informasi Management Arsip</h2>
+                Sistem Informasi Manajemen Arsip</h2>
             <h1 class="text-2xl font-bold text-gray-800 mb-4">Data Arsip</h1>
 
 
@@ -36,12 +36,12 @@
                 {{-- cari Npwp --}}
                 <div>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari NPWP"
-                        class=" border-2 rounded-lg mb-8 border-gray-400 py-1 text-sm pl-4">
+                        class=" border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-4 w-80">
                 </div>
                 {{-- Cari Bulan --}}
                 <div class="">
                     <label for="bulan" class="">Bulan:</label>
-                    <select name="bulan" id="bulan" class="border-2 border-gray-400 rounded-lg pl-4  py-1 ">
+                    <select name="bulan" id="bulan" class="border-2 border-gray-400 rounded-lg pl-4  py-2 w-80">
                         <option value="">Pilih Bulan</option>
                         <option value="Januari" {{ request('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
                         <option value="Februari" {{ request('bulan') == 'Februari' ? 'selected' : '' }}>Februari</option>
@@ -62,7 +62,7 @@
                 {{-- Cari Tahun --}}
                 <div>
                     <label for="tahun">Tahun:</label>
-                    <input class="border-gray-400 border-2 rounded-lg px-4 py-1" type="text" name="tahun"
+                    <input class="border-gray-400 border-2 rounded-lg px-4 py-2 max-w-80" type="text" name="tahun"
                         id="tahun" value="{{ request('tahun') }}" placeholder="Ketik Tahun" maxlength="4"
                         title="Masukkan angka tahun" pattern="\d*" />
                     <button type="submit" class="bg-blue-600 px-3 h-9 rounded-lg text-white font-semibold"><span
@@ -70,16 +70,17 @@
                 </div>
 
                 {{-- Reset --}}
-                <div class="bg-red-500 px-6 py-1 rounded-lg text-white font-semibold h-9 hover:bg-red-600 cursor-pointer">
+                <div class="bg-gray-500 px-6 py-1 mt-1 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer">
                     <a href="{{ route('arsip.index') }}">Reset</a>
                 </div>
             </form>
 
 
-            <div class="overflow-x-auto bg-white shadow-md rounded-lg border-4">
+            <div class="overflow-x-auto bg-white shadow-md rounded-lg border-20">
                 <table class="min-w-full table-auto divide-y divide-gray-300">
-                    <thead class="bg-gray-200">
+                    <thead class="bg-cyan-500">
                         <tr>
+                            <th class="px-5 py-3 text-center text-xs font text-gray-700">No</th>
                             <th class="px-5 py-3 text-left text-xs font text-gray-700">NPWP</th>
                             <th class="px-5 py-3 text-left text-xs font text-gray-700">Kategori</th>
                             <th class="px-5 py-3 text-left text-xs font text-gray-700">Nama Usaha</th>
@@ -93,8 +94,11 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($arsips as $arsip)
+                        @foreach ($arsips as $index => $arsip)
                             <tr class="hover:bg-gray-100">
+                                <td class="px-4 py-3 text-center text-xs font text-black-500">
+                                    {{ $arsips->firstItem() + $index }} <!-- Perbaikan penggunaan $index -->
+                                </td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->npwp }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500">
                                     {{ $arsip->kategori->nama_kategori ?? 'Tidak ada kategori' }}</td>
