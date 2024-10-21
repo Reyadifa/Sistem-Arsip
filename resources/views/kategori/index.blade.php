@@ -67,7 +67,7 @@
                                         <div class="flex space-x-4 justify-center">
                                             {{-- edit --}}
                                             <a href="{{ route('kategori.edit', $kategori->id_kategori) }}"
-                                                class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold  rounded-lg transition py-2 px-4"><i
+                                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold  rounded-lg transition py-2 px-4"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                             {{-- js nya di sini --}}
                                             <form id="delete-form-{{ $kategori->id_kategori }}"
