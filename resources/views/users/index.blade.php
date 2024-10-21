@@ -34,14 +34,18 @@
                         <table class="min-w-full bg-white border-collapse">
                             <thead class="bg-gray-200">
                                 <tr>
+                                    <th class="py-3 px-4 border-b border-gray-300  text-center">No</th>
                                     <th class="py-3 px-4 border-b border-gray-300 text-left">Nama User</th>
                                     <th class="py-3 px-4 border-b border-gray-300 text-left">Email</th>
                                     <th class="py-3 px-4 border-b border-gray-300 w-96 p-24">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($users as $index => $user)
                                     <tr class="hover:bg-gray-100 transition duration-300">
+                                        <td class="px-4 py-3 text-center text-xs font text-black-500 text center">
+                                            {{ $users->firstItem() + $index }} <!-- Perbaikan penggunaan $index -->
+                                        </td>
                                         <td class="py-2 px-4 border-b border-gray-300">{{ $user->nama_user }}</td>
                                         <td class="py-2 px-4 border-b border-gray-300">{{ $user->email }}</td>
                                         <td class="py-2 px-4 border-b border-gray-300 flex space-x-2">

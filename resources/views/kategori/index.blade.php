@@ -49,15 +49,19 @@
                     <table class="min-w-full divide-y divide-gray-200 border-2 ">
                         <thead class="bg-gray-200 text-black font-bold">
                             <tr class="">
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">No</th>
                                 <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"><span class="font-bold"> Nama
                                     Kategori</span></th>
                                 <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($kategoris as $kategori)
+                            @foreach ($kategoris as $index =>  $kategori)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    <td class="px-4 py-3 text-center text-xs font text-black-500">
+                                        {{ $kategoris->firstItem() + $index }} <!-- Perbaikan penggunaan $index -->
+                                    </td>
+                                    <td class="px-6 py-4 text-center whitespace-nowrap text-sm text-gray-900">
                                         {{ $kategori->nama_kategori }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-4 justify-center">
