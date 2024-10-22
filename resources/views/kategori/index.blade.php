@@ -37,25 +37,28 @@
                     </div>
                 @endif
 
-                <div class="mb-6 flex justify-between items-center">
+                <div class="mb-6">
                     <a href="{{ route('kategori.create') }}"
-                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition"><i
-                            class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah Kategori</a>
-
-                            <form action="{{ route('kategori.index') }}" method="GET">
-                                <div>
-                                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari Kategori"
-                                        class="border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-4 w-80 mt-10">
-                                </div>
-                                <button type="submit" class="bg-blue-600 px-3 h-9 rounded-lg text-white font-semibold">
-                                    <span class="mr-2">Cari</span> 
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
-                                <div class="bg-gray-500 px-2 py-1 t-1 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer">
-                                    <a href="{{ route('kategori.index') }}">Reset</a>
-                                </div>
-                            </form>                            
-                </div>
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition mb-4 inline-block">
+                        <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah Kategori
+                    </a>
+                
+                    <div class="flex flex-col space-y-4">
+                        <form action="{{ route('kategori.index') }}" method="GET" class="flex items-center space-x-4">
+                            <div>
+                                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari Kategori"
+                                    class="border-2 rounded-lg border-gray-400 py-[9px] text-sm pl-4" style="width: 950px;">
+                            </div>
+                            <button type="submit" class="bg-blue-600 py-1 px-3 h-9 rounded-lg text-white font-semibold  hover:bg-blue-800 cursor-pointer">
+                                <span class="mr-2">Cari</span> 
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            <div class="bg-gray-500 px-3 py-1 t-1 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer">
+                                <a href="{{ route('kategori.index') }}">Reset</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>                
 
                 <div class="overflow-hidden bg-white shadow-md rounded-lg">
                     <table class="min-w-full divide-y divide-gray-200 border-2 ">

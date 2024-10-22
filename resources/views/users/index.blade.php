@@ -31,6 +31,24 @@
                                 class="bg-green-500 text-white px-4 py-3 rounded-md hover:bg-green-600 font-bold transition duration-300"><i
                                     class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah User</a>
                         </div>
+
+                        <div class="flex flex-col space-y-4">
+                            <form action="{{ route('users.index') }}" method="GET" class="flex items-center space-x-4">
+                                <div>
+                                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari User"
+                                        class="border-2 rounded-lg border-gray-400 py-[9px] text-sm pl-4" style="width: 950px;">
+                                </div>
+                                <button type="submit" class="bg-blue-600 py-1 px-3 h-9 rounded-lg text-white font-semibold  hover:bg-blue-800 cursor-pointer">
+                                    <span class="mr-2">Cari</span> 
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <div class="bg-gray-500 px-3 py-1 t-1 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer">
+                                    <a href="{{ route('users.index') }}">Reset</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div> 
+
                         <table class="min-w-full bg-white border-collapse">
                             <thead class="bg-gray-200">
                                 <tr>

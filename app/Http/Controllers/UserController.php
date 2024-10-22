@@ -34,13 +34,17 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan.');
     }
 
-    // Menampilkan daftar semua pengguna
-    public function index()
-    {
-        // Mengambil semua pengguna dengan pagination, 10 pengguna per halaman
-        $users = User::paginate(10); 
-        return view('users.index', compact('users'));
-    }
+
+
+    public function index(Request $request)
+{
+    $search = $request->input('search');
+    $users = User::when($search, function ($query) use ($search) {
+        return $query->where('nama_user', 'like', '%' . $search . '%');
+    })->paginate(12)->appends(request()->query());
+    
+    return view('users.index', compact('search', 'users'));
+}
     
 
     // Menampilkan form edit untuk pengguna

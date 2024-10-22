@@ -42,7 +42,7 @@
                 <div class="">
                     <label for="bulan" class="">Bulan:</label>
                     <select name="bulan" id="bulan" class="border-2 border-gray-400 rounded-lg pl-4  py-2 w-80">
-                        <option value="">Pilih Bulan</option>
+                        <option value="" disabled selected  class="text-gray-500">Pilih Bulan</option>
                         <option value="Januari" {{ request('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
                         <option value="Februari" {{ request('bulan') == 'Februari' ? 'selected' : '' }}>Februari</option>
                         <option value="Maret" {{ request('bulan') == 'Maret' ? 'selected' : '' }}>Maret</option>
@@ -65,7 +65,7 @@
                     <input class="border-gray-400 border-2 rounded-lg px-4 py-2 max-w-80" type="text" name="tahun"
                         id="tahun" value="{{ request('tahun') }}" placeholder="Ketik Tahun" maxlength="4"
                         title="Masukkan angka tahun" pattern="\d*" />
-                    <button type="submit" class="bg-blue-600 px-3 h-9 rounded-lg text-white font-semibold"><span
+                    <button type="submit" class="bg-blue-600 px-3 h-9 rounded-lg text-white font-semibold ml-5 hover:bg-blue-800 cursor-pointer"><span
                             class="mr-2">Cari</span> <i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
 
