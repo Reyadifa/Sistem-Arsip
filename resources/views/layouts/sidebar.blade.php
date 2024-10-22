@@ -1,6 +1,7 @@
 <aside class="w-64 bg-gradient-to-b h-screen  from-blue-500 to-blue-700 text-white p-6 ">
     <div class="flex justify-center mb-4 ">
-        <img class="w-32 " src="../img/bpkad.png" alt="">
+        <img class="w-32" src="{{ asset('img/bpkad.png') }}" alt="BPKAD">
+
     </div>
     <hr class="border-2">
     <nav>
