@@ -41,8 +41,20 @@
                     <a href="{{ route('kategori.create') }}"
                         class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition"><i
                             class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah Kategori</a>
-                    <input type="text" placeholder="Cari kategori..."
-                        class="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-500">
+
+                            <form action="{{ route('kategori.index') }}" method="GET">
+                                <div>
+                                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari Kategori"
+                                        class="border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-4 w-80 mt-10">
+                                </div>
+                                <button type="submit" class="bg-blue-600 px-3 h-9 rounded-lg text-white font-semibold">
+                                    <span class="mr-2">Cari</span> 
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <div class="bg-gray-500 px-2 py-1 t-1 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer">
+                                    <a href="{{ route('kategori.index') }}">Reset</a>
+                                </div>
+                            </form>                            
                 </div>
 
                 <div class="overflow-hidden bg-white shadow-md rounded-lg">

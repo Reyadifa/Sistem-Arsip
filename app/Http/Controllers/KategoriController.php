@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
-    public function index()
+    public function index(Request $request)
 {
-    $kategoris = Kategori::paginate(12); // Menampilkan 10 kategori per halaman
-    return view('kategori.index', compact('kategoris'));
+    $search = $request->input('search');
+    $kategoris = Kategori::when($search, function ($query) use ($search) {
+        return $query->where('nama_kategori', 'like', '%' . $search . '%');
+    })->paginate(12)->appends(request()->query());
+    
+    return view('kategori.index', compact('search', 'kategoris'));
 }
+
 
 
     public function create()
