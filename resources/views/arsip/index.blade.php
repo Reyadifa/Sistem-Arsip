@@ -7,6 +7,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     {{-- sweetalert --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
+
 
 
 
@@ -17,11 +19,9 @@
 
         <!-- Main Content -->
         <div class="flex-1 p-10 bg-gray-100 ">
-            <h2
-                class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent text-center h-20 ">
-                Sistem Informasi Manajemen Arsip</h2>
+            <h2 class="text-5xl font-[Modak] font-black text-blue-600 text-center h-20"
+                  style="-webkit-text-stroke: 2px black;">Sistem Informasi Manajemen Arsip</h2>                            
             <h1 class="text-2xl font-bold text-gray-800 mb-4">Data Arsip</h1>
-
 
             <!-- Tombol Tambah Arsip -->
             <a href="{{ route('arsip.create') }}"
