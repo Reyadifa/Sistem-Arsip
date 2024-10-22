@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
 
-
-
-
     <div class="flex ">
 
         <!--include Sidebar -->
@@ -28,9 +25,6 @@
                 class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600">
                 <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i>
                 <span class="">Tambah Arsip</span></a>
-
-                
-                
 
             <form class="flex justify-between " method="GET" action="{{ route('arsip.index') }}">
                 {{-- cari Npwp --}}
@@ -75,51 +69,50 @@
                 </div>
             </form>
 
-
             <div class="overflow-x-auto bg-white shadow-md rounded-lg border-20">
                 <table class="min-w-full table-auto divide-y divide-gray-300">
                     <thead class="bg-cyan-500">
                         <tr>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">No</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700">NPWP</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Kategori</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Nama Usaha</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Alamat Usaha</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Nama Pemilik</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Alamat Pemilik</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Tahun</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700">Bulan</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700">File</th>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700">Aksi</th>
+                            <th class="px-5 py-3 text-center text-xs font text-gray-700 border-r">No</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">NPWP</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Kategori</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Nama Usaha</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Alamat Usaha</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Nama Pemilik</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Alamat Pemilik</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Tahun</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Bulan</th>
+                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">File</th>
+                            <th class="px-5 py-3 text-center text-xs font text-gray-700 border-r">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($arsips as $index => $arsip)
                             <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-center text-xs font text-black-500">
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r">
                                     {{ $arsips->firstItem() + $index }} <!-- Perbaikan penggunaan $index -->
                                 </td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->npwp }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500">
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->npwp }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">
                                     {{ $arsip->kategori->nama_kategori ?? 'Tidak ada kategori' }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->nama_usaha }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->alamat_usaha }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->nama_pemilik }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->alamat_pemilik }}
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->nama_usaha }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->alamat_usaha }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->nama_pemilik }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->alamat_pemilik }}
                                 </td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->tahun }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500">{{ $arsip->bulan }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500">
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->tahun }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->bulan }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">
                                     @if ($arsip->file_path)
                                         {{-- Tombol file --}}
                                         <div
-                                            class="bg-yellow-500 hover:bg-yellow-600 w-12 text-base py-2 rounded-lg font-bold  flex items-center justify-center cursor-pointer">
+                                            class="bg-yellow-500 border-r hover:bg-yellow-600 w-12 text-base py-2 rounded-lg font-bold  flex items-center justify-center cursor-pointer">
                                             <a href="{{ asset('storage/' . $arsip->file_path) }}"
                                                 class="text-white hover:underline" target="_blank"><i
                                                     class="fa-solid fa-file"></i></a>
                                         </div>
                                     @else
-                                        <span class="text-gray-500">Tidak ada file</span>
+                                        <span class="text-gray-500 border-r">Tidak ada file</span>
                                     @endif
                                 </td>
 

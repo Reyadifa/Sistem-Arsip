@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 class KategoriController extends Controller
 {
     public function index(Request $request)
-{
-    $search = $request->input('search');
-    $kategoris = Kategori::when($search, function ($query) use ($search) {
-        return $query->where('nama_kategori', 'like', '%' . $search . '%');
-    })->paginate(12)->appends(request()->query());
-    
-    return view('kategori.index', compact('search', 'kategoris'));
-}
+    {
+        $search = $request->input('search');
+        $kategoris = Kategori::when($search, function ($query) use ($search) {
+            return $query->where('nama_kategori', 'like', '%' . $search . '%');
+        })->paginate(12)->appends(request()->query());
+        
+        return view('kategori.index', compact('search', 'kategoris'));
+    }
 
 
 
@@ -57,18 +57,18 @@ class KategoriController extends Controller
     }
 
     public function destroy($id_kategori)
-{
-    // Temukan kategori
-    $kategori = Kategori::findOrFail($id_kategori);
-    
-    // Perbarui arsip yang terkait dengan mengubah id_kategori menjadi null
-    Arsip::where('id_kategori', $id_kategori)->update(['id_kategori' => null]);
+    {
+        // Temukan kategori
+        $kategori = Kategori::findOrFail($id_kategori);
+        
+        // Perbarui arsip yang terkait dengan mengubah id_kategori menjadi null
+        Arsip::where('id_kategori', $id_kategori)->update(['id_kategori' => null]);
 
-    // Hapus kategori
-    $kategori->delete();
+        // Hapus kategori
+        $kategori->delete();
 
-    return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus dan arsip terkait tetap ada.');
-}
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus dan arsip terkait tetap ada.');
+    }
 
 
 }
