@@ -65,9 +65,12 @@
                 </div>
             </form>
 
+
+            {{-- Kotak Border --}}
             
-            <div class="overflow-x-auto bg-white shadow-md rounded-xl border border-black">
-                <table class="min-w-full table-auto divide-y divide-gray-300">
+            <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t border-black">
+
+                <table class="min-w-full table-auto divide-y divide-gray-300  ">
                     <thead class="bg-blue-500">
                         <tr>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">No</th>
@@ -83,6 +86,7 @@
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-black border-b">Aksi</th>
                         </tr>
                     </thead>
+                    
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($arsips as $index => $arsip)
                             <tr class="hover:bg-gray-100">
@@ -146,6 +150,7 @@
                         @endforeach
                     </tbody>
                 </table>
+
             </div>
 
             <!-- Pagination -->

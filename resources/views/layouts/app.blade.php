@@ -16,8 +16,7 @@
 
     {{-- tailwind config --}}
     @vite('resources/css/app.css')
-    {{-- tailwind config --}}
-    @vite('resources/css/app.css')
+    
 </head>
 
 <body class="bg-gray-100">

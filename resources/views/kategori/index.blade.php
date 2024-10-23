@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Kategori</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    {{-- link awesome --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    {{-- sweetalert --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    {{-- config tailwind --}}
-    @vite('resources/css/app.css')
-</head>
+@section('content')
 
-<body class="bg-gray-50">
 
-    <div class="flex h-screen">
-        <!-- Sidebar -->
+ <div class="flex "> <!-- Kontainer utama dengan tinggi penuh -->
+
+        {{-- Include sidebar --}}
         @include('layouts.sidebar')
-        <!-- Konten Utama -->
-        <main class="flex-grow p-8 bg-gray-100">
+        <div class="flex-1  bg-gray-100 "> 
+
+
+
+  <main class="flex-grow p-8 bg-gray-100">
             <div class="max-w-10xl mx-auto bg-white shadow-xl rounded-lg p-8">
                 <h1 class="text-3xl font-bold mb-6 text-gray-800">Daftar Kategori</h1>
 
@@ -112,12 +103,18 @@
                 </div>
             </div>
         </main>
+
+
+
+
+</div>
     </div>
-    {{-- Sweetalert --}}
+
+
+
+      {{-- Sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- js kategori --}}
     <script src="{{ asset('js/kategori.js') }}"></script>
 
-</body>
-
-</html>
+@endsection
