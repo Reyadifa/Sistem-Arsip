@@ -16,6 +16,8 @@
 
         <!-- Main Content -->
         <div class="flex-1 p-10 bg-gray-100 ">
+
+            
             <h2 class="text-5xl font-[Modak] font-black text-blue-600 text-center h-20"
                   style="-webkit-text-stroke: 2px black;">Sistem Informasi Manajemen Arsip</h2>                            
             <h1 class="text-2xl font-bold text-gray-800 mb-4">Data Arsip</h1>
@@ -100,8 +102,8 @@
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->nama_pemilik }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->alamat_pemilik }}
                                 </td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->tahun }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->bulan }}</td>
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r">{{ $arsip->tahun }}</td>
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r">{{ $arsip->bulan }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">
                                     @if ($arsip->file_path)
                                         {{-- Tombol file --}}
