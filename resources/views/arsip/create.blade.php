@@ -22,7 +22,8 @@
 
             <main class="bg-white shadow-xl  rounded-xl p-10">
 
-                <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl mb-4">Tambah Arsip</h1>
+                <h1 class="text-center text-2xl font-bold text-black sm:text-3xl mb-9">Tambah Arsip</h1>
+                <hr class="border-2 border-black">
                 <form action="{{ route('arsip.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
@@ -42,27 +43,29 @@
 
 
                     {{-- Kotak --}}
-                    <main class="grid grid-cols-2 gap-x-6 ">
+                    <main class="grid grid-cols-2 gap-x-6 mt-1">
 
-                        <div class="mb-4 ">
+                        <div class="mb-4 mt-10 ">
                             <label for="id_kategori"
                                 class="block mb-2 text-sm font-medium text-gray-700 ">Kategori</label>
+    
                             {{-- Kategori --}}
                             <select name="id_kategori" id="id_kategori"
                                 class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black "
                                 required>
                                 <option value="" disabled selected>Pilih Kategori</option>
                                 @foreach ($kategoris as $kategori)
-                                    <option value="{{ $kategori->id_kategori }}">{{ $kategori->nama_kategori }}</option>
+                                <option value="{{ $kategori->id_kategori }}" {{ old('id_kategori') == $kategori->id_kategori ? 'selected' : '' }}>{{ $kategori->nama_kategori }}</option>
                                 @endforeach
                             </select>
                         </div>
+
                         {{-- Npwp --}}
-                        <div class="mb-4  ">
+                        <div class="mb-4 mt-10">
                             <label for="npwp" class="block mb-2 text-sm font-medium text-gray-700">NPWP</label>
                             <input type="text" name="npwp" id="npwp" placeholder="Masukkan NPWP"
-                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
-                                required>
+                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                value="{{ old('npwp') }}" required>
                         </div>
 
 
@@ -71,8 +74,8 @@
                             <label for="nama_usaha" class="block mb-2 text-sm font-medium text-gray-700">Nama
                                 Usaha</label>
                             <input type="text" name="nama_usaha" id="nama_usaha" placeholder="Masukkan Nama Usaha"
-                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
-                                required>
+                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                value="{{ old('nama_usaha') }}" required>
                         </div>
                         {{-- Alamat Usaha --}}
                         <div class="mb-4 ">
@@ -80,54 +83,58 @@
                                 Usaha</label>
                             <input type="text" name="alamat_usaha" id="alamat_usaha"
                                 placeholder="Masukkan Alamat Usaha"
-                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
-                                required>
+                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                value="{{ old('alamat_usaha') }}" required>
                         </div>
+
                         {{-- Nama Pemilik --}}
                         <div class="mb-4 ">
                             <label for="nama_pemilik" class="block mb-2 text-sm font-medium text-gray-700">Nama
                                 Pemilik</label>
                             <input type="text" name="nama_pemilik" id="nama_pemilik"
                                 placeholder="Masukkan Nama Pemilik"
-                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
-                                required>
+                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                value="{{ old('nama_pemilik') }}" required>
                         </div>
+
                         {{-- Alamat Pemilik --}}
                         <div class="mb-4 ">
                             <label for="alamat_pemilik" class="block mb-2 text-sm font-medium text-gray-700">Alamat
                                 Pemilik</label>
                             <input type="text" name="alamat_pemilik" id="alamat_pemilik"
                                 placeholder="Masukkan Alamat Pemilik"
-                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
-                                required>
+                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                value="{{ old('alamat_pemilik') }}" required>
                         </div>
+                        
                         {{-- Bulan --}}
                         <div class="mb-4 ">
                             <label for="bulan" class="block mb-2 text-sm font-medium text-gray-700">Bulan</label>
                             <select name="bulan" id="bulan"
                                 class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                                 required>
-                                <option value="" disabled selected>Pilih Bulan</option>
-                                <option value="Januari">Januari</option>
-                                <option value="Februari">Februari</option>
-                                <option value="Maret">Maret</option>
-                                <option value="April">April</option>
-                                <option value="Mei">Mei</option>
-                                <option value="Juni">Juni</option>
-                                <option value="Juli">Juli</option>
-                                <option value="Agustus">Agustus</option>
-                                <option value="September">September</option>
-                                <option value="Oktober">Oktober</option>
-                                <option value="November">November</option>
-                                <option value="Desember">Desember</option>
+                                <option value="" disabled {{ old('bulan') ? '' : 'selected' }}>Pilih Bulan</option>
+                                <option value="Januari" {{ old('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
+                                <option value="Februari" {{ old('bulan') == 'Februari' ? 'selected' : '' }}>Februari</option>
+                                <option value="Maret" {{ old('bulan') == 'Maret' ? 'selected' : '' }}>Maret</option>
+                                <option value="April" {{ old('bulan') == 'April' ? 'selected' : '' }}>April</option>
+                                <option value="Mei" {{ old('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
+                                <option value="Juni" {{ old('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
+                                <option value="Juli" {{ old('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
+                                <option value="Agustus" {{ old('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus</option>
+                                <option value="September" {{ old('bulan') == 'September' ? 'selected' : '' }}>September</option>
+                                <option value="Oktober" {{ old('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober</option>
+                                <option value="November" {{ old('bulan') == 'November' ? 'selected' : '' }}>November</option>
+                                <option value="Desember" {{ old('bulan') == 'Desember' ? 'selected' : '' }}>Desember</option>
                             </select>
                         </div>
+
                         {{-- Tahun --}}
                         <div class="mb-4 ">
                             <label for="tahun" class="block mb-2 text-sm font-medium text-gray-700">Tahun</label>
                             <input type="number" name="tahun" id="tahun" placeholder="Masukkan Tahun"
-                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
-                                required>
+                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                value="{{ old('tahun') }}" required>
                         </div>
 
 
@@ -137,7 +144,7 @@
 
 
                     {{-- Upload File --}}
-                    <div class="mb-4 mt-4">
+                    <div class="mb-4">
                         <label for="file" class="block mb-2 text-sm font-medium text-gray-700 ">Upload File</label>
                         <input type="file" name="file" id="file"
                             class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-white"
