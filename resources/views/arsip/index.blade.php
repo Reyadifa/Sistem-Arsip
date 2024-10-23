@@ -73,19 +73,19 @@
 
             <div class="overflow-x-auto bg-white shadow-md rounded-lg border-20">
                 <table class="min-w-full table-auto divide-y divide-gray-300">
-                    <thead class="bg-cyan-500">
+                    <thead class="bg-blue-500">
                         <tr>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700 border-r">No</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">NPWP</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Kategori</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Nama Usaha</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Alamat Usaha</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Nama Pemilik</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Alamat Pemilik</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Tahun</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">Bulan</th>
-                            <th class="px-5 py-3 text-left text-xs font text-gray-700 border-r">File</th>
-                            <th class="px-5 py-3 text-center text-xs font text-gray-700 border-r">Aksi</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-slate-300">No</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">NPWP</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Kategori</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Nama Usaha</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Alamat Usaha</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Nama Pemilik</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Alamat Pemilik</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Tahun</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Bulan</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">File</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-slate-300">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">

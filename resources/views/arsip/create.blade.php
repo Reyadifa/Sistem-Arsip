@@ -61,7 +61,7 @@
                         <div class="mb-4  ">
                             <label for="npwp" class="block mb-2 text-sm font-medium text-gray-700">NPWP</label>
                             <input type="text" name="npwp" id="npwp" placeholder="Masukkan NPWP"
-                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                                 required>
                         </div>
 
@@ -71,7 +71,7 @@
                             <label for="nama_usaha" class="block mb-2 text-sm font-medium text-gray-700">Nama
                                 Usaha</label>
                             <input type="text" name="nama_usaha" id="nama_usaha" placeholder="Masukkan Nama Usaha"
-                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                                 required>
                         </div>
                         {{-- Alamat Usaha --}}
@@ -80,7 +80,7 @@
                                 Usaha</label>
                             <input type="text" name="alamat_usaha" id="alamat_usaha"
                                 placeholder="Masukkan Alamat Usaha"
-                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                                 required>
                         </div>
                         {{-- Nama Pemilik --}}
@@ -89,7 +89,7 @@
                                 Pemilik</label>
                             <input type="text" name="nama_pemilik" id="nama_pemilik"
                                 placeholder="Masukkan Nama Pemilik"
-                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                                 required>
                         </div>
                         {{-- Alamat Pemilik --}}
@@ -98,14 +98,14 @@
                                 Pemilik</label>
                             <input type="text" name="alamat_pemilik" id="alamat_pemilik"
                                 placeholder="Masukkan Alamat Pemilik"
-                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                                 required>
                         </div>
                         {{-- Bulan --}}
                         <div class="mb-4 ">
                             <label for="bulan" class="block mb-2 text-sm font-medium text-gray-700">Bulan</label>
                             <select name="bulan" id="bulan"
-                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                                 required>
                                 <option value="" disabled selected>Pilih Bulan</option>
                                 <option value="Januari">Januari</option>
@@ -126,7 +126,7 @@
                         <div class="mb-4 ">
                             <label for="tahun" class="block mb-2 text-sm font-medium text-gray-700">Tahun</label>
                             <input type="number" name="tahun" id="tahun" placeholder="Masukkan Tahun"
-                                class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                                 required>
                         </div>
 
@@ -140,7 +140,7 @@
                     <div class="mb-4 mt-4">
                         <label for="file" class="block mb-2 text-sm font-medium text-gray-700 ">Upload File</label>
                         <input type="file" name="file" id="file"
-                            class="w-full rounded-lg border border-black p-3 text-sm focus:outline-none focus:ring-2 focus:ring-white"
+                            class="w-full rounded-lg border border-black  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-white"
                             required>
                     </div>
 
