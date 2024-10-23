@@ -65,54 +65,55 @@
                 </div>
             </form>
 
-            <div class="overflow-x-auto bg-white shadow-md rounded-lg border-20">
+            
+            <div class="overflow-x-auto bg-white shadow-md rounded-xl border border-black">
                 <table class="min-w-full table-auto divide-y divide-gray-300">
                     <thead class="bg-blue-500">
                         <tr>
-                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-slate-300">No</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">NPWP</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Kategori</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Nama Usaha</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Alamat Usaha</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Nama Pemilik</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Alamat Pemilik</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Tahun</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">Bulan</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-slate-300">File</th>
-                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-slate-300">Aksi</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">No</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">NPWP</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Kategori</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Nama Usaha</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Alamat Usaha</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Nama Pemilik</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Alamat Pemilik</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Tahun</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Bulan</th>
+                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">File</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-black border-b">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($arsips as $index => $arsip)
                             <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r">
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                     {{ $arsips->firstItem() + $index }} <!-- Perbaikan penggunaan $index -->
                                 </td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->npwp }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $arsip->npwp }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
                                     {{ $arsip->kategori->nama_kategori ?? 'Tidak ada kategori' }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->nama_usaha }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->alamat_usaha }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->nama_pemilik }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">{{ $arsip->alamat_pemilik }}
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $arsip->nama_usaha }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $arsip->alamat_usaha }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $arsip->nama_pemilik }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $arsip->alamat_pemilik }}
                                 </td>
-                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r">{{ $arsip->tahun }}</td>
-                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r">{{ $arsip->bulan }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r">
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $arsip->tahun }}</td>
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $arsip->bulan }}</td>
+                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
                                     @if ($arsip->file_path)
                                         {{-- Tombol file --}}
                                         <div
-                                            class="bg-yellow-500 border-r hover:bg-yellow-600 w-12 text-base py-2 rounded-lg font-bold  flex items-center justify-center cursor-pointer">
+                                            class="bg-yellow-500 border hover:bg-yellow-600 w-12 text-base py-2 rounded-lg font-bold  flex items-center justify-center cursor-pointer">
                                             <a href="{{ asset('storage/' . $arsip->file_path) }}"
                                                 class="text-white hover:underline" target="_blank"><i
                                                     class="fa-solid fa-file"></i></a>
                                         </div>
                                     @else
-                                        <span class="text-gray-500 border-r">Tidak ada file</span>
+                                        <span class="text-gray-500 border">Tidak ada file</span>
                                     @endif
                                 </td>
 
-                                <td class=" ">
+                                <td class="border-black border-b">
                                     <div class="flex items-center px-2   py-3 justify-center space-x-2 ">
                                         <!-- Tombol Detail -->
                                         <a href="{{ route('arsip.show', $arsip->id) }}"
