@@ -7,6 +7,16 @@
     <nav>
         <ul class="space-y-4">
             @if(Auth::user()->role == 1) {{-- Untuk Admin --}}
+
+          
+            <li class="mt-4">
+                <a href="/dashboard" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                    <span class="material-icons">dashboard</span>
+                    <span class="ml-2">Dashboard</span>
+                </a>
+            </li>
+            
+            
             <li>
                 <a href="/arsip" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
                     <span class="material-icons">archive</span>
