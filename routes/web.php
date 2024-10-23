@@ -6,7 +6,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Middleware\CheckRole;
+use App\Http\Controllers\DashboardController;
 
+// Route untuk dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
