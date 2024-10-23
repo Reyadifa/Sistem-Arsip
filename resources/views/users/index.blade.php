@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar User</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    {{-- sweetalert --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+@section('content')
 
-    {{-- tailwind config --}}
-    @vite('resources/css/app.css')
-</head>
 
-<body class="bg-gray-100">
-
-    <div class="flex h-screen"> <!-- Kontainer utama dengan tinggi penuh -->
+ <div class="flex "> <!-- Kontainer utama dengan tinggi penuh -->
 
         {{-- Include sidebar --}}
         @include('layouts.sidebar')
+        <div class="flex-1 p-10 bg-gray-100 "> 
 
         <section class="py-4 flex-grow"> <!-- Penambahan padding untuk section -->
             <div class="max-w-10xl rounded-lg p-8">
@@ -103,13 +91,13 @@
             </div>
         </section>
     </div>
+    </div>
+
+
 
     {{-- Sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     {{-- js arsip --}}
     <script src="{{ asset('js/user.js') }}"></script>
 
-
-</body>
-
-</html>
+@endsection

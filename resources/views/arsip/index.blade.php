@@ -1,13 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    {{-- Font Awesome --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    {{-- sweetalert --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
+  
 
     <div class="flex ">
 
@@ -18,7 +12,7 @@
         <div class="flex-1 p-10 bg-gray-100 ">
 
             
-            <h2 class="text-5xl font-[Modak] font-black text-blue-600 text-center h-20"
+            <h2 class="text-5xl font-[Modak] font-black text-blue-500 text-center h-20"
                   style="-webkit-text-stroke: 2px black;">Sistem Informasi Manajemen Arsip</h2>                            
             <h1 class="text-2xl font-bold text-gray-800 mb-4">Data Arsip</h1>
 

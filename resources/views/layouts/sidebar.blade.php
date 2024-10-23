@@ -1,4 +1,4 @@
-<aside class="w-64 bg-gradient-to-b h-screen  from-blue-500 to-blue-700 text-white p-6 ">
+<aside class="w-64 bg-gradient-to-b h-screen bg-blue-500 text-white p-6 ">
     <div class="flex justify-center mb-4 ">
         <img class="w-32" src="{{ asset('img/bpkad.png') }}" alt="BPKAD">
 
