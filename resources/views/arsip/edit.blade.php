@@ -23,10 +23,26 @@
 
             <form action="{{ route('arsip.update', $arsip->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+
                 @method('PUT')
                 <main class="bg-white p-10 rounded-xl shadow-xl mt-10">
                     <h1 class="text-center text-2xl font-bold text-blue-500 sm:text-4xl mb-16">Edit Arsip</h1>
+                    {{-- Pesan Kesalahan --}}
+                @if ($errors->any())
+                <div class="mb-4">
+                    <div class="bg-red-200 border border-red-600 text-red-600 p-3 rounded-lg">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
                     <main class=" grid grid-cols-2 gap-6 ">
+
+                        
                         {{-- Kategori --}}
                         <div class="">
                             <label for="id_kategori" class="block text-sm  font-semibold">Kategori</label>
@@ -121,8 +137,9 @@
                             <input type="file" name="file" id="file"
                                 class="w-full rounded-lg border-gray-400 text-gray-500 border-2 p-4 text-sm shadow-sm bg-gray-100 ">
                         </div>
-                        {{-- Simpan --}}
-                        
+
+
+                    {{-- Simpan --}}                      
                     </main>
                     <div class="flex gap-4">
                         <button type="submit"
@@ -133,7 +150,7 @@
                         </a>
         
                         </div>
-                </main>
+                    </main>
                 
 
 

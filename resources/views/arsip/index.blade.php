@@ -22,16 +22,17 @@
                 <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i>
                 <span class="">Tambah Arsip</span></a>
 
-            <form class="flex justify-between " method="GET" action="{{ route('arsip.index') }}">
+            <form class="flex justify-between" method="GET" action="{{ route('arsip.index') }}">
                 {{-- cari Npwp --}}
-                <div>
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari NPWP"
-                        class=" border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-4 w-80">
+                <div class="flex flex-col">
+                    <label for="npwp" class="pl-1">Cari NPWP/Nama Usaha</label>
+                    <input id="npwp" type="text" name="search" value="{{ request('search') }}" placeholder="Masukkan NPWP/Nama Usaha"
+                        class=" border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-52">
                 </div>
                 {{-- Cari Bulan --}}
-                <div class="">
-                    <label for="bulan" class="">Bulan:</label>
-                    <select name="bulan" id="bulan" class="border-2 border-gray-400 rounded-lg pl-4  py-2 w-80">
+                <div class="flex flex-col">
+                    <label for="bulan" class="pl-5">Bulan:</label>
+                    <select name="bulan" id="bulan" class="border-2 ml-4 border-gray-400 rounded-lg pl-4  py-2 w-52">
                         <option value="" disabled selected  class="text-gray-500">Pilih Bulan</option>
                         <option value="Januari" {{ request('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
                         <option value="Februari" {{ request('bulan') == 'Februari' ? 'selected' : '' }}>Februari</option>
@@ -49,20 +50,37 @@
                     </select>
                 </div>
 
+                {{-- Cari Kategori --}}
+                <div class="flex flex-col">
+                    <label for="kategori" class="pl-5">Kategori:</label>
+                    <select name="kategori" id="kategori" class="border-2 ml-4 border-gray-400 rounded-lg pl-4  py-2 w-52">
+                        <option value="" disabled selected class="text-gray-500">Pilih Kategori</option>
+                        @foreach ($kategoris as $kategori)
+                            <option value="{{ $kategori->id_kategori }}" {{ request('kategori') == $kategori->id_kategori ? 'selected' : '' }}>
+                                {{ $kategori->nama_kategori }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
                 {{-- Cari Tahun --}}
-                <div>
-                    <label for="tahun">Tahun:</label>
-                    <input class="border-gray-400 border-2 rounded-lg px-4 py-2 max-w-80" type="text" name="tahun"
+                <div class="flex flex-col">
+                    <label class="" for="tahun">Tahun:</label>
+                    <div class="flex ">
+                    <input class="border-gray-400 border-2 rounded-lg px-4 py-2 max-w-32" type="text" name="tahun"
                         id="tahun" value="{{ request('tahun') }}" placeholder="Ketik Tahun" maxlength="4"
                         title="Masukkan angka tahun" pattern="\d*" />
                     <button type="submit" class="bg-blue-600 px-3 h-9 rounded-lg text-white font-semibold ml-5 hover:bg-blue-800 cursor-pointer"><span
                             class="mr-2">Cari</span> <i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
                 </div>
 
                 {{-- Reset --}}
-                <div class="bg-gray-500 px-6 py-1 mt-1 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer">
+                <div class="mt-[26px]">
+                <div class="bg-gray-500 px-6 py-1  rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer  ">
                     <a href="{{ route('arsip.index') }}">Reset</a>
                 </div>
+            </div>
             </form>
 
 

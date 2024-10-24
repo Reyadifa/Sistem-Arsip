@@ -9,18 +9,25 @@ use Illuminate\Support\Facades\Storage;
 
 class ArsipController extends Controller
 {
-    public function index(Request $request)
-    {
 
+public function index(Request $request)
+{
     // Ambil query pencarian dari request
     $search = $request->input('search');
     $bulan = $request->input('bulan');
     $tahun = $request->input('tahun');
+    $kategoriId = $request->input('kategori'); 
+
+    // Mengambil semua kategori untuk dropdown
+    $kategoris = Kategori::all();
 
     // Mengambil arsip dengan kategori
     $arsips = Arsip::with('kategori')
         ->when($search, function ($query) use ($search) {
-            return $query->where('npwp', 'like', '%' . $search . '%');
+            return $query->where(function ($query) use ($search) {
+                $query->where('npwp', 'like', '%' . $search . '%')
+                      ->orWhere('nama_usaha', 'like', '%' . $search . '%');
+            });
         })
         ->when($bulan, function ($query) use ($bulan) {
             return $query->where('bulan', $bulan);
@@ -28,13 +35,17 @@ class ArsipController extends Controller
         ->when($tahun, function ($query) use ($tahun) {
             return $query->where('tahun', $tahun);
         })
+        ->when($kategoriId, function ($query) use ($kategoriId) {
+            return $query->where('id_kategori', $kategoriId);
+        })
         ->orderBy('tahun', 'desc')
         ->orderByRaw("FIELD(bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari') ASC") // Urutkan bulan dari Desember ke Januari
         ->paginate(12)
         ->appends(request()->query());
 
-    return view('arsip.index', compact('arsips', 'search', 'bulan', 'tahun'));
-    }
+    return view('arsip.index', compact('arsips', 'search', 'bulan', 'tahun', 'kategoriId', 'kategoris'));
+}
+
 
     public function create()
     {
@@ -55,10 +66,9 @@ class ArsipController extends Controller
         'npwp' => 'required',
         'bulan' => 'required',
         'tahun' => 'required|integer',
-        'file' => 'nullable|file|mimes:pdf|max:2048', // Hanya izinkan file PDF
+        'file' => 'file|mimes:pdf|max:2048', // Hanya izinkan file PDF
          ]);
 
-    // Membuat instance Arsip baru
     $arsip = new Arsip();
     $arsip->fill($request->only(['id_kategori', 'nama_usaha', 'alamat_usaha', 'nama_pemilik', 'alamat_pemilik', 'npwp', 'bulan', 'tahun']));
 
@@ -91,7 +101,7 @@ class ArsipController extends Controller
             'npwp' => 'required',
             'bulan' => 'required',
             'tahun' => 'required|integer',
-            'file' => 'nullable|file|mimes:pdf,doc,docx,jpg,png|max:2048',
+            'file' => 'file|mimes:pdf|max:2048',
         ]);
 
         // Memperbarui data arsip
