@@ -86,7 +86,7 @@
 
             {{-- Kotak Border --}}
             
-            <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t border-black mt-16">
+            <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t  border-black mt-16">
 
                 <table class="min-w-full table-auto divide-y divide-gray-300  ">
                     <thead class="bg-blue-500">
