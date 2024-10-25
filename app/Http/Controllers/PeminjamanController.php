@@ -14,8 +14,9 @@ class PeminjamanController extends Controller
     // Menampilkan form peminjaman
     public function create()
     {
-        $arsips = Arsip::with('kategori')->get(); // Pastikan file ikut terambil
-        return view('peminjaman.create', compact('arsips'));
+        $arsips = Arsip::with('kategori')->get();
+    $arsipsGrouped = $arsips->groupBy('npwp');
+    return view('peminjaman.create', compact('arsipsGrouped'));
     }
 
     // Menyimpan data peminjaman

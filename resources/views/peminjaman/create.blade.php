@@ -16,25 +16,29 @@
 
     <form action="{{ route('peminjaman.store') }}" method="POST">
         @csrf
+
         <div class="mb-3">
+            <label for="npwp" class="form-label">Pilih NPWP dan Nama Usaha</label>
+            <select name="npwp" id="npwp" class="form-select" onchange="updateArsipDropdown()">
+                <option value="">Pilih NPWP dan Nama Usaha</option>
+                @foreach ($arsipsGrouped as $key => $arsips)
+                    @php
+                        // Mengambil NPWP dan nama usaha dari grup pertama
+                        $firstArsip = $arsips[0];
+                    @endphp
+                    <option value="{{ $firstArsip->npwp }}">{{ $firstArsip->npwp }} - {{ $firstArsip->nama_usaha }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3" id="arsip-container" style="display: none;">
             <label for="arsip_id" class="form-label">Pilih Arsip</label>
             <select name="arsip_id" id="arsip_id" class="form-select" onchange="updateFileInfo()">
                 <option value="">Pilih Arsip</option>
-                @foreach ($arsips as $arsip)
-                <option value="{{ $arsip->id }}" data-file="{{ $arsip->file }}">
-                    {{ $arsip->nama_usaha }} - NPWP: {{ $arsip->npwp }}, Kategori: {{ $arsip->kategori->nama_kategori }}, bulan: {{ $arsip->bulan }}, tahun: {{ $arsip->tahun }}
-                </option>                
-                @endforeach
+                <!-- Options will be added dynamically -->
             </select>
-        </div>        
-
-        <!-- Hidden field untuk menyimpan file arsip yang dipilih -->
-        <input type="hidden" id="file_arsip" name="file_arsip" value="{{ old('file_arsip') }}">
-
-        <div class="mb-3" id="file-info" style="display: none;">
-            <label class="form-label">File Arsip</label>
-            <p id="file-name"></p>
         </div>
+
 
         <div class="mb-3">
             <label for="no_ktp" class="form-label">No KTP</label>
@@ -68,16 +72,38 @@
                 <option value="Dikembalikan">Dikembalikan</option>
                 <option value="Terlambat">Terlambat</option>
             </select>
-        </div>        
-
-
-        
+        </div>
 
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
 
 <script>
+    const arsipsGrouped = @json($arsipsGrouped); // Mengambil data dari controller
+
+    function updateArsipDropdown() {
+        const npwpSelect = document.getElementById('npwp');
+        const arsipSelect = document.getElementById('arsip_id');
+        const arsipContainer = document.getElementById('arsip-container');
+
+        const selectedNpwp = npwpSelect.value;
+        arsipSelect.innerHTML = '<option value="">Pilih Arsip</option>'; // Reset options
+
+        if (selectedNpwp) {
+            arsipContainer.style.display = 'block';
+            const arsips = arsipsGrouped[selectedNpwp];
+            arsips.forEach(arsip => {
+                const option = document.createElement('option');
+                option.value = arsip.id;
+                option.textContent = `${arsip.nama_usaha} - Kategori: ${arsip.kategori.nama_kategori}, bulan: ${arsip.bulan}, tahun: ${arsip.tahun}`;
+                option.setAttribute('data-file', arsip.file);
+                arsipSelect.appendChild(option);
+            });
+        } else {
+            arsipContainer.style.display = 'none';
+        }
+    }
+
     function updateFileInfo() {
         const select = document.getElementById('arsip_id');
         const fileInfo = document.getElementById('file-info');
@@ -86,8 +112,6 @@
 
         const selectedOption = select.options[select.selectedIndex];
         const file = selectedOption.getAttribute('data-file');
-
-        console.log(file); // Debugging
 
         if (file) {
             fileInfo.style.display = 'block';
