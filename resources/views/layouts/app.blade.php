@@ -19,7 +19,7 @@
     
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 ml-64">
     <div class="bg-blue-500">
         @yield('content')
     </div>
