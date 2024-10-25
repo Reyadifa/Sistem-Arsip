@@ -18,4 +18,8 @@ class Arsip extends Model
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }
 
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class, 'arsip_id');
+    }
 }
