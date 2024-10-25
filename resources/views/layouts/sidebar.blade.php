@@ -24,6 +24,14 @@
                     <span class="ml-2">Arsip</span>
                 </a>
             </li>
+
+            <li class="mt-4">
+                <a href="/peminjaman" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                    <span class="material-icons">library_books</span>
+                    <span class="ml-2">Peminjaman</span>
+                </a>
+            </li>
+
             <li>
                 <a href="/kategori" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
                     <span class="material-icons">category</span>

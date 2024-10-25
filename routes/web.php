@@ -11,7 +11,6 @@ use App\Http\Controllers\PeminjamanController;
 
 // Route untuk dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard');
-Route::resource('peminjaman', PeminjamanController::class);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -24,11 +23,13 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('arsip', ArsipController::class);        
             Route::resource('kategori', KategoriController::class);
             Route::resource('users', UserController::class);
+            Route::resource('peminjaman', PeminjamanController::class);
         });
         
         // Rute untuk user biasa
         Route::middleware(CheckRole::class . ':user')->group(function () {
             Route::resource('arsip', ArsipController::class);
+            Route::resource('peminjaman', PeminjamanController::class);
         });
     });
     
