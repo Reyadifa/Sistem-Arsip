@@ -21,8 +21,8 @@
 
         @include('layouts.sidebar')
 
-        <main class="flex-1 p-8 ">
-            <div class="form-container p-8 bg-white rounded-lg shadow-lg">
+        <main class="flex-1 p-8 ml-72">
+            <div class="form-container p-8  rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold form-header p-4 rounded-t">Tambah User</h2>
 
                 @if (session('success'))
