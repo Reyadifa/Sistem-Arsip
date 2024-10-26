@@ -99,81 +99,81 @@
                     </canvas>
                     <div class="hidden" id="chartData">
                      <div data-year="2024">
-                      <span data-label="Januari" data-value="10">
+                      <span data-label="Januari" data-value="100">
                       </span>
-                      <span data-label="Februari" data-value="20">
+                      <span data-label="Februari" data-value="200">
                       </span>
-                      <span data-label="Maret" data-value="30">
+                      <span data-label="Maret" data-value="300">
                       </span>
-                      <span data-label="April" data-value="40">
+                      <span data-label="April" data-value="400">
                       </span>
-                      <span data-label="Mei" data-value="50">
+                      <span data-label="Mei" data-value="500">
                       </span>
-                      <span data-label="Juni" data-value="60">
+                      <span data-label="Juni" data-value="600">
                       </span>
-                      <span data-label="Juli" data-value="70">
+                      <span data-label="Juli" data-value="700">
                       </span>
-                      <span data-label="Agustus" data-value="80">
+                      <span data-label="Agustus" data-value="800">
                       </span>
-                      <span data-label="September" data-value="90">
+                      <span data-label="September" data-value="900">
                       </span>
-                      <span data-label="Oktober" data-value="100">
+                      <span data-label="Oktober" data-value="1000">
                       </span>
-                      <span data-label="November" data-value="110">
+                      <span data-label="November" data-value="1100">
                       </span>
-                      <span data-label="Desember" data-value="120">
+                      <span data-label="Desember" data-value="1200">
                       </span>
                      </div>
                      <div data-year="2023">
-                      <span data-label="Januari" data-value="15">
+                      <span data-label="Januari" data-value="150">
                       </span>
-                      <span data-label="Februari" data-value="25">
+                      <span data-label="Februari" data-value="250">
                       </span>
-                      <span data-label="Maret" data-value="35">
+                      <span data-label="Maret" data-value="350">
                       </span>
-                      <span data-label="April" data-value="45">
+                      <span data-label="April" data-value="450">
                       </span>
-                      <span data-label="Mei" data-value="55">
+                      <span data-label="Mei" data-value="550">
                       </span>
-                      <span data-label="Juni" data-value="65">
+                      <span data-label="Juni" data-value="650">
                       </span>
-                      <span data-label="Juli" data-value="75">
+                      <span data-label="Juli" data-value="750">
                       </span>
-                      <span data-label="Agustus" data-value="85">
+                      <span data-label="Agustus" data-value="850">
                       </span>
-                      <span data-label="September" data-value="95">
+                      <span data-label="September" data-value="950">
                       </span>
-                      <span data-label="Oktober" data-value="105">
+                      <span data-label="Oktober" data-value="1050">
                       </span>
-                      <span data-label="November" data-value="115">
+                      <span data-label="November" data-value="1150">
                       </span>
-                      <span data-label="Desember" data-value="125">
+                      <span data-label="Desember" data-value="1205">
                       </span>
                      </div>
                      <div data-year="2022">
-                      <span data-label="Januari" data-value="20">
+                      <span data-label="Januari" data-value="200">
                       </span>
-                      <span data-label="Februari" data-value="30">
+                      <span data-label="Februari" data-value="300">
                       </span>
-                      <span data-label="Maret" data-value="40">
+                      <span data-label="Maret" data-value="400">
                       </span>
-                      <span data-label="April" data-value="50">
+                      <span data-label="April" data-value="500">
                       </span>
-                      <span data-label="Mei" data-value="60">
+                      <span data-label="Mei" data-value="600">
                       </span>
-                      <span data-label="Juni" data-value="70">
+                      <span data-label="Juni" data-value="700">
                       </span>
-                      <span data-label="Juli" data-value="80">
+                      <span data-label="Juli" data-value="800">
                       </span>
-                      <span data-label="Agustus" data-value="90">
+                      <span data-label="Agustus" data-value="900">
                       </span>
-                      <span data-label="September" data-value="100">
+                      <span data-label="September" data-value="1000">
                       </span>
-                      <span data-label="Oktober" data-value="110">
+                      <span data-label="Oktober" data-value="1100">
                       </span>
-                      <span data-label="November" data-value="120">
+                      <span data-label="November" data-value="1200">
                       </span>
-                      <span data-label="Desember" data-value="130">
+                      <span data-label="Desember" data-value="1300">
                       </span>
                      </div>
                     </div>
