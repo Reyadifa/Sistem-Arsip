@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     {{-- Google Font --}}
     <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
+   
+    
+
 
     {{-- tailwind config --}}
     @vite('resources/css/app.css')
