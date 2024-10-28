@@ -20,7 +20,7 @@ class AuthController extends Controller
             ]);
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/arsip');
+            return redirect()->intended('/dashboard');
             }
 
             return redirect()->back()->withErrors([
@@ -32,6 +32,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/login'); // Replace with your actual login route
+        return redirect('/'); // Replace with your actual login route
     }
 }

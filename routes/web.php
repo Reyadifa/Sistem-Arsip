@@ -11,7 +11,7 @@ use App\Http\Controllers\PeminjamanController;
 
 // Route untuk dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard');
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
