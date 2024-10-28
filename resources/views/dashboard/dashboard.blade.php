@@ -25,56 +25,37 @@
 
                 <div class="flex space-x-4 mb-8 ">
                     {{-- User --}}
-                    <div class="bg-gray-200 p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12  font-bold">
-
-                        <div class="">
-                            <i class="fas fa-user text-blue-600 text-6xl">
-                            </i>
+                    <div class="bg-gray-200 p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12 font-bold">
+                        <div>
+                            <i class="fas fa-user text-blue-600 text-6xl"></i>
                         </div>
-
                         <div class="text-3xl">
-                            <p class="">
-                                User
-                            </p>
-                            <p class="text-center mt-2">
-                                5
-                            </p>
+                            <p>User</p>
+                            <p class="text-center mt-2">{{ $userCount }}</p>
                         </div>
-
                     </div>
-
+                    
                     {{-- Kategori --}}
                     <div class="bg-gray-200 p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12 font-bold">
                         <div>
-                            <i class="fas fa-tags text-blue-600 text-5xl">
-                            </i>
+                            <i class="fas fa-tags text-blue-600 text-5xl"></i>
                         </div>
                         <div class="text-3xl">
-                            <p class="">
-                                Kategori
-                            </p>
-                            <p class="text-center mt-2">
-                                8
-                            </p>
+                            <p>Kategori</p>
+                            <p class="text-center mt-2">{{ $kategoriCount }}</p>
                         </div>
                     </div>
-
+                    
                     {{-- Arsip --}}
-                    <div
-                        class="bg-gray-200 p-4 rounded-lg flex items-center gap-14 justify-center  space-x-2 w-1/3 py-12 font-bold">
+                    <div class="bg-gray-200 p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12 font-bold">
                         <div>
-                            <i class="fas fa-download text-blue-600 text-5xl">
-                            </i>
+                            <i class="fas fa-download text-blue-600 text-5xl"></i>
                         </div>
                         <div class="text-3xl">
-                            <p class="">
-                                Arsip
-                            </p>
-                            <p class="text-center mt-2">
-                                937
-                            </p>
+                            <p>Arsip</p>
+                            <p class="text-center mt-2">{{ $arsipCount }}</p>
                         </div>
-                    </div>
+                    </div>                    
 
                 </div>
 
@@ -271,18 +252,7 @@
                                 fill: true
                             }]
                         },
-                        options: {
-                            plugins: {
-                                legend: {
-                                    display: false
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
+                        
                     });
 
                     yearSelect.addEventListener('change', function() {
