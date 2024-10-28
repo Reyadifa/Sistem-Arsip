@@ -22,10 +22,10 @@
     
 </head>
 
-<body class=" ml-64">
-    <div class="">
+<body class=" ml-64 ">
+    
         @yield('content')
-    </div>
+    
 </body>
 
 </html>

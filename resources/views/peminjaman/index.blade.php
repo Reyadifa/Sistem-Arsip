@@ -21,14 +21,14 @@
                     <thead class="bg-blue-500">
                         <tr>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">No KTP</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Nama Peminjam</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Keperluan</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Nama Arsip Yang Dipinjam</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">kategori</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Tahun Arsip Yang Dipinjam</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Bulan Arsip Yang Dipinjam</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">File</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Status</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Nama Peminjam</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Keperluan</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Nama Arsip Yang Dipinjam</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">kategori</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Tahun Arsip Yang Dipinjam</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Bulan Arsip Yang Dipinjam</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b ">File</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Status</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-black border-b">Aksi</th>
                         </tr>
                     </thead>
@@ -46,8 +46,9 @@
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->bulan }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
                                     @if ($peminjaman->arsip && $peminjaman->arsip->file_path)
-                                        <a href="{{ asset('storage/' . $peminjaman->arsip->file_path) }}" target="_blank" class="bg-yellow-500 text-white px-2 py-1 rounded flex items-center">
-                                            <i class="fas fa-file"></i> <!-- Font Awesome file icon -->
+                                    {{-- edit --}}
+                                        <a href="{{ asset('storage/' . $peminjaman->arsip->file_path) }}" target="_blank" class=" mx-auto flex justify-center">
+                                            <i class="fas fa-file px-4 py-[5px] text-xl text-white bg-yellow-500 hover:bg-yellow-600 rounded-lg"></i> 
                                         </a>
                                     @endif
 

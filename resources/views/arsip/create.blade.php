@@ -20,10 +20,17 @@
         <!-- Form Tambah Arsip -->
         <div class="flex-grow p-6 ">
 
-            <main class="bg-blue-500 shadow-xl rounded-xl p-10 mx-32 mt-10">
+          
 
-                <h1 class="text-center text-2xl font-bold text-white sm:text-3xl mb-9">Tambah Arsip</h1>
-                <hr class="border-2 border-white">
+            <main class="bg-gray-100 shadow-xl rounded-xl p-10 mx-32 mt-10 border border-gray-500">
+                
+                   
+                <div class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600"> 
+                    <span class="material-icons text-blue-500 text-4xl ">archive</span>      
+                    <h1>Tambah Arsip</h1>
+                </div>
+            
+                <hr class="border-2 border-gray-500">
                 <form action="{{ route('arsip.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
@@ -43,15 +50,15 @@
 
 
                     {{-- Kotak --}}
-                    <main class="grid grid-cols-2 gap-x-6 mt-1">
+                    <main class="grid grid-cols-2 gap-x-6 mt-1 ">
 
                         <div class="mb-4 mt-10 ">
                             <label for="id_kategori"
-                                class="block mb-2 text-sm font-bold text-white ">Kategori</label>
+                                class="block mb-2 text-sm font-bold text-black ">Kategori</label>
     
                             {{-- Kategori --}}
                             <select name="id_kategori" id="id_kategori"
-                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black "
+                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2  border-gray-500"
                                 required>
                                 <option value="" disabled selected>Pilih Kategori</option>
                                 @foreach ($kategoris as $kategori)
@@ -62,56 +69,56 @@
 
                         {{-- Npwp --}}
                         <div class="mb-4 mt-10">
-                            <label for="npwp" class="block mb-2 text-sm font-bold text-white">NPWP</label>
+                            <label for="npwp" class="block mb-2 text-sm font-bold text-black">NPWP</label>
                             <input type="text" name="npwp" id="npwp" placeholder="Masukkan NPWP"
-                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                                 value="{{ old('npwp') }}" required>
                         </div>
 
 
                         {{-- Nama Usaha --}}
                         <div class="mb-4 ">
-                            <label for="nama_usaha" class="block mb-2 text-sm font-bold text-white">Nama
+                            <label for="nama_usaha" class="block mb-2 text-sm font-bold text-black">Nama
                                 Usaha</label>
                             <input type="text" name="nama_usaha" id="nama_usaha" placeholder="Masukkan Nama Usaha"
-                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                                 value="{{ old('nama_usaha') }}" required>
                         </div>
                         {{-- Alamat Usaha --}}
                         <div class="mb-4 ">
-                            <label for="alamat_usaha" class="block mb-2 text-sm font-bold text-white">Alamat
+                            <label for="alamat_usaha" class="block mb-2 text-sm font-bold text-black">Alamat
                                 Usaha</label>
                             <input type="text" name="alamat_usaha" id="alamat_usaha"
                                 placeholder="Masukkan Alamat Usaha"
-                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                                 value="{{ old('alamat_usaha') }}" required>
                         </div>
 
                         {{-- Nama Pemilik --}}
                         <div class="mb-4 ">
-                            <label for="nama_pemilik" class="block mb-2 text-sm font-bold text-white">Nama
+                            <label for="nama_pemilik" class="block mb-2 text-sm font-bold text-black">Nama
                                 Pemilik</label>
                             <input type="text" name="nama_pemilik" id="nama_pemilik"
                                 placeholder="Masukkan Nama Pemilik"
-                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                                 value="{{ old('nama_pemilik') }}" required>
                         </div>
 
                         {{-- Alamat Pemilik --}}
                         <div class="mb-4 ">
-                            <label for="alamat_pemilik" class="block mb-2 text-sm font-bold text-white">Alamat
+                            <label for="alamat_pemilik" class="block mb-2 text-sm font-bold text-black">Alamat
                                 Pemilik</label>
                             <input type="text" name="alamat_pemilik" id="alamat_pemilik"
                                 placeholder="Masukkan Alamat Pemilik"
-                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                                 value="{{ old('alamat_pemilik') }}" required>
                         </div>
                         
                         {{-- Bulan --}}
                         <div class="mb-4 ">
-                            <label for="bulan" class="block mb-2 text-sm font-bold text-white">Bulan</label>
+                            <label for="bulan" class="block mb-2 text-sm font-bold text-black">Bulan</label>
                             <select name="bulan" id="bulan"
-                                class="w-full rounded-lg border   p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border   p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                                 required>
                                 <option value="" disabled {{ old('bulan') ? '' : 'selected' }}>Pilih Bulan</option>
                                 <option value="Januari" {{ old('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
@@ -131,9 +138,9 @@
 
                         {{-- Tahun --}}
                         <div class="mb-4 ">
-                            <label for="tahun" class="block mb-2 text-sm font-bold text-white">Tahun</label>
+                            <label for="tahun" class="block mb-2 text-sm font-bold text-black">Tahun</label>
                             <input type="number" name="tahun" id="tahun" placeholder="Masukkan Tahun"
-                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                                 value="{{ old('tahun') }}" required>
                         </div>
 
@@ -146,9 +153,9 @@
                     {{-- Upload File --}}
 
                     <div class="mb-4">
-                        <label for="file" class="block mb-2 text-sm font-bold text-white ">Upload File</label>
+                        <label for="file" class="block mb-2 text-sm font-bold text-black ">Upload File</label>
                         <input type="file" name="file" id="file"
-                            class="w-full rounded-lg border  bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-white"
+                            class="w-full rounded-lg border  bg-white p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                             required >
                     </div>
 
@@ -158,9 +165,9 @@
 
                     <div class="justify-left flex space-x-4 mt-14">
                         <button type="submit"
-                            class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600  text-xl font-semibold transform transition-transform duration-300 hover:scale-110">Simpan</button>
+                            class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600  text-xl font-semibold transform transition-transform duration-300 hover:scale-110">Simpan</button>
                         <a href="/arsip"
-                            class="bg-yellow-400 text-black px-6 py-2 rounded-lg hover:bg-yellow-500 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">Kembali</a>
+                            class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">Kembali</a>
                     </div>
                 </form>
         </div>

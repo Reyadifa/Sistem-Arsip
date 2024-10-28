@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  
+
 
     <div class="flex ">
 
@@ -9,31 +9,37 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 p-10 bg-gray-100 ">
+        <div class="flex-1 p-10  ">
 
-            
-              <form action="{{ route('arsip.update', $arsip->id) }}" method="POST" enctype="multipart/form-data">
+
+            <form action="{{ route('arsip.update', $arsip->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
 
                 @method('PUT')
-                <main class="bg-white p-10 rounded-xl shadow-xl mt-10">
-                    <h1 class="text-center text-2xl font-bold text-blue-500 sm:text-4xl mb-16">Edit Arsip</h1>
-                    {{-- Pesan Kesalahan --}}
-                @if ($errors->any())
-                <div class="mb-4">
-                    <div class="bg-red-200 border border-red-600 text-red-600 p-3 rounded-lg">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+
+                {{-- Kotak Form --}}
+                <main class="bg-gray-100 border-gray-500 mx-20 border p-10 rounded-xl shadow-xl mt-10">
+                    <div class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600"> 
+                        <span class="material-icons text-blue-500 text-4xl ">archive</span>      
+                        <h1>Tambah Arsip</h1>
                     </div>
-                </div>
-            @endif
+                    <hr class="border-2 border-gray-500 mb-10">
+                    {{-- Pesan Kesalahan --}}
+                    @if ($errors->any())
+                        <div class="mb-4">
+                            <div class="bg-red-200 border border-red-600 text-red-600 p-3 rounded-lg">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
                     <main class=" grid grid-cols-2 gap-6 ">
 
-                        
+
                         {{-- Kategori --}}
                         <div class="">
                             <label for="id_kategori" class="block text-sm  font-semibold">Kategori</label>
@@ -58,16 +64,14 @@
                         {{-- Alamat Usaha --}}
                         <div>
                             <label for="alamat_usaha" class="block text-sm  font-semibold">Alamat Usaha</label>
-                            <input type="text" name="alamat_usaha" id="alamat_usaha"
-                                value="{{ $arsip->alamat_usaha }}"
+                            <input type="text" name="alamat_usaha" id="alamat_usaha" value="{{ $arsip->alamat_usaha }}"
                                 class="w-full rounded-lg border-gray-400 text-gray-500 border-2 p-4 text-sm shadow-sm bg-gray-100 "
                                 required>
                         </div>
                         {{-- Nama Pemilik --}}
                         <div>
                             <label for="nama_pemilik" class="block text-sm  font-semibold">Nama Pemilik</label>
-                            <input type="text" name="nama_pemilik" id="nama_pemilik"
-                                value="{{ $arsip->nama_pemilik }}"
+                            <input type="text" name="nama_pemilik" id="nama_pemilik" value="{{ $arsip->nama_pemilik }}"
                                 class="w-full rounded-lg border-gray-400 text-gray-500 border-2 p-4 text-sm shadow-sm bg-gray-100 "
                                 required>
                         </div>
@@ -130,24 +134,25 @@
                         </div>
 
 
-                    {{-- Simpan --}}                      
+                        {{-- Simpan --}}
                     </main>
                     <div class="flex gap-4">
                         <button type="submit"
-                            class=" px-6 py-3 text-white font-bold bg-green-500 rounded-lg hover:bg-green-600 mt-12">Simpan</button>
-                            <a href="/arsip">
+                            class=" px-6 py-3 text-white font-bold bg-green-500 rounded-lg hover:bg-green-600 mt-12 transform transition-transform duration-300 hover:scale-110">Simpan</button>
+                        <a href="/arsip">
                             <button type="submit"
-                            class=" px-6 py-3 text-white font-bold bg-blue-500 rounded-lg hover:bg-blue-600 mt-12"> Kembali</button>
+                                class=" px-6 py-3 text-white font-bold bg-blue-500 rounded-lg hover:bg-blue-600 mt-12 transform transition-transform duration-300 hover:scale-110">
+                                Kembali</button>
                         </a>
-        
-                        </div>
-                    </main>
-                
+
+                    </div>
+                </main>
+
 
 
             </form>
         </div>
-           
+
     </div>
-   
+
 @endsection
