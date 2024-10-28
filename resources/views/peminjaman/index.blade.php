@@ -8,15 +8,24 @@
         <!-- Main Content -->
         <div class="flex-1 p-10 bg-gray-100 ">
 
+            <div class="flex items-center mb-8">
+                <i class="fas fa-book text-4xl text-blue-600 "></i>  
+                <h1 class="text-4xl font-bold ml-3">
+                    Peminjaman
+                </h1>
+            </div>
+
             <!-- Tombol Tambah Peminjaman -->
+            <div class="mt-20">
             <a href="{{ route('peminjaman.create') }}"
-                class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600">
+                class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transform transition-transform duration-300 hover:scale-110 ">
                 <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i>
                 <span>Tambah Peminjaman</span>
             </a>
+        </div>
 
             {{-- Kotak Border --}}
-            <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t  border-black mt-16">
+            <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t border-black">
                 <table class="min-w-full table-auto divide-y divide-gray-300">
                     <thead class="bg-blue-500">
                         <tr>

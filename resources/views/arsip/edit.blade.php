@@ -19,10 +19,11 @@
                 @method('PUT')
 
                 {{-- Kotak Form --}}
-                <main class="bg-gray-100 border-gray-500 mx-20 border p-10 rounded-xl shadow-xl mt-10">
-                    <div class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600"> 
-                        <span class="material-icons text-blue-500 text-4xl ">archive</span>      
-                        <h1>Tambah Arsip</h1>
+                <main class="bg-gray-100 border-gray-500 mx-20 border p-10 rounded-xl shadow-xl mt-10 ">
+                    <div
+                        class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
+                        <span class="material-icons text-blue-500 text-4xl ">archive</span>
+                        <h1>Edit Arsip</h1>
                     </div>
                     <hr class="border-2 border-gray-500 mb-10">
                     {{-- Pesan Kesalahan --}}
@@ -126,17 +127,19 @@
                                 class="w-full rounded-lg border-gray-400 text-gray-500 border-2 p-4 text-sm shadow-sm bg-gray-100 "
                                 required>
                         </div>
-                        {{-- File --}}
-                        <div>
-                            <label for="file" class="block text-sm  font-semibold">File</label>
-                            <input type="file" name="file" id="file"
-                                class="w-full rounded-lg border-gray-400 text-gray-500 border-2 p-4 text-sm shadow-sm bg-gray-100 ">
-                        </div>
 
 
-                        {{-- Simpan --}}
+
+
                     </main>
-                    <div class="flex gap-4">
+                    {{-- File --}}
+                    <div class="grid mt-5">
+                        <label for="file" class="block text-sm  font-semibold">File</label>
+                        <input type="file" name="file" id="file"
+                            class="w-full rounded-lg border-gray-400 text-gray-500 border-2 p-4 text-sm shadow-sm bg-gray-100 ">
+                    </div>
+                    {{-- Simpan --}}
+                    <div class="flex gap-4 ">
                         <button type="submit"
                             class=" px-6 py-3 text-white font-bold bg-green-500 rounded-lg hover:bg-green-600 mt-12 transform transition-transform duration-300 hover:scale-110">Simpan</button>
                         <a href="/arsip">

@@ -11,7 +11,13 @@
 
             <main class="flex-grow p-8 bg-gray-100">
                 <div class="max-w-10xl mx-auto bg-white shadow-xl rounded-lg p-8">
-                    <h1 class="text-3xl font-bold mb-6 text-gray-800">Daftar Kategori</h1>
+                   
+                    <div class="flex items-center mb-16">
+                        <span class="material-icons text-blue-500 text-4xl">category</span> 
+                        <h1 class="text-4xl font-bold ml-3">
+                            Kategori
+                        </h1>
+                    </div>
 
                     <!-- Pesan Sukses atau Error -->
 
@@ -28,7 +34,7 @@
 
                     <div class="mb-6">
                         <a href="{{ route('kategori.create') }}"
-                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition mb-4 inline-block">
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition mb-4 inline-block transform transition-transform duration-300 hover:scale-110">
                             <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah Kategori
                         </a>
 

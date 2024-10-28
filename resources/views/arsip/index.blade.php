@@ -11,18 +11,31 @@
         <!-- Main Content -->
         <div class="flex-1 p-10 bg-gray-100 ">
 
+                        
+                  
+
+            <div class="text-center  bg-gray-100">
+                <h2 class="text-5xl font-extrabold text-blue-600 mb-4 tracking-wide flex items-center justify-center gap-4">
+                    <i class="fas fa-folder-open text-blue-600"></i> 
+                    Sistem Informasi Manajemen Arsip
+                </h2>
+                <p class="text-lg text-gray-500 max-w-md mx-auto leading-relaxed">
+                    Mengelola arsip dengan efisiensi dan akurasi untuk kemudahan akses informasi.
+                </p>
+            </div>
             
-            <h2 class="text-5xl font-[Modak] font-black text-blue-500 text-center h-20"
-                  style="-webkit-text-stroke: 2px black;">Sistem Informasi Manajemen Arsip</h2>                            
+            
+            
+                  
             <h1 class="text-2xl font-bold text-gray-800 mb-4">Data Arsip</h1>
 
             <!-- Tombol Tambah Arsip -->
             <a href="{{ route('arsip.create') }}"
-                class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600">
-                <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i>
+                class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transform transition-transform duration-300 hover:scale-110">
+                <i class="fa-solid fa-plus mr-2 font-bold text-lg "></i>
                 <span class="">Tambah Arsip</span></a>
 
-            <form class="flex justify-between" method="GET" action="{{ route('arsip.index') }}">
+            <form class="flex justify-between py-6" method="GET" action="{{ route('arsip.index') }}">
                 {{-- cari Npwp --}}
                 <div class="flex flex-col">
                     <label for="npwp" class="pl-1">Cari NPWP/Nama Usaha</label>
@@ -86,7 +99,7 @@
 
             {{-- Kotak Border --}}
             
-            <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t  border-black mt-4">
+            <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t  border-black ">
 
                 <table class="min-w-full table-auto divide-y divide-gray-300  ">
                     <thead class="bg-blue-500">
