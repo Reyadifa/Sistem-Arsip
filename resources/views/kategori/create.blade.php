@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Kategori</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body class="bg-gray-50">
+@extends('layouts.app')
 
-<div class="flex h-screen">
-    <!-- Sidebar -->
-    @include('layouts.sidebar')
+@section('content')
+  
 
-    <!-- Konten Utama -->
-    <main class="flex-grow p-8 bg-gray-100">
-        <div class="max-w-10xl mx-50 bg-white shadow-xl rounded-lg p-20">
+    <div class="flex ">
+
+        <!--include Sidebar -->
+        @include('layouts.sidebar')
+
+        <!-- Main Content -->
+        <main class="flex-1 p-10 bg-gray-100 ">
+
+            <div class="max-w-10xl mx-50 bg-white shadow-xl rounded-lg p-20">
             <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Tambah Kategori</h1>
 
             <form action="{{ route('kategori.store') }}" method="POST">
@@ -27,8 +23,8 @@
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200">Simpan</button>
             </form>
         </div>
+            	
+           
     </main>
-</div>
-
-</body>
-</html>
+   
+@endsection

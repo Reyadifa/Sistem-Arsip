@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Kategori</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
+@section('content')
+  
 
-<body class="bg-gray-50">
+    <div class="flex ">
 
-<div class="flex h-screen">
-    <!-- Sidebar -->
-    @include('layouts.sidebar')
+        <!--include Sidebar -->
+        @include('layouts.sidebar')
 
-    <!-- Konten Utama -->
-    <main class="flex-grow p-8 bg-gray-100">
-        <div class="max-w-10xl mx-50 bg-white shadow-xl rounded-lg p-20">
+        <!-- Main Content -->
+        <div class="flex-1 p-10 bg-gray-100 ">
+
+             <div class="max-w-10xl mx-50 bg-white shadow-xl rounded-lg p-20">
             <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Edit Kategori</h1>
 
             <form action="{{ route('kategori.update', $kategori->id_kategori) }}" method="POST">
@@ -32,9 +26,8 @@
 
             
         </div>
-    </main>
-</div>
-
-</body>
-
-</html>
+            	
+           
+    </div>
+   
+@endsection

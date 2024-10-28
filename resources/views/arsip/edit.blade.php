@@ -1,27 +1,18 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Arsip</title>
+@section('content')
+  
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    {{-- Tailwind Config --}}
-    @vite('resources/css/app.css')
-</head>
+    <div class="flex ">
 
-<body class="bg-gray-200">
-    <div class="flex min-h-screen">
-
-        {{-- Include sidebar --}}
+        <!--include Sidebar -->
         @include('layouts.sidebar')
 
-        <div class="flex-grow  p-6 ">
+        <!-- Main Content -->
+        <div class="flex-1 p-10 bg-gray-100 ">
 
-           
-
-            <form action="{{ route('arsip.update', $arsip->id) }}" method="POST" enctype="multipart/form-data">
+            
+              <form action="{{ route('arsip.update', $arsip->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
 
@@ -156,9 +147,7 @@
 
             </form>
         </div>
-
-
+           
     </div>
-</body>
-
-</html>
+   
+@endsection
