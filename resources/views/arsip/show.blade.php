@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Arsip</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
 
-<body class="bg-gray-100 h-screen">
+@section('content')
+<div class="flex h-screen bg-gray-100"> <!-- Kontainer utama dengan latar belakang abu-abu -->
 
-    <div class="flex min-h-screen">
+    {{-- Include sidebar --}}
+    @include('layouts.sidebar')
 
-        {{-- Include sidebar --}}
-
-        @include('layouts.sidebar')
-
-        <main class="flex-1 p-8 bg-gray-200">
+    <!-- Konten Utama -->
+    <main class="flex-1 p-8 bg-gray-200">
             <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                 <div class="bg-blue-700 text-white text-center py-4">
                     <h1 class="text-4xl font-bold">Detail Arsip</h1>
@@ -90,9 +80,7 @@
                 </div>
             </div>
         </main>
-    </div>
 
-
-</body>
-
-</html>
+    
+</div>
+@endsection

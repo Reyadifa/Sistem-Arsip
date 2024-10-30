@@ -9,7 +9,7 @@
     @include('layouts.sidebar')
 
     <!-- Konten Utama -->
-    <div class="flex-1 p-8">
+    <main class="flex-1 p-8">
         <h1 class="text-3xl font-semibold mb-6">Edit User</h1>
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <form action="{{ route('users.update', $user->id_user) }}" method="POST">
@@ -45,6 +45,8 @@
                 </div>
             </form>
         </div>
-    </div>
+    </main>
+
+    
 </div>
 @endsection

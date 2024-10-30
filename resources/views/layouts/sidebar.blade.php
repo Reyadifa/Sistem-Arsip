@@ -11,7 +11,7 @@
 
           
             <li class="mt-4">
-                <a href="/dashboard" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                <a href="/dashboard" class="flex items-center p-3 rounded-lg  transition duration-150 hover:bg-blue-400">
                     <span class="material-icons">dashboard</span>
                     <span class="ml-2">Dashboard</span>
                 </a>
@@ -19,27 +19,27 @@
             
             
             <li>
-                <a href="/arsip" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                <a href="/arsip" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
                     <span class="material-icons">archive</span>
                     <span class="ml-2">Arsip</span>
                 </a>
             </li>
 
             <li class="mt-4">
-                <a href="/peminjaman" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                <a href="/peminjaman" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
                     <span class="material-icons">library_books</span>
                     <span class="ml-2">Peminjaman</span>
                 </a>
             </li>
 
             <li>
-                <a href="/kategori" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                <a href="/kategori" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
                     <span class="material-icons">category</span>
                     <span class="ml-2">Kategori</span>
                 </a>
             </li>
             <li>
-                <a href="/users" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                <a href="/users" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
                     <span class="material-icons">person</span>
                     <span class="ml-2">User</span>
                 </a>
@@ -47,13 +47,13 @@
 
             @elseif(Auth::user()->role == 2) {{-- Untuk User --}}
             <li class="mt-4">
-                <a href="/dashboard" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                <a href="/dashboard" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
                     <span class="material-icons">dashboard</span>
                     <span class="ml-2">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="/arsip" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                <a href="/arsip" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
                     <span class="material-icons">archive</span>
                     <span class="ml-2">Arsip</span>
                 </a>
@@ -62,7 +62,7 @@
             <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="flex items-center p-3 rounded-lg hover:bg-blue-600 transition duration-150">
+                    <button type="submit" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150 w-full">
                         <span class="material-icons">logout</span>
                         <span class="ml-2">Logout</span>
                     </button>
