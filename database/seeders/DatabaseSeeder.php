@@ -12,13 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Buat user spesifik
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
 
         // Panggil PeminjamSeeder untuk mengisi tabel peminjam
-        $this->call(PeminjamSeeder::class);
+        $this->call([
+            KategoriSeeder::class,
+            ArsipSeeder::class,
+            UserSeeder::class,
+        ]);
     }
 }

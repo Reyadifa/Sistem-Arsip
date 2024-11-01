@@ -34,6 +34,12 @@ class KategoriSeeder extends Seeder
             [
                 'nama_kategori' => 'Parkiran',
             ],
+            [
+                'nama_kategori' => 'Guest House',
+            ],
+            [
+                'nama_kategori' => 'Losmen',
+            ],
         ]);
     }
 }

@@ -48,10 +48,12 @@ class UserSeeder extends Seeder
             ],
             [
                 'nama_user' => 'Fikri',
-                'email' => 'Fikri1@example.com',
+                'email' => 'Fikri@example.com',
                 'password' => bcrypt('admin123'),
                 'role' => 1, // Admin
             ],
+
+            //user
             [
                 'nama_user' => 'User',
                 'email' => 'user1@example.com',
@@ -94,6 +96,31 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('user123'),
                 'role' => 2, // User
             ],
+            [
+                'nama_user' => 'Ade',
+                'email' => 'user8@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2, // User
+            ],
+            [
+                'nama_user' => 'user9',
+                'email' => 'user9@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2, // User
+            ],
+            [
+                'nama_user' => 'Udin',
+                'email' => 'user10@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2, // User
+            ],
+            [
+                'nama_user' => 'Maulidin',
+                'email' => 'user11@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2, // User
+            ],
         ]);
+
     }
 }
