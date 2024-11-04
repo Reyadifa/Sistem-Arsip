@@ -11,116 +11,665 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'nama_user' => 'Admin',
-                'email' => 'admin@example.com',
+                'nama_user' => 'Dika',
+                'email' => 'admin1@example.com',
                 'password' => bcrypt('admin123'),
-                'role' => 1, // Admin
+                'role' => 1,
             ],
-            [
-                'nama_user' => 'Amin',
-                'email' => 'amin@example.com',
+        [
+                'nama_user' => 'Fadil',
+                'email' => 'admin2@example.com',
                 'password' => bcrypt('admin123'),
-                'role' => 1, // Admin
+                'role' => 1,
             ],
-            [
-                'nama_user' => 'Udin',
-                'email' => 'udin@example.com',
+        [
+                'nama_user' => 'Windi',
+                'email' => 'admin3@example.com',
                 'password' => bcrypt('admin123'),
-                'role' => 1, // Admin
+                'role' => 1,
             ],
-            [
-                'nama_user' => 'Adit',
-                'email' => 'adit@example.com',
+        [
+                'nama_user' => 'Rudi',
+                'email' => 'admin4@example.com',
                 'password' => bcrypt('admin123'),
-                'role' => 1, // Admin
+                'role' => 1,
             ],
-            [
-                'nama_user' => 'Joshua',
-                'email' => 'Joshua@example.com',
+        [
+                'nama_user' => 'Umar',
+                'email' => 'admin5@example.com',
                 'password' => bcrypt('admin123'),
-                'role' => 1, // Admin
+                'role' => 1,
             ],
-            [
-                'nama_user' => 'Dayat',
-                'email' => 'Dayat@example.com',
+        [
+                'nama_user' => 'Yanti',
+                'email' => 'admin6@example.com',
                 'password' => bcrypt('admin123'),
-                'role' => 1, // Admin
+                'role' => 1,
             ],
-            [
-                'nama_user' => 'Fikri',
-                'email' => 'Fikri@example.com',
+        [
+                'nama_user' => 'Sandi',
+                'email' => 'admin7@example.com',
                 'password' => bcrypt('admin123'),
-                'role' => 1, // Admin
+                'role' => 1,
             ],
-
-            //user
-            [
-                'nama_user' => 'User',
+        [
+                'nama_user' => 'Taufik',
+                'email' => 'admin8@example.com',
+                'password' => bcrypt('admin123'),
+                'role' => 1,
+            ],
+        [
+                'nama_user' => 'Yudi',
+                'email' => 'admin9@example.com',
+                'password' => bcrypt('admin123'),
+                'role' => 1,
+            ],
+        [
+                'nama_user' => 'Eko',
+                'email' => 'admin10@example.com',
+                'password' => bcrypt('admin123'),
+                'role' => 1,
+            ],
+        [
+                'nama_user' => 'Windi',
                 'email' => 'user1@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'Muhaidin',
+        [
+                'nama_user' => 'Farah',
                 'email' => 'user2@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'Latipah',
+        [
+                'nama_user' => 'Umi',
                 'email' => 'user3@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'Rizki',
+        [
+                'nama_user' => 'Yudi',
                 'email' => 'user4@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'Maulana',
+        [
+                'nama_user' => 'Luthfi',
                 'email' => 'user5@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'Mohamed',
+        [
+                'nama_user' => 'Fina',
                 'email' => 'user6@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'Allcyn',
+        [
+                'nama_user' => 'Elok',
                 'email' => 'user7@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'Ade',
+        [
+                'nama_user' => 'Rafi',
                 'email' => 'user8@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'user9',
+        [
+                'nama_user' => 'Galih',
                 'email' => 'user9@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'Udin',
+        [
+                'nama_user' => 'Mira',
                 'email' => 'user10@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
             ],
-            [
-                'nama_user' => 'Maulidin',
+        [
+                'nama_user' => 'Rina',
                 'email' => 'user11@example.com',
                 'password' => bcrypt('user123'),
-                'role' => 2, // User
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Anisa',
+                'email' => 'user12@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Kevin',
+                'email' => 'user13@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Reza',
+                'email' => 'user14@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Eni',
+                'email' => 'user15@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Elok',
+                'email' => 'user16@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Elvira',
+                'email' => 'user17@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Ega',
+                'email' => 'user18@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Ferry',
+                'email' => 'user19@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Rendy',
+                'email' => 'user20@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Kevin',
+                'email' => 'user21@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Tika',
+                'email' => 'user22@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Muna',
+                'email' => 'user23@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Elvira',
+                'email' => 'user24@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Restu',
+                'email' => 'user25@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Eni',
+                'email' => 'user26@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Elok',
+                'email' => 'user27@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Kila',
+                'email' => 'user28@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Jaya',
+                'email' => 'user29@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Lila',
+                'email' => 'user30@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Qori',
+                'email' => 'user31@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Bima',
+                'email' => 'user32@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Fikri',
+                'email' => 'user33@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Reza',
+                'email' => 'user34@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Gita',
+                'email' => 'user35@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Devi',
+                'email' => 'user36@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Rina',
+                'email' => 'user37@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Bella',
+                'email' => 'user38@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Mela',
+                'email' => 'user39@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Mela',
+                'email' => 'user40@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Wulan',
+                'email' => 'user41@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Tika',
+                'email' => 'user42@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Miko',
+                'email' => 'user43@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Luthfi',
+                'email' => 'user44@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Fadil',
+                'email' => 'user45@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Zain',
+                'email' => 'user46@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Dini',
+                'email' => 'user47@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Qila',
+                'email' => 'user48@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Iqbal',
+                'email' => 'user49@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Gilang',
+                'email' => 'user50@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Pandi',
+                'email' => 'user51@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Riko',
+                'email' => 'user52@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Hani',
+                'email' => 'user53@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Oji',
+                'email' => 'user54@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Budi',
+                'email' => 'user55@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Zulaikha',
+                'email' => 'user56@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Luthfi',
+                'email' => 'user57@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Rina',
+                'email' => 'user58@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Farhan',
+                'email' => 'user59@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Wulan',
+                'email' => 'user60@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Tami',
+                'email' => 'user61@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Intan',
+                'email' => 'user62@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Dinda',
+                'email' => 'user63@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Leni',
+                'email' => 'user64@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Hani',
+                'email' => 'user65@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Vina',
+                'email' => 'user66@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Gilang',
+                'email' => 'user67@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Zaki',
+                'email' => 'user68@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Tika',
+                'email' => 'user69@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Tami',
+                'email' => 'user70@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Yanti',
+                'email' => 'user71@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Windi',
+                'email' => 'user72@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Kila',
+                'email' => 'user73@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Ferry',
+                'email' => 'user74@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Nanda',
+                'email' => 'user75@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Pika',
+                'email' => 'user76@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Ghina',
+                'email' => 'user77@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Hadi',
+                'email' => 'user78@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Reza',
+                'email' => 'user79@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Mela',
+                'email' => 'user80@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Riko',
+                'email' => 'user81@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Gilang',
+                'email' => 'user82@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Pika',
+                'email' => 'user83@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Rafi',
+                'email' => 'user84@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Kurnia',
+                'email' => 'user85@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Kurnia',
+                'email' => 'user86@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Gilang',
+                'email' => 'user87@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Dinda',
+                'email' => 'user88@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Bella',
+                'email' => 'user89@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Sari',
+                'email' => 'user90@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Kurnia',
+                'email' => 'user91@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Luthfi',
+                'email' => 'user92@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Luthfi',
+                'email' => 'user93@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Dodi',
+                'email' => 'user94@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Fikri',
+                'email' => 'user95@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Vira',
+                'email' => 'user96@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Nanda',
+                'email' => 'user97@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Restu',
+                'email' => 'user98@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Damar',
+                'email' => 'user99@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
+            ],
+        [
+                'nama_user' => 'Galih',
+                'email' => 'user100@example.com',
+                'password' => bcrypt('user123'),
+                'role' => 2,
             ],
         ]);
-
     }
 }
