@@ -49,7 +49,6 @@ public function index(Request $request)
 
     public function create()
     {
-        // Mengambil semua kategori untuk ditampilkan di dropdown
         $kategoris = Kategori::all();
         return view('arsip.create', compact('kategoris'));
     }
@@ -58,7 +57,7 @@ public function index(Request $request)
     {   
     // Validasi input
     $request->validate([
-        'id_kategori' => 'required|exists:kategoris,id_kategori', // Validasi ID kategori
+        'id_kategori' => 'required|exists:kategoris,id_kategori',
         'nama_usaha' => 'required',
         'alamat_usaha' => 'required',
         'nama_pemilik' => 'required',
@@ -66,7 +65,7 @@ public function index(Request $request)
         'npwp' => 'required',
         'bulan' => 'required',
         'tahun' => 'required|integer',
-        'file' => 'file|mimes:pdf|max:2048', // Hanya izinkan file PDF
+        'file' => 'file|mimes:pdf|max:2048',
          ]);
 
     $arsip = new Arsip();
