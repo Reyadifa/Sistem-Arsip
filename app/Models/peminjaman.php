@@ -16,6 +16,8 @@ class Peminjaman extends Model
         'arsip_id',
         'no_ktp',
         'nama_peminjam',
+        'alamat_peminjam',
+        'nohp_peminjam',
         'keperluan',
         'tgl_minjam',
         'tgl_kembali',

@@ -15,6 +15,9 @@ Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/chart-data', [DashboardController::class, 'getChartData']);
+
+
 Route::middleware(['auth'])->group(function () {
 
     
@@ -32,4 +35,5 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('peminjaman', PeminjamanController::class);
         });
     });
+    
     

@@ -10,19 +10,19 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-20 flex ">
-    <div class="flex w-full ml-64">
+<body class="bg-gray-20">
+    <div class="flex ml-40">
 
         <!--include Sidebar -->
 
         @include('layouts.sidebar')
 
         <!-- Form Tambah Arsip -->
-        <div class="flex-grow p-6 ">
+        <div class="flex-grow">
 
           
 
-            <main class="bg-gray-100 shadow-xl rounded-xl p-10 mx-32 mt-10 border border-gray-500">
+            <main class=" p-10 mx-32 mt-10">
                 
                    
                 <div class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600"> 

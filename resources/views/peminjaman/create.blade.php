@@ -5,13 +5,10 @@
     @include('layouts.sidebar')
 
 
-    <div class="bg-white">
+    <div>
+        <div class="pt-1">
 
-        <div class="flex items-center space-x-4 pl-10 pt-10 mb-20">
-            
-           
         </div>
-        
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -26,14 +23,14 @@
         <form action="{{ route('peminjaman.store') }}" method="POST">
             @csrf
 
-            <main class="p-10 bg-gray-100 max-w-4xl rounded-xl mx-auto space-y-6 shadow-2xl border-black border">
+            <main class="p-10 bg-white max-1xl rounded-xl space-y-6 shadow-2xl mx-2">
                 <div class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600"> 
                     <i class="fas fa-book text-4xl text-blue-600 "></i>      
                     <h1>Tambah Peminjaman</h1>
                 </div>
             
                 <hr class="border-2 border-gray-500">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                     
                     <!-- Dropdown untuk memilih NPWP dan Nama Usaha -->
                     <div>
@@ -51,7 +48,7 @@
                     </div>
 
                     <!-- Dropdown Arsip yang muncul setelah memilih NPWP -->
-                    <div id="arsip-container" style="display: none;">
+                    <div id="arsip-container">
                         <label for="arsip_id" class="block font-bold text-black mb-1">Pilih Arsip</label>
                         <select name="arsip_id" id="arsip_id" class="w-full p-3 rounded-lg border-black border" onchange="updateFileInfo()">
                             <option value="">Pilih Arsip</option>
@@ -73,15 +70,19 @@
                             placeholder="Masukkan Nama Peminjam" value="{{ old('nama_peminjam') }}" required>
                     </div>
 
-                    <!-- Dropdown Status -->
+                    <!--new Input Alamat Peminjam -->
                     <div>
-                        <label for="status" class="block font-bold text-black mb-1">Status</label>
-                        <select name="status" id="status" class="w-full p-3 rounded-lg border-black border" required>
-                            <option value="Dipinjam">Dipinjam</option>
-                            <option value="Dikembalikan">Dikembalikan</option>
-                            <option value="Terlambat">Terlambat</option>
-                        </select>
-                    </div>
+                        <label for="nama_peminjam" class="block font-bold text-black mb-1">Alamat Peminjam</label>
+                        <input type="text" class="w-full p-3 rounded-lg border-black border" id="alamat_peminjam" name="alamat_peminjam"
+                            placeholder="Masukkan Nama Peminjam" value="{{ old('alamat_peminjam') }}" required>
+                    </div> 
+
+                    <!--new Input Alamat Peminjam -->
+                    <div>
+                        <label for="nama_peminjam" class="block font-bold text-black mb-1">Nomor HP Peminjam</label>
+                        <input type="text" class="w-full p-3 rounded-lg border-black border" id="nohp_peminjam" name="nohp_peminjam"
+                            placeholder="Masukkan Nama Peminjam" value="{{ old('nohp_peminjam') }}" required>
+                    </div> 
 
                     <!-- Input Tanggal Pinjam -->
                     <div>
@@ -97,6 +98,16 @@
                             placeholder="Pilih Tanggal Kembali" value="{{ old('tgl_kembali') }}">
                     </div>
 
+                    <!-- Dropdown Status -->
+                    <div>
+                        <label for="status" class="block font-bold text-black mb-1">Status</label>
+                        <select name="status" id="status" class="w-full p-3 rounded-lg border-black border" required>
+                            <option value="Dipinjam">Dipinjam</option>
+                            <option value="Dikembalikan">Dikembalikan</option>
+                            <option value="Terlambat">Terlambat</option>
+                        </select>
+                    </div>
+                    
                     <!-- Textarea Keperluan -->
                     <div class="col-span-2">
                         <label for="keperluan" class="block font-bold text-black mb-1">Keperluan</label>

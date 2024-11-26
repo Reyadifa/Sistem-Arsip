@@ -31,7 +31,6 @@
                         <tr>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">No KTP</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Nama Peminjam</th>
-                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Keperluan</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Nama Arsip Yang Dipinjam</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">kategori</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Tahun Arsip Yang Dipinjam</th>
@@ -46,7 +45,6 @@
                             <tr class="hover:bg-gray-100">
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->no_ktp }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->nama_peminjam }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->keperluan }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->nama_usaha }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
                                     {{ $peminjaman->arsip->kategori->nama_kategori }}

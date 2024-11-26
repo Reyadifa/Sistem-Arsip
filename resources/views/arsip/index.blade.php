@@ -110,7 +110,6 @@
                             <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Nama Usaha</th>
                             <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Alamat Usaha</th>
                             <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Nama Pemilik</th>
-                            <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Alamat Pemilik</th>
                             <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Tahun</th>
                             <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">Bulan</th>
                             <th class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">File</th>
@@ -130,7 +129,6 @@
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $arsip->nama_usaha }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $arsip->alamat_usaha }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $arsip->nama_pemilik }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $arsip->alamat_pemilik }}
                                 </td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $arsip->tahun }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $arsip->bulan }}</td>

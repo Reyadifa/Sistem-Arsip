@@ -18,6 +18,8 @@ class CreatePeminjamanTable extends Migration
         $table->unsignedBigInteger('arsip_id'); // Foreign key ke tabel arsip
         $table->string('no_ktp', 20);
         $table->string('nama_peminjam');
+        $table->string('alamat_peminjam');
+        $table->string('nohp_peminjam');
         $table->text('keperluan');
         $table->date('tgl_minjam');
         $table->date('tgl_kembali')->nullable();
