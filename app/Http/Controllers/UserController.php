@@ -37,14 +37,14 @@ class UserController extends Controller
 
 
     public function index(Request $request)
-{
-    $search = $request->input('search');
-    $users = User::when($search, function ($query) use ($search) {
-        return $query->where('nama_user', 'like', '%' . $search . '%');
-    })->paginate(12)->appends(request()->query());
-    
-    return view('users.index', compact('search', 'users'));
-}
+    {
+        $search = $request->input('search');
+        $users = User::when($search, function ($query) use ($search) {
+            return $query->where('nama_user', 'like', '%' . $search . '%');
+        })->paginate(12)->appends(request()->query());
+        
+        return view('users.index', compact('search', 'users'));
+    }
     
 
     // Menampilkan form edit untuk pengguna

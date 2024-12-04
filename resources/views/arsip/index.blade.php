@@ -11,18 +11,6 @@
         <!-- Main Content -->
         <div class="flex-1 p-10 bg-gray-100 ">
 
-                        
-                  
-
-            <div class="text-center  bg-gray-100">
-                <h2 class="text-5xl font-extrabold text-blue-600 mb-4 tracking-wide flex items-center justify-center gap-4">
-                    <i class="fas fa-folder-open text-blue-600"></i> 
-                    Sistem Informasi Manajemen Arsip
-                </h2>
-                <p class="text-lg text-gray-500 max-w-md mx-auto leading-relaxed">
-                    Mengelola arsip dengan efisiensi dan akurasi untuk kemudahan akses informasi.
-                </p>
-            </div>
             
             
             

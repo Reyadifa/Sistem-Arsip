@@ -44,7 +44,7 @@ public function index(Request $request)
         ->appends(request()->query());
 
     return view('arsip.index', compact('arsips', 'search', 'bulan', 'tahun', 'kategoriId', 'kategoris'));
-}
+    }
 
 
     public function create()
@@ -71,26 +71,22 @@ public function index(Request $request)
     $arsip = new Arsip();
     $arsip->fill($request->only(['id_kategori', 'nama_usaha', 'alamat_usaha', 'nama_pemilik', 'alamat_pemilik', 'npwp', 'bulan', 'tahun']));
 
-    // Menyimpan file jika ada
     if ($request->hasFile('file')) {
         $arsip->file_path = $this->storeFile($request->file('file'));
     }
 
-    // Simpan data arsip ke database
     $arsip->save();
     return redirect()->route('arsip.index')->with('success', 'Arsip berhasil ditambahkan.');
     }
 
     public function edit(Arsip $arsip)
     {
-        // Mengambil semua kategori untuk ditampilkan di dropdown
         $kategoris = Kategori::all();
         return view('arsip.edit', compact('arsip', 'kategoris'));
     }
 
     public function update(Request $request, Arsip $arsip)
     {
-        // Validasi input
         $request->validate([
             'id_kategori' => 'required|exists:kategoris,id_kategori',
             'nama_usaha' => 'required',
@@ -103,12 +99,9 @@ public function index(Request $request)
             'file' => 'file|mimes:pdf|max:2048',
         ]);
 
-        // Memperbarui data arsip
         $arsip->fill($request->only(['id_kategori', 'nama_usaha', 'alamat_usaha', 'nama_pemilik', 'alamat_pemilik', 'npwp', 'bulan', 'tahun']));
 
-        // Menyimpan file baru jika ada
         if ($request->hasFile('file')) {
-            // Hapus file lama jika ada
             if ($arsip->file_path) {
                 Storage::disk('public')->delete($arsip->file_path); // Hapus file lama
             }
@@ -126,7 +119,7 @@ public function index(Request $request)
     if ($arsip->file_path) {
         Storage::disk('public')->delete($arsip->file_path); // Hapus file dari penyimpanan
     }
-    $arsip->delete(); // Hapus arsip dari database
+    $arsip->delete();
     
     // Tambahkan notifikasi untuk penghapusan arsip
     return redirect()->route('arsip.index')->with('success', 'Arsip berhasil dihapus.');
@@ -145,7 +138,7 @@ public function index(Request $request)
         // Menyimpan file dengan nama unik dan mengembalikan path
         $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $extension = $file->getClientOriginalExtension();
-        $newName = $originalName . '_' . time() . '.' . $extension; // Tambahkan timestamp untuk menghindari duplikat
-        return $file->storeAs('uploads', $newName, 'public'); // Simpan file dengan nama unik
+        $newName = $originalName . '_' . time() . '.' . $extension;
+        return $file->storeAs('uploads', $newName, 'public');
     }
 }

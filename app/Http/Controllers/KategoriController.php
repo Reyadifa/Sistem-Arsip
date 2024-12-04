@@ -22,7 +22,7 @@ class KategoriController extends Controller
 
     public function create()
     {
-        return view('kategori.create'); // Menampilkan form untuk membuat kategori baru
+        return view('kategori.create');
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class KategoriController extends Controller
 
     public function edit(Kategori $kategori)
     {
-        return view('kategori.edit', compact('kategori')); // Menampilkan form edit
+        return view('kategori.edit', compact('kategori'));
     }
 
     public function update(Request $request, Kategori $kategori)
@@ -60,8 +60,6 @@ class KategoriController extends Controller
     {
         // Temukan kategori
         $kategori = Kategori::findOrFail($id_kategori);
-        
-        // Perbarui arsip yang terkait dengan mengubah id_kategori menjadi null
         Arsip::where('id_kategori', $id_kategori)->update(['id_kategori' => null]);
 
         // Hapus kategori
