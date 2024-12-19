@@ -19,8 +19,8 @@ class UserController extends Controller
     {
         // Validasi input
         $validatedData = $request->validate([
+            'NIP' => 'required||string|max:255',
             'nama_user' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed', // Validasi password dan konfirmasi
             'role' => 'required|in:1,2', // Validasi role
         ]);
@@ -59,8 +59,8 @@ class UserController extends Controller
     {
         // Validasi input
         $validatedData = $request->validate([
+            'NIP' => 'required||string|max:255',
             'nama_user' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id_user . ',id_user', // Pastikan email unik kecuali untuk user itu sendiri
             'role' => 'required|in:1,2', // Validasi role
             'password' => 'nullable|string|min:8|confirmed' // Validasi password dan konfirmasi, nullable
         ]);
@@ -80,9 +80,9 @@ class UserController extends Controller
     }
 
     // Menghapus pengguna
-    public function destroy($id_user) // Ganti parameter ke id_user untuk konsistensi
+    public function destroy($NIP) // Ganti parameter ke id_user untuk konsistensi
     {
-        $user = User::findOrFail($id_user); // Mencari user berdasarkan ID
+        $user = User::findOrFail($NIP); // Mencari user berdasarkan ID
         $user->delete(); // Menghapus user
 
         return redirect()->route('users.index')->with('success', 'User berhasil dihapus.');

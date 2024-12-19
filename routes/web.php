@@ -25,7 +25,9 @@ Route::middleware(['auth'])->group(function () {
         Route::middleware(['auth', CheckRole::class . ':admin'])->group(function () {
             Route::resource('arsip', ArsipController::class);        
             Route::resource('kategori', KategoriController::class);
-            Route::resource('users', UserController::class);
+            Route::resource('users', UserController::class)->parameters([
+                'users' => 'NIP',
+            ]);
             Route::resource('peminjaman', PeminjamanController::class);
         });
         

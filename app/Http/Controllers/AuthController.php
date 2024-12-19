@@ -13,20 +13,20 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-            ]);
+{
+    $request->validate([
+        'nama_user' => 'required|string',  // Memastikan nama_user ada dan berupa string
+        'password' => 'required|string',   // Memastikan password ada dan berupa string
+    ]);
 
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/dashboard');
-            }
-
-            return redirect()->back()->withErrors([
-            'email' => 'Email atau password salah.',
-            ]);
+    if (Auth::attempt(['nama_user' => $request->nama_user, 'password' => $request->password])) {
+        return redirect()->intended('/dashboard');
     }
+
+    return redirect()->back()->withErrors([
+        'nama_user' => 'Username atau password salah.',
+    ]);
+}
 
 
     public function logout()

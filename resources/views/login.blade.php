@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-
+     {{-- tailwind config --}}
+     @vite('resources/css/app.css')
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -28,23 +28,24 @@
         <form action="{{ url('/login') }}" method="POST" class="p-6 sm:p-10">
             @csrf <!-- Laravel CSRF protection -->
 
-            <!-- Username Input -->
+            <!-- Nama User Input -->
             <div class="mb-4">
-                <label class="block text-lg sm:text-xl text-white font-bold text-left mb-2" for="username">
-                    Username
+                <label class="block text-lg sm:text-xl text-white font-bold text-left mb-2" for="nama_user">
+                    Nama User
                 </label>
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                         <i class="fa-solid fa-user"></i>
                     </span>
-                    <input class="text-lg sm:text-xl pl-10 pr-4 py-2 rounded-full w-full @error('email') border-red-500 @enderror"
-                        id="email" name="email" placeholder="Username" type="text" value="{{ old('email') }}" required />
+                    <input class="text-lg sm:text-xl pl-10 pr-4 py-2 rounded-full w-full @error('nama_user') border-red-500 @enderror"
+                        id="nama_user" name="nama_user" placeholder="Nama User" type="text" value="{{ old('nama_user') }}" required />
 
-                    @error('email')
+                    @error('nama_user')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
+
 
             <!-- Password Input -->
             <div class="mb-6">

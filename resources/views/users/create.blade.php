@@ -44,12 +44,12 @@
                 <form action="{{ route('users.store') }}" method="POST" class="space-y-4">
                     @csrf
                     <div>
-                        <label for="nama_user" class="block text-gray-700 text-sm font-bold mb-2">Nama User</label>
-                        <input type="text" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_user" name="nama_user" required>
+                        <label for="NIP" class="block text-gray-700 text-sm font-bold mb-2">NIP</label>
+                        <input type="text" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="NIP" name="NIP" required>
                     </div>
                     <div>
-                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
-                        <input type="email" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" required>
+                        <label for="nama_user" class="block text-gray-700 text-sm font-bold mb-2">Nama User</label>
+                        <input type="text" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_user" name="nama_user" required>
                     </div>
                     <div>
                         <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>

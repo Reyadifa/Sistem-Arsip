@@ -15,7 +15,7 @@
                             {{-- Tambah User --}}
                             <div class="flex justify-between items-center mb-4">
                                 <a href="{{ route('users.create') }}"
-                                    class="bg-green-500 text-white px-4 py-3 rounded-md hover:bg-green-600 font-bold transition duration-300 transform transition-transform duration-300 hover:scale-110"><i
+                                    class="bg-green-500 text-white px-4 py-3 rounded-md hover:bg-green-600 font-bold  transform transition-transform duration-300 hover:scale-110"><i
                                         class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah User</a>
                             </div>
 
@@ -54,7 +54,6 @@
                                         <tr>
                                             <th class="py-3 px-4 border border-gray-500 text-center">No</th>
                                             <th class="py-3 px-4 border border-gray-500 text-left">Nama User</th>
-                                            <th class="py-3 px-4 border border-gray-500 text-left">Email</th>
                                             <th class="py-3 px-4 border border-gray-500 w-96 p-24">Aksi</th>
                                         </tr>
                                     </thead>
@@ -65,16 +64,15 @@
                                                     {{ $users->firstItem() + $index }}
                                                 </td>
                                                 <td class="py-2 px-4 border border-gray-500">{{ $user->nama_user }}</td>
-                                                <td class="py-2 px-4 border border-gray-500">{{ $user->email }}</td>
                                                 <td class="py-2 px-4 border border-gray-500">
                                                     <div class="flex justify-center gap-5 w-96">
-                                                        <a href="{{ route('users.edit', $user->id_user) }}" class="text-white bg-blue-500 hover:bg-blue-700 rounded-xl py-2 px-8 font-semibold">
+                                                        <a href="{{ route('users.edit', $user->NIP) }}" class="text-white bg-blue-500 hover:bg-blue-700 rounded-xl py-2 px-8 font-semibold">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </a>
-                                                        <form id="delete-form-{{ $user->id_user }}" action="{{ route('users.destroy', $user->id_user) }}" method="POST" class="inline">
+                                                        <form id="delete-form-{{ $user->NIP }}" action="{{ route('users.destroy', $user->NIP) }}" method="POST" class="inline">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="button" class="text-white bg-red-500 hover:bg-red-700 rounded-xl py-2 px-8 font-semibold" onclick="confirmDelete({{ $user->id_user }})">
+                                                            <button type="button" class="text-white bg-red-500 hover:bg-red-700 rounded-xl py-2 px-8 font-semibold" onclick="confirmDelete({{ $user->NIP }})">
                                                                 <i class="fa-solid fa-trash-can"></i>
                                                             </button>
                                                         </form>

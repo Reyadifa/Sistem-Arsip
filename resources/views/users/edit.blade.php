@@ -12,7 +12,7 @@
     <main class="flex-1 p-8">
         <h1 class="text-3xl font-semibold mb-6">Edit User</h1>
         <div class="bg-white p-6 rounded-lg shadow-lg">
-            <form action="{{ route('users.update', $user->id_user) }}" method="POST">
+            <form action="{{ route('users.update', $user->NIP) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -20,12 +20,7 @@
                     <label for="nama_user" class="block text-gray-700 font-bold mb-2">Nama:</label>
                     <input type="text" id="nama_user" name="nama_user" value="{{ old('nama_user', $user->nama_user) }}" required class="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200 transition-colors">
                 </div>
-
-                <div class="mb-4">
-                    <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-                    <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" required class="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200 transition-colors">
-                </div>
-
+                
                 <div class="mb-4">
                     <label for="password" class="block text-gray-700 font-bold mb-2">Password:</label>
                     <input type="password" id="password" name="password" class="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200 transition-colors" placeholder="Kosongkan jika tidak ingin mengubah">
