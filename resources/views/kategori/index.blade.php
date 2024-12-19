@@ -34,7 +34,7 @@
 
                     <div class="mb-6">
                         <a href="{{ route('kategori.create') }}"
-                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition mb-4 inline-block transform transition-transform duration-300 hover:scale-110">
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg mb-4 inline-block transform transition-transform duration-300 hover:scale-110">
                             <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah Kategori
                         </a>
 

@@ -21,10 +21,7 @@ class PeminjamanController extends Controller{
     {
         $request->validate([
             'arsip_id' => 'required|exists:arsips,id',
-            'no_ktp' => 'required|string',
             'nama_peminjam' => 'required|string',
-            'alamat_peminjam' => 'required|string',
-            'nohp_peminjam' => 'required|string|min:3|max:15',
             'keperluan' => 'required|string',
             'tgl_minjam' => 'required|date',
             'tgl_kembali' => 'nullable|date',
@@ -44,10 +41,7 @@ class PeminjamanController extends Controller{
         // Simpan data peminjaman jika arsip tersedia
         $peminjaman = new Peminjaman();
         $peminjaman->arsip_id = $request->arsip_id;
-        $peminjaman->no_ktp = $request->no_ktp;
         $peminjaman->nama_peminjam = $request->nama_peminjam;
-        $peminjaman->alamat_peminjam = $request->alamat_peminjam;
-        $peminjaman->nohp_peminjam = $request->nohp_peminjam;
         $peminjaman->keperluan = $request->keperluan;
         $peminjaman->tgl_minjam = $request->tgl_minjam;
         $peminjaman->tgl_kembali = $request->tgl_kembali;
@@ -96,7 +90,6 @@ class PeminjamanController extends Controller{
         // Validasi data
         $request->validate([
             'arsip_id' => 'required|integer',
-            'no_ktp' => 'required|string',
             'nama_peminjam' => 'required|string',
             'keperluan' => 'required|string',
             'tgl_minjam' => 'required|date',
@@ -110,7 +103,6 @@ class PeminjamanController extends Controller{
         // Update data peminjaman
         $peminjaman->update([
             'arsip_id' => $request->arsip_id,
-            'no_ktp' => $request->no_ktp,
             'nama_peminjam' => $request->nama_peminjam,
             'keperluan' => $request->keperluan,
             'tgl_minjam' => $request->tgl_minjam,

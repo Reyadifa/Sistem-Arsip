@@ -9,12 +9,7 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 p-10 bg-gray-100 ">
-
-            
-            
-            
-                  
+        <div class="flex-1 p-10 bg-gray-100 ">          
             <h1 class="text-2xl font-bold text-gray-800 mb-4">Data Arsip</h1>
 
             <!-- Tombol Tambah Arsip -->
@@ -25,56 +20,14 @@
 
             <form class="flex justify-between py-6" method="GET" action="{{ route('arsip.index') }}">
                 {{-- cari Npwp --}}
-                <div class="flex flex-col">
+                <div class="flex flex-col relative mr-10 w-full">
                     <label for="npwp" class="pl-1">Cari NPWP/Nama Usaha</label>
                     <input id="npwp" type="text" name="search" value="{{ request('search') }}" placeholder="Masukkan NPWP/Nama Usaha"
-                        class=" border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-52">
-                </div>
-                {{-- Cari Bulan --}}
-                <div class="flex flex-col">
-                    <label for="bulan" class="pl-5">Bulan:</label>
-                    <select name="bulan" id="bulan" class="border-2 ml-4 border-gray-400 rounded-lg pl-4  py-2 w-52">
-                        <option value="" disabled selected  class="text-gray-500">Pilih Bulan</option>
-                        <option value="Januari" {{ request('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
-                        <option value="Februari" {{ request('bulan') == 'Februari' ? 'selected' : '' }}>Februari</option>
-                        <option value="Maret" {{ request('bulan') == 'Maret' ? 'selected' : '' }}>Maret</option>
-                        <option value="April" {{ request('bulan') == 'April' ? 'selected' : '' }}>April</option>
-                        <option value="Mei" {{ request('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
-                        <option value="Juni" {{ request('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
-                        <option value="Juli" {{ request('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
-                        <option value="Agustus" {{ request('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus</option>
-                        <option value="September" {{ request('bulan') == 'September' ? 'selected' : '' }}>September
-                        </option>
-                        <option value="Oktober" {{ request('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober</option>
-                        <option value="November" {{ request('bulan') == 'November' ? 'selected' : '' }}>November</option>
-                        <option value="Desember" {{ request('bulan') == 'Desember' ? 'selected' : '' }}>Desember</option>
-                    </select>
+                        class=" border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-full " > 
+                        <i class="fa-solid fa-magnifying-glass absolute top-9 right-3"></i>
                 </div>
 
-                {{-- Cari Kategori --}}
-                <div class="flex flex-col">
-                    <label for="kategori" class="pl-5">Kategori:</label>
-                    <select name="kategori" id="kategori" class="border-2 ml-4 border-gray-400 rounded-lg pl-4  py-2 w-52">
-                        <option value="" disabled selected class="text-gray-500">Pilih Kategori</option>
-                        @foreach ($kategoris as $kategori)
-                            <option value="{{ $kategori->id_kategori }}" {{ request('kategori') == $kategori->id_kategori ? 'selected' : '' }}>
-                                {{ $kategori->nama_kategori }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-
-                {{-- Cari Tahun --}}
-                <div class="flex flex-col">
-                    <label class="" for="tahun">Tahun:</label>
-                    <div class="flex ">
-                    <input class="border-gray-400 border-2 rounded-lg px-4 py-2 max-w-32" type="text" name="tahun"
-                        id="tahun" value="{{ request('tahun') }}" placeholder="Ketik Tahun" maxlength="4"
-                        title="Masukkan angka tahun" pattern="\d*" />
-                    <button type="submit" class="bg-blue-600 px-3 h-9 rounded-lg text-white font-semibold ml-5 hover:bg-blue-800 cursor-pointer"><span
-                            class="mr-2">Cari</span> <i class="fa-solid fa-magnifying-glass"></i></button>
-                        </div>
-                </div>
+               
 
                 {{-- Reset --}}
                 <div class="mt-[26px]">

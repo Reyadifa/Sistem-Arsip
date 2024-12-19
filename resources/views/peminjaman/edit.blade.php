@@ -32,11 +32,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="no_ktp" class="form-label">No KTP</label>
-            <input type="text" class="form-control" id="no_ktp" name="no_ktp" value="{{ old('no_ktp', $peminjaman->no_ktp) }}" required>
-        </div>
-
-        <div class="mb-3">
             <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
             <input type="text" class="form-control" id="nama_peminjam" name="nama_peminjam" value="{{ old('nama_peminjam', $peminjaman->nama_peminjam) }}" required>
         </div>

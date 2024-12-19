@@ -6,7 +6,7 @@
         {{-- Include sidebar --}}
         @include('layouts.sidebar')
 
-        <div class="flex-1 p-10 bg-gray-100">
+        <div class="flex-1 p-10 bg-gray-200">
 
             {{-- konten --}}
             <div class="p-8">
@@ -19,7 +19,7 @@
 
                 <div class="flex space-x-4 mb-8 ">
                     {{-- User --}}
-                    <div class="bg-gray-200 p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12 font-bold">
+                    <div class="bg-white p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12 font-bold">
                         <div>
                             <i class="fas fa-user text-blue-600 text-6xl"></i>
                         </div>
@@ -30,7 +30,7 @@
                     </div>
 
                     {{-- Kategori --}}
-                    <div class="bg-gray-200 p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12 font-bold">
+                    <div class="bg-white p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12 font-bold">
                         <div>
                             <i class="fas fa-tags text-blue-600 text-5xl"></i>
                         </div>
@@ -41,7 +41,7 @@
                     </div>
 
                     {{-- Arsip --}}
-                    <div class="bg-gray-200 p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12 font-bold">
+                    <div class="bg-white p-4 rounded-lg flex items-center gap-14 justify-center w-1/3 py-12 font-bold">
                         <div>
                             <i class="fas fa-download text-blue-600 text-5xl"></i>
                         </div>
@@ -53,7 +53,7 @@
                 </div>
 
                 {{-- Charts --}}
-                <div class="bg-gray-200 p-4 rounded-lg">
+                <div class="bg-white p-4 rounded-lg">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-bold">
                             Arsip Masuk Bulanan
@@ -79,6 +79,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('myChart').getContext('2d');
     
+            // Membuat gradasi warna untuk garis
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(0, 123, 255, 1)'); // Warna biru muda
+            gradient.addColorStop(1, 'rgba(0, 0, 123, 1)');   // Warna biru tua
+    
             // Label untuk bulan
             const labels = [
                 "Januari", "Februari", "Maret", "April", "Mei", "Juni", 
@@ -96,33 +101,37 @@
                         label: 'Arsip Masuk Bulanan',
                         data: Object.values(data), // Data arsip per bulan
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1,
-                        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
-                        pointBorderColor: 'rgba(54, 162, 235, 1)',
+                        borderColor: gradient, // Menggunakan gradasi untuk garis
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(0, 123, 255, 1)', // Warna titik biru muda
+                        pointBorderColor: 'rgba(0, 123, 255, 1)', // Warna border titik biru muda
                         pointRadius: 3,
                         pointHoverRadius: 5,
-                        fill: true
+                        fill: true // Menonaktifkan area berwarna di bawah garis
                     }]
                 },
                 options: {
                     scales: {
                         y: {
                             min: 0,   // Set minimal value of y-axis to 0
-                            max: 100,  // Set maximum value of y-axis to 100
+                            max: 2000,  // Set maximum value of y-axis to 100
                             beginAtZero: true,  // Start the scale from zero
                             ticks: {
-                                stepSize: 10,  // Step size of the ticks
+                            stepSize: 200,  // Ubah step size menjadi 200
+                            callback: function(value) {
+                                return value; // Tampilkan nilai kelipatan 200
                             }
+                        }
+
                         }
                     }
                 }
             });
         });
-
+    
         function updateYear() {
             const selectedYear = document.getElementById('yearSelect').value;
             window.location.href = `?year=${selectedYear}`;
         }
-    </script>
+    </script>    
 @endsection

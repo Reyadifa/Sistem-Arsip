@@ -46,10 +46,8 @@ class DashboardController extends Controller
             }
         }
 
-        // Mendapatkan daftar tahun arsip
         $years = Arsip::select('tahun')->distinct()->orderBy('tahun', 'desc')->get();
 
-        // Menyiapkan data yang akan dikirim ke view
         return view('dashboard.dashboard', compact('userCount', 'kategoriCount', 'arsipCount', 'data', 'year', 'years'));
     }
 }

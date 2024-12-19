@@ -47,42 +47,12 @@
                         </select>
                     </div>
 
-                    <!-- Dropdown Arsip yang muncul setelah memilih NPWP -->
                     <div id="arsip-container">
                         <label for="arsip_id" class="block font-bold text-black mb-1">Pilih Arsip</label>
                         <select name="arsip_id" id="arsip_id" class="w-full p-3 rounded-lg border-black border" onchange="updateFileInfo()">
                             <option value="">Pilih Arsip</option>
-                            <!-- Options will be added dynamically -->
                         </select>
                     </div>
-
-                    <!-- Input No KTP -->
-                    <div>
-                        <label for="no_ktp" class="block font-bold text-black mb-1">No KTP</label>
-                        <input type="text" class="w-full p-3 rounded-lg border-black border" id="no_ktp" name="no_ktp"
-                            placeholder="Masukkan No KTP" value="{{ old('no_ktp') }}" required>
-                    </div>
-
-                    <!-- Input Nama Peminjam -->
-                    <div>
-                        <label for="nama_peminjam" class="block font-bold text-black mb-1">Nama Peminjam</label>
-                        <input type="text" class="w-full p-3 rounded-lg border-black border" id="nama_peminjam" name="nama_peminjam"
-                            placeholder="Masukkan Nama Peminjam" value="{{ old('nama_peminjam') }}" required>
-                    </div>
-
-                    <!--new Input Alamat Peminjam -->
-                    <div>
-                        <label for="nama_peminjam" class="block font-bold text-black mb-1">Alamat Peminjam</label>
-                        <input type="text" class="w-full p-3 rounded-lg border-black border" id="alamat_peminjam" name="alamat_peminjam"
-                            placeholder="Masukkan Nama Peminjam" value="{{ old('alamat_peminjam') }}" required>
-                    </div> 
-
-                    <!--new Input Alamat Peminjam -->
-                    <div>
-                        <label for="nama_peminjam" class="block font-bold text-black mb-1">Nomor HP Peminjam</label>
-                        <input type="text" class="w-full p-3 rounded-lg border-black border" id="nohp_peminjam" name="nohp_peminjam"
-                            placeholder="Masukkan Nama Peminjam" value="{{ old('nohp_peminjam') }}" required>
-                    </div> 
 
                     <!-- Input Tanggal Pinjam -->
                     <div>
@@ -97,6 +67,13 @@
                         <input type="date" class="w-full p-3 rounded-lg border-black border" id="tgl_kembali" name="tgl_kembali"
                             placeholder="Pilih Tanggal Kembali" value="{{ old('tgl_kembali') }}">
                     </div>
+
+                    <!--new Input Nama Peminjam -->
+                    <div>
+                            <label for="nama_peminjam" class="block font-bold text-black mb-1">Nama Peminjam</label>
+                            <input type="text" class="w-full p-3 rounded-lg border-black border" id="nohp_peminjam" name="nama_peminjam"
+                            placeholder="Masukkan Nama Peminjam" value="{{ old('nama_peminjam') }}" required>
+                    </div> 
 
                     <!-- Dropdown Status -->
                     <div>
