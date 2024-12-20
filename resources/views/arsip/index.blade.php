@@ -9,9 +9,21 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 p-10 bg-gray-100 ">          
-            <h1 class="text-2xl font-bold text-gray-800 mb-4">Data Arsip</h1>
-
+        <div class="flex-1 bg-gray-100 "> 
+            <div class="bg-blue-600 py-10">
+                <div class="flex items-center">
+                    <span class="material-icons text-4xl text-white">archive</span>
+                    <h1 class="text-4xl font-bold ml-3 text-white">
+                        Arsip
+                    </h1>
+                    <div class="absolute right-8 flex items-center gap-4">
+                        <h2 class="text-4xl font-bold ml-3 text-white ">Admin |</h2>
+                        <div class="bg-black rounded-full h-14 w-14"></div>
+                    </div>
+                </div>
+            </div>         
+            
+<main class="px-10 mt-10">
             <!-- Tombol Tambah Arsip -->
             <a href="{{ route('arsip.create') }}"
                 class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transform transition-transform duration-300 hover:scale-110">
@@ -126,6 +138,7 @@
             <!-- Pagination -->
             {{ $arsips->links('vendor.pagination.tailwind') }}
         </div>
+    </main>
     </div>
     {{-- Sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>

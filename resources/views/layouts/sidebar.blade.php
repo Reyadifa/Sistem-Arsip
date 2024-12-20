@@ -59,7 +59,7 @@
                 </a>
             </li>
             @endif
-            <li>
+            <li class="absolute bottom-12">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150 w-full">

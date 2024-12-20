@@ -20,17 +20,26 @@
         <!-- Form Tambah Arsip -->
         <div class="flex-grow">
 
-          
+            <div class="bg-blue-600 py-10">
+                <div class="flex items-center">
+                    <span class="material-icons text-4xl text-white">archive</span>
+
+                    <div class="absolute right-8 flex items-center gap-4">
+                        <h2 class="text-4xl font-bold ml-3 text-white ">Admin |</h2>
+                        <div class="bg-black rounded-full h-14 w-14"></div>
+                    </div>
+                </div>
+            </div>
 
             <main class=" p-10 mx-32 mt-10">
-                
-                   
-                <div class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600"> 
-                    <span class="material-icons text-blue-500 text-4xl ">archive</span>      
+
+                <div
+                    class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
+                    <span class="material-icons text-blue-500 text-4xl ">archive</span>
                     <h1>Tambah Arsip</h1>
                 </div>
-            
-                <hr class="border-2 border-gray-500">
+
+                <hr class="border-2 border-gray-500 w-[600px] mx-auto">
                 <form action="{{ route('arsip.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
@@ -53,16 +62,17 @@
                     <main class="grid grid-cols-2 gap-x-6 mt-1 ">
 
                         <div class="mb-4 mt-10 ">
-                            <label for="id_kategori"
-                                class="block mb-2 text-sm font-bold text-black ">Kategori</label>
-    
+                            <label for="id_kategori" class="block mb-2 text-sm font-bold text-black ">Kategori</label>
+
                             {{-- Kategori --}}
                             <select name="id_kategori" id="id_kategori"
-                                class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2  border-gray-500"
+                                class="w-full rounded-lg   p-3 text-sm focus:outline-none focus:ring-2 border border-gray-500"
                                 required>
                                 <option value="" disabled selected>Pilih Kategori</option>
                                 @foreach ($kategoris as $kategori)
-                                <option value="{{ $kategori->id_kategori }}" {{ old('id_kategori') == $kategori->id_kategori ? 'selected' : '' }}>{{ $kategori->nama_kategori }}</option>
+                                    <option value="{{ $kategori->id_kategori }}"
+                                        {{ old('id_kategori') == $kategori->id_kategori ? 'selected' : '' }}>
+                                        {{ $kategori->nama_kategori }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -113,26 +123,34 @@
                                 class="w-full rounded-lg border  p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                                 value="{{ old('alamat_pemilik') }}" required>
                         </div>
-                        
+
                         {{-- Bulan --}}
                         <div class="mb-4 ">
                             <label for="bulan" class="block mb-2 text-sm font-bold text-black">Bulan</label>
                             <select name="bulan" id="bulan"
                                 class="w-full rounded-lg border   p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
                                 required>
-                                <option value="" disabled {{ old('bulan') ? '' : 'selected' }}>Pilih Bulan</option>
-                                <option value="Januari" {{ old('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
-                                <option value="Februari" {{ old('bulan') == 'Februari' ? 'selected' : '' }}>Februari</option>
+                                <option value="" disabled {{ old('bulan') ? '' : 'selected' }}>Pilih Bulan
+                                </option>
+                                <option value="Januari" {{ old('bulan') == 'Januari' ? 'selected' : '' }}>Januari
+                                </option>
+                                <option value="Februari" {{ old('bulan') == 'Februari' ? 'selected' : '' }}>Februari
+                                </option>
                                 <option value="Maret" {{ old('bulan') == 'Maret' ? 'selected' : '' }}>Maret</option>
                                 <option value="April" {{ old('bulan') == 'April' ? 'selected' : '' }}>April</option>
                                 <option value="Mei" {{ old('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
                                 <option value="Juni" {{ old('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
                                 <option value="Juli" {{ old('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
-                                <option value="Agustus" {{ old('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus</option>
-                                <option value="September" {{ old('bulan') == 'September' ? 'selected' : '' }}>September</option>
-                                <option value="Oktober" {{ old('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober</option>
-                                <option value="November" {{ old('bulan') == 'November' ? 'selected' : '' }}>November</option>
-                                <option value="Desember" {{ old('bulan') == 'Desember' ? 'selected' : '' }}>Desember</option>
+                                <option value="Agustus" {{ old('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus
+                                </option>
+                                <option value="September" {{ old('bulan') == 'September' ? 'selected' : '' }}>September
+                                </option>
+                                <option value="Oktober" {{ old('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober
+                                </option>
+                                <option value="November" {{ old('bulan') == 'November' ? 'selected' : '' }}>November
+                                </option>
+                                <option value="Desember" {{ old('bulan') == 'Desember' ? 'selected' : '' }}>Desember
+                                </option>
                             </select>
                         </div>
 
@@ -156,7 +174,7 @@
                         <label for="file" class="block mb-2 text-sm font-bold text-black ">Upload File</label>
                         <input type="file" name="file" id="file"
                             class="w-full rounded-lg border  bg-white p-3 text-sm focus:outline-none focus:ring-2 border-gray-500"
-                            required >
+                            required>
                     </div>
 
 
