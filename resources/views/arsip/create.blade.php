@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <main class=" p-10 mx-32 mt-10">
+            <main class=" p-10 mx-32 mt-6">
 
                 <div
                     class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">

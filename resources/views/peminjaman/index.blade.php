@@ -6,14 +6,23 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 p-10 bg-gray-100 ">
-
-            <div class="flex items-center mb-8">
-                <i class="fas fa-book text-4xl text-blue-600 "></i>  
-                <h1 class="text-4xl font-bold ml-3">
-                    Peminjaman
-                </h1>
-            </div>
+        <div class="flex-1  bg-gray-100 ">
+           
+            <div class="bg-blue-600 py-10">
+                <div class="flex items-center">
+                    <i class="fas fa-book text-4xl text-white "></i>  
+                    <h1 class="text-4xl font-bold ml-3 text-white">
+                        Peminjaman
+                    </h1>
+                    </h1>
+                    <div class="absolute right-8 flex items-center gap-4">
+                        <h2 class="text-4xl font-bold ml-3 text-white ">Admin |</h2>
+                        <div class="bg-black rounded-full h-14 w-14"></div>
+                    </div>
+                </div>
+            </div> 
+            <main class="p-14">        
+            
 
             <!-- Tombol Tambah Peminjaman -->
             <div class="mt-20">
@@ -92,6 +101,7 @@
 
             <!-- Pagination -->
             {{ $peminjamans->links('vendor.pagination.tailwind') }}
+        </main>
         </div>
     </div>
     {{-- Sweetalert --}}

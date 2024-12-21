@@ -6,10 +6,20 @@
 
 
     <div>
-        <div class="pt-1">
+        <div class="">
 
         </div>
+        {{-- Navbar konten --}}
+        <div class="bg-blue-600 py-10">
+            <div class="flex items-center">
+                <span class="material-icons text-4xl text-white">archive</span>
 
+                <div class="absolute right-8 flex items-center gap-4">
+                    <h2 class="text-4xl font-bold ml-3 text-white ">Admin |</h2>
+                    <div class="bg-black rounded-full h-14 w-14"></div>
+                </div>
+            </div>
+        </div>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -23,19 +33,19 @@
         <form action="{{ route('peminjaman.store') }}" method="POST">
             @csrf
 
-            <main class="p-10 bg-white max-1xl rounded-xl space-y-6 shadow-2xl mx-2">
+            <main class="p-10 bg-white max-1xl rounded-xl space-y-6  mx-2">
                 <div class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600"> 
                     <i class="fas fa-book text-4xl text-blue-600 "></i>      
                     <h1>Tambah Peminjaman</h1>
                 </div>
             
-                <hr class="border-2 border-gray-500">
+                <hr class="border-2 border-gray-500 w-[600px] mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                     
                     <!-- Dropdown untuk memilih NPWP dan Nama Usaha -->
                     <div>
                         <label for="npwp" class="block font-bold text-black mb-1">Pilih NPWP dan Nama Usaha</label>
-                        <select name="npwp" id="npwp" class="w-full p-3 rounded-lg border-black border" onchange="updateArsipDropdown()">
+                        <select name="npwp" id="npwp" class="w-full p-3 rounded-lg border-gray-500 border" onchange="updateArsipDropdown()">
                             <option value="">Pilih NPWP dan Nama Usaha</option>
                             @foreach ($arsipsGrouped as $key => $arsips)
                                 @php
@@ -49,7 +59,7 @@
 
                     <div id="arsip-container">
                         <label for="arsip_id" class="block font-bold text-black mb-1">Pilih Arsip</label>
-                        <select name="arsip_id" id="arsip_id" class="w-full p-3 rounded-lg border-black border" onchange="updateFileInfo()">
+                        <select name="arsip_id" id="arsip_id" class="w-full p-3 rounded-lg border-gray-500 border" onchange="updateFileInfo()">
                             <option value="">Pilih Arsip</option>
                         </select>
                     </div>
@@ -57,28 +67,28 @@
                     <!-- Input Tanggal Pinjam -->
                     <div>
                         <label for="tgl_minjam" class="block font-bold text-black mb-1">Tanggal Pinjam</label>
-                        <input type="date" class="w-full p-3 rounded-lg border-black border" id="tgl_minjam" name="tgl_minjam"
+                        <input type="date" class="w-full p-3 rounded-lg border-gray-500 border" id="tgl_minjam" name="tgl_minjam"
                             placeholder="Pilih Tanggal Pinjam" value="{{ old('tgl_minjam') }}" required>
                     </div>
 
                     <!-- Input Tanggal Kembali -->
                     <div>
                         <label for="tgl_kembali" class="block font-bold text-black mb-1">Tanggal Kembali</label>
-                        <input type="date" class="w-full p-3 rounded-lg border-black border" id="tgl_kembali" name="tgl_kembali"
+                        <input type="date" class="w-full p-3 rounded-lg border-gray-500 border" id="tgl_kembali" name="tgl_kembali"
                             placeholder="Pilih Tanggal Kembali" value="{{ old('tgl_kembali') }}">
                     </div>
 
                     <!--new Input Nama Peminjam -->
                     <div>
                             <label for="nama_peminjam" class="block font-bold text-black mb-1">Nama Peminjam</label>
-                            <input type="text" class="w-full p-3 rounded-lg border-black border" id="nohp_peminjam" name="nama_peminjam"
+                            <input type="text" class="w-full p-3 rounded-lg border-gray-500 border" id="nohp_peminjam" name="nama_peminjam"
                             placeholder="Masukkan Nama Peminjam" value="{{ old('nama_peminjam') }}" required>
                     </div> 
 
                     <!-- Dropdown Status -->
                     <div>
                         <label for="status" class="block font-bold text-black mb-1">Status</label>
-                        <select name="status" id="status" class="w-full p-3 rounded-lg border-black border" required>
+                        <select name="status" id="status" class="w-full p-3 rounded-lg border-gray-500 border" required>
                             <option value="Dipinjam">Dipinjam</option>
                             <option value="Dikembalikan">Dikembalikan</option>
                             <option value="Terlambat">Terlambat</option>
@@ -88,7 +98,7 @@
                     <!-- Textarea Keperluan -->
                     <div class="col-span-2">
                         <label for="keperluan" class="block font-bold text-black mb-1">Keperluan</label>
-                        <textarea class="w-full p-3 rounded-lg border-black border" id="keperluan" name="keperluan" rows="3"
+                        <textarea class="w-full p-3 rounded-lg border-gray-500 border" id="keperluan" name="keperluan" rows="3"
                             placeholder="Jelaskan keperluan Anda" required>{{ old('keperluan') }}</textarea>
                     </div>
                 </div>
@@ -106,13 +116,6 @@
 
                 </div>
             </main>
-
-
-
-
-
-
-
 
 
         </form>
