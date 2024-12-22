@@ -7,17 +7,23 @@
         @include('layouts.sidebar')
         <div class="flex-1  bg-gray-100 ">
 
-
+            <div class="bg-blue-600 py-10">
+                <div class="flex items-center">
+                    <span class="material-icons text-white text-4xl">category</span> 
+                    <h1 class="text-4xl font-bold ml-3 text-white">
+                        Kategori
+                    </h1>
+                    <div class="absolute right-8 flex items-center gap-4">
+                        <h2 class="text-4xl font-bold ml-3 text-white ">Admin |</h2>
+                        <div class="bg-black rounded-full h-14 w-14"></div>
+                    </div>
+                </div>
+            </div>
 
             <main class="flex-grow p-8 bg-gray-100">
-                <div class="max-w-10xl mx-auto bg-white shadow-xl rounded-lg p-8">
+                <div class="max-w-10xl mx-auto  rounded-lg p-8">
                    
-                    <div class="flex items-center mb-16">
-                        <span class="material-icons text-blue-500 text-4xl">category</span> 
-                        <h1 class="text-4xl font-bold ml-3">
-                            Kategori
-                        </h1>
-                    </div>
+                    
 
                     <!-- Pesan Sukses atau Error -->
 
