@@ -1,14 +1,10 @@
+<!-- resources/views/users/edit.blade.php -->
 @extends('layouts.app')
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 @section('content')
-<div class="flex h-screen bg-gray-100"> <!-- Kontainer utama dengan latar belakang abu-abu -->
-
-    {{-- Include sidebar --}}
+<div class="flex h-screen bg-gray-100">
     @include('layouts.sidebar')
 
-    <!-- Konten Utama -->
     <main class="flex-1 p-8">
         <h1 class="text-3xl font-semibold mb-6">Edit User</h1>
         <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -41,7 +37,5 @@
             </form>
         </div>
     </main>
-
-    
 </div>
 @endsection

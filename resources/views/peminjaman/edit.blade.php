@@ -7,9 +7,11 @@
             <div class="flex items-center">
                 <span class="material-icons text-4xl text-white"></span>
                 <div class="absolute right-8 flex items-center gap-4">
-                    <h2 class="text-4xl font-bold ml-3 text-white ">Admin |</h2>
+                    <h2 class="text-4xl font-bold ml-3 text-white ">
+                        {{ Auth::user()->nama_user ?? 'User' }} |
+                    </h2>
                     <div class="bg-black rounded-full h-14 w-14"></div>
-                </div>
+                </div>                
             </div>
         </div>
 
@@ -36,35 +38,37 @@
             <main class="p-10 ">
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    
+                    <!-- Dropdown untuk memilih NPWP dan Nama Usaha -->
                     <div class="mb-3">
-                        <label for="arsip_id" class="form-label">Pilih Arsip</label>
-                        <select name="arsip_id" id="arsip_id"
-                            class="form-select w-full p-3 rounded-lg border-gray-500 border" onchange="updateFileInfo()">
-                            <option value="">Pilih Arsip</option>
-                            @foreach ($arsips as $arsip)
-                                <option value="{{ $arsip->id }}" data-file="{{ $arsip->file }}"
-                                    {{ $peminjaman->arsip_id == $arsip->id ? 'selected' : '' }}>
-                                    {{ $arsip->nama_usaha }} - NPWP: {{ $arsip->npwp }}, Kategori:
-                                    {{ $arsip->kategori->nama_kategori }}, bulan: {{ $arsip->bulan }}, tahun:
-                                    {{ $arsip->tahun }}
+                        <label for="npwp" class="form-label">Pilih NPWP dan Nama Usaha</label>
+                        <select name="npwp" id="npwp" class="form-select w-full p-3 rounded-lg border-gray-500 border">
+                            <option value="">Pilih NPWP dan Nama Usaha</option>
+                            @foreach ($arsipsGrouped as $key => $arsips)
+                                @php
+                                    $firstArsip = $arsips[0];
+                                @endphp
+                                <option value="{{ $firstArsip->npwp }}" {{ $firstArsip->npwp == old('npwp', $peminjaman->arsip->npwp) ? 'selected' : '' }}>
+                                    {{ $firstArsip->npwp }} - {{ $firstArsip->nama_usaha }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
+                    <!-- Dropdown Arsip -->
                     <div class="mb-3">
-                        <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
-                        <input type="text" class="form-control w-full p-3 rounded-lg border-gray-500 border"
-                            id="nama_peminjam" name="nama_peminjam"
-                            value="{{ old('nama_peminjam', $peminjaman->nama_peminjam) }}" required>
+                        <label for="arsip_id" class="form-label">Pilih Arsip</label>
+                        <select name="arsip_id" id="arsip_id" class="form-select w-full p-3 rounded-lg border-gray-500 border">
+                            <option value="">Pilih Arsip</option>
+                            @foreach ($arsips as $arsip)
+                                <option value="{{ $arsip->id }}" {{ $peminjaman->arsip_id == $arsip->id ? 'selected' : '' }}>
+                                    {{ $arsip->nama_usaha }} - NPWP: {{ $arsip->npwp }}, Kategori: {{ $arsip->kategori ? $arsip->kategori->nama_kategori : 'Tidak ada kategori' }}, bulan: {{ $arsip->bulan }}, {{ $arsip->tahun }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="keperluan" class="form-label">Keperluan</label>
-                        <textarea class="form-control w-full px-3 pt-3z rounded-lg border-gray-500 border" id="keperluan" name="keperluan"
-                            rows="3" required>{{ old('keperluan', $peminjaman->keperluan) }}</textarea>
-                    </div>
-
+                    <!-- Tanggal Pinjam -->
                     <div class="mb-3">
                         <label for="tgl_minjam" class="form-label">Tanggal Pinjam</label>
                         <input type="date" class="form-control w-full p-3 rounded-lg border-gray-500 border"
@@ -72,12 +76,22 @@
                             required>
                     </div>
 
+                    <!-- Tanggal Kembali -->
                     <div class="mb-3">
                         <label for="tgl_kembali" class="form-label">Tanggal Kembali</label>
                         <input type="date" class="form-control w-full p-3 rounded-lg border-gray-500 border"
                             id="tgl_kembali" name="tgl_kembali" value="{{ old('tgl_kembali', $peminjaman->tgl_kembali) }}">
                     </div>
 
+                    <!-- Nama Peminjam -->
+                    <div class="mb-3">
+                        <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
+                        <input type="text" class="form-control w-full p-3 rounded-lg border-gray-500 border"
+                            id="nama_peminjam" name="nama_peminjam"
+                            value="{{ old('nama_peminjam', $peminjaman->nama_peminjam) }}" required>
+                    </div>
+
+                    <!-- Status -->
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select name="status" id="status"
@@ -91,9 +105,15 @@
                         </select>
                     </div>
 
-
+                    <!-- Keperluan -->
+                    <div class="mb-3">
+                        <label for="keperluan" class="form-label">Keperluan</label>
+                        <textarea class="form-control w-full px-3 pt-3z rounded-lg border-gray-500 border" id="keperluan" name="keperluan"
+                            rows="3" required>{{ old('keperluan', $peminjaman->keperluan) }}</textarea>
+                    </div>
 
                 </div>
+
                 <div class="mt-12">
                     <button type="submit"
                         class="btn btn-primary bg-green-500 px-8 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110">Simpan</button>
@@ -104,4 +124,5 @@
             </main>
         </form>
     </div>
+
 @endsection

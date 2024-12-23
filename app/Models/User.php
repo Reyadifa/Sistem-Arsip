@@ -14,13 +14,13 @@ class User extends Authenticatable
 
     protected $primaryKey = 'NIP'; 
 
-    public $incrementing = true; 
+    public $incrementing = false; // NIP bukan auto increment
 
-    protected $keyType = 'int'; 
+    protected $keyType = 'string'; // NIP menggunakan string
 
     protected $fillable = [
+        'NIP',
         'nama_user',
-        'email',
         'password',
         'role',
     ];

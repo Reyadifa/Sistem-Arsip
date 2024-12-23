@@ -16,25 +16,25 @@ class UserController extends Controller
 
     // Menyimpan user baru ke database
     public function store(Request $request)
-    {
-        // Validasi input
-        $validatedData = $request->validate([
-            'NIP' => 'required||string|max:255',
-            'nama_user' => 'required|string|max:255',
-            'password' => 'required|string|min:8|confirmed', // Validasi password dan konfirmasi
-            'role' => 'required|in:1,2', // Validasi role
-        ]);
+{
+    // Validasi input
+    $validatedData = $request->validate([
+        'NIP' => 'required|string|max:255|unique:users,NIP',
+        'nama_user' => 'required|string|max:255|unique:users,nama_user',
+        'password' => 'required|string|min:8|confirmed',
+        'role' => 'required|in:1,2',
+    ], [
+        'NIP.unique' => 'NIP telah digunakan, silakan masukkan NIP yang lain.',
+    ]);
 
-        // Menghash password sebelum menyimpannya
-        $validatedData['password'] = Hash::make($validatedData['password']);
+    // Hash password
+    $validatedData['password'] = Hash::make($validatedData['password']);
 
-        // Membuat user baru
-        User::create($validatedData);
+    // Buat user baru
+    User::create($validatedData);
 
-        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan.');
-    }
-
-
+    return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan.');
+}
 
     public function index(Request $request)
     {
@@ -47,44 +47,54 @@ class UserController extends Controller
     }
     
 
-    // Menampilkan form edit untuk pengguna
-    public function edit($id_user) // Ganti parameter ke id_user untuk konsistensi
-    {
-        $user = User::findOrFail($id_user); // Mencari user berdasarkan ID
-        return view('users.edit', compact('user')); // Menampilkan form edit dengan data user
+    // Menampilkan form untuk mengedit user
+public function edit($NIP)
+{
+    // Mencari user berdasarkan NIP
+    $user = User::where('NIP', $NIP)->firstOrFail();
+    
+    // Menampilkan form edit dengan data user
+    return view('users.edit', compact('user'));
+}
+
+// Menyimpan perubahan data user
+public function update(Request $request, $NIP)
+{
+    // Validasi input
+    $validatedData = $request->validate([
+        'nama_user' => 'required|string|max:255|unique:users,nama_user,' . $NIP . ',NIP',
+        'password' => 'nullable|string|min:8|confirmed',
+        'role' => 'required|in:1,2',
+    ], [
+        'nama_user.unique' => 'Nama pengguna sudah ada, silakan pilih nama lain.',
+    ]);
+
+    // Mencari user berdasarkan NIP
+    $user = User::where('NIP', $NIP)->firstOrFail();
+
+    // Jika password diisi, hash password baru
+    if ($request->filled('password')) {
+        $validatedData['password'] = Hash::make($validatedData['password']);
+    } else {
+        // Jika password tidak diubah, tidak perlu mengupdate password
+        unset($validatedData['password']);
     }
 
-    // Memperbarui data pengguna
-    public function update(Request $request, $id_user)
+    // Update data user
+    $user->update($validatedData);
+
+    // Redirect ke halaman index dengan pesan sukses
+    return redirect()->route('users.index')->with('success', 'User berhasil diperbarui.');
+}
+
+
+    // Menghapus pengguna berdasarkan NIP
+    public function destroy($NIP) 
     {
-        // Validasi input
-        $validatedData = $request->validate([
-            'NIP' => 'required||string|max:255',
-            'nama_user' => 'required|string|max:255',
-            'role' => 'required|in:1,2', // Validasi role
-            'password' => 'nullable|string|min:8|confirmed' // Validasi password dan konfirmasi, nullable
-        ]);
-
-        $user = User::findOrFail($id_user); // Mencari user berdasarkan ID
-
-        // Memperbarui data user
-        if ($request->filled('password')) { // Cek jika password diberikan
-            $validatedData['password'] = Hash::make($validatedData['password']);
-        } else {
-            unset($validatedData['password']); // Hapus password dari data yang akan diupdate
-        }
-
-        $user->update($validatedData); // Memperbarui data user
-
-        return redirect()->route('users.index')->with('success', 'User berhasil diperbarui.');
-    }
-
-    // Menghapus pengguna
-    public function destroy($NIP) // Ganti parameter ke id_user untuk konsistensi
-    {
-        $user = User::findOrFail($NIP); // Mencari user berdasarkan ID
+        $user = User::where('NIP', $NIP)->firstOrFail(); // Mencari user berdasarkan NIP
         $user->delete(); // Menghapus user
 
         return redirect()->route('users.index')->with('success', 'User berhasil dihapus.');
     }
+
 }

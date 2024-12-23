@@ -14,9 +14,11 @@
                         Kategori
                     </h1>
                     <div class="absolute right-8 flex items-center gap-4">
-                        <h2 class="text-4xl font-bold ml-3 text-white ">Admin |</h2>
+                        <h2 class="text-4xl font-bold ml-3 text-white ">
+                            {{ Auth::user()->nama_user ?? 'User' }} |
+                        </h2>
                         <div class="bg-black rounded-full h-14 w-14"></div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
 

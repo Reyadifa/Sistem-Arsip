@@ -15,9 +15,11 @@
                         Arsip
                     </h1>
                     <div class="absolute right-8 flex items-center gap-4">
-                        <h2 class="text-4xl font-bold ml-3 text-white ">Admin |</h2>
+                        <h2 class="text-4xl font-bold ml-3 text-white ">
+                            {{ Auth::user()->nama_user ?? 'User' }} |
+                        </h2>
                         <div class="bg-black rounded-full h-14 w-14"></div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
 
@@ -33,8 +35,8 @@
                     <div class="flex flex-col relative mr-10 w-full">
                         <label for="npwp" class="pl-1">Cari NPWP/Nama Usaha</label>
                         <input id="npwp" type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Masukkan NPWP/Nama Usaha"
-                            class=" border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-full ">
+                        placeholder="Masukkan NPWP/Nama Usaha/Alamat/Nama Pemilik"
+                        class="border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-full">
                         <i class="fa-solid fa-magnifying-glass absolute top-9 right-3"></i>
                     </div>
 

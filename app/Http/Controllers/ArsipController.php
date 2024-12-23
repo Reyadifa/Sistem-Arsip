@@ -23,25 +23,23 @@ public function index(Request $request)
 
     // Mengambil arsip dengan kategori
     $arsips = Arsip::with('kategori')
-        ->when($search, function ($query) use ($search) {
-            return $query->where(function ($query) use ($search) {
-                $query->where('npwp', 'like', '%' . $search . '%')
-                      ->orWhere('nama_usaha', 'like', '%' . $search . '%');
-            });
-        })
-        ->when($bulan, function ($query) use ($bulan) {
-            return $query->where('bulan', $bulan);
-        })
-        ->when($tahun, function ($query) use ($tahun) {
-            return $query->where('tahun', $tahun);
-        })
-        ->when($kategoriId, function ($query) use ($kategoriId) {
-            return $query->where('id_kategori', $kategoriId);
-        })
-        ->orderBy('tahun', 'desc')
-        ->orderByRaw("FIELD(bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari') ASC") // Urutkan bulan dari Desember ke Januari
-        ->paginate(12)
-        ->appends(request()->query());
+    ->when($search, function ($query) use ($search) {
+        return $query->where(function ($query) use ($search) {
+            $query->where('npwp', 'like', '%' . $search . '%')
+                  ->orWhere('nama_usaha', 'like', '%' . $search . '%')
+                  ->orWhere('alamat_usaha', 'like', '%' . $search . '%')
+                  ->orWhere('nama_pemilik', 'like', '%' . $search . '%')
+                  ->orWhere('tahun', 'like', '%' . $search . '%')
+                  ->orWhere('bulan', 'like', '%' . $search . '%');
+                })->orWhereHas('kategori', function ($query) use ($search) {
+                    $query->where('nama_kategori', 'like', '%' . $search . '%');
+        });
+    })
+    ->orderBy('tahun', 'desc')
+    ->orderByRaw("FIELD(bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari') ASC")
+    ->paginate(12)
+    ->appends(request()->query());
+
 
     return view('arsip.index', compact('arsips', 'search', 'bulan', 'tahun', 'kategoriId', 'kategoris'));
     }

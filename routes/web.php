@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('users', UserController::class)->parameters([
                 'users' => 'NIP',
             ]);
+            Route::put('/users/{NIP}', [UserController::class, 'update'])->name('users.update');
             Route::resource('peminjaman', PeminjamanController::class);
         });
         

@@ -78,12 +78,17 @@ class PeminjamanController extends Controller{
     }
 
     public function edit($id)
-    {
-        $peminjaman = Peminjaman::findOrFail($id);
-        $arsips = Arsip::all(); // Mengambil semua arsip
+{
+    $peminjaman = Peminjaman::findOrFail($id);
+    
+    // Ambil semua arsip dan kelompokkan berdasarkan NPWP
+    $arsips = Arsip::all();
+    $arsipsGrouped = $arsips->groupBy('npwp'); // Mengelompokkan arsip berdasarkan NPWP
 
-        return view('peminjaman.edit', compact('peminjaman', 'arsips'));
-    }
+    // Kirimkan ke view
+    return view('peminjaman.edit', compact('peminjaman', 'arsipsGrouped', 'arsips'));
+}
+
 
     public function update(Request $request, $id)
     {
