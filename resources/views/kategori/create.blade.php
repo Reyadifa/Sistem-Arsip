@@ -18,15 +18,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="max-w-10xl mx-50 bg-white shadow-xl rounded-lg p-20">
-                    <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Tambah Kategori</h1>
+                <div class="max-w-10xl mx-50 bg-white rounded-lg p-32">
+                    <div
+                    class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
+                    <span class="material-icons text-blue-500 text-4xl">category</span>
+                    <h1>Tambah Ktegori</h1>
+                </div>
+                <hr class="border-2 border-gray-500 mb-10 w-[600px] mx-auto">
 
                     <form action="{{ route('kategori.store') }}" method="POST">
                         @csrf
                         <div class="mb-4">
                             <label for="nama_kategori" class="block text-sm font-medium text-gray-700">Nama Kategori</label>
                             <input type="text" name="nama_kategori" id="nama_kategori"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                class="mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-3 focus:border-blue-500 focus:ring focus:ring-blue-200"
                                 required>
                         </div>
                         <div class="grid grid-cols-2 gap-8 w-96 mt-16">
