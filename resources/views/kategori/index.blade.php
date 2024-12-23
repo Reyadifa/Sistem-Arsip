@@ -17,7 +17,7 @@
                         <h2 class="text-4xl font-bold ml-3 text-white ">
                             {{ Auth::user()->nama_user ?? 'User' }} |
                         </h2>
-                        <div class="bg-black rounded-full h-14 w-14"></div>
+                        <div class="bg-gray-500 rounded-full h-14 w-14 overflow-hidden flex justify-center items-center"><i class="fas fa-user text-4xl text-white "></i></div>
                     </div>                    
                 </div>
             </div>
