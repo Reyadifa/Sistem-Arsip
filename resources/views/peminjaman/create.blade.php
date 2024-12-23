@@ -10,15 +10,15 @@
 
         </div>
         {{-- Navbar konten --}}
-        <div class="bg-blue-600 py-10">
+        <div class="bg-blue-600 py-14">
             <div class="flex items-center">
-                <span class="material-icons text-4xl text-white">archive</span>
+                <span class="material-icons text-4xl text-white"></span>
                 <div class="absolute right-8 flex items-center gap-4">
                     <h2 class="text-4xl font-bold ml-3 text-white ">
                         {{ Auth::user()->nama_user ?? 'User' }} |
                     </h2>
                     <div class="bg-black rounded-full h-14 w-14"></div>
-                </div>                
+                </div>
             </div>
         </div>
         @if ($errors->any())
@@ -99,7 +99,7 @@
                     <!-- Textarea Keperluan -->
                     <div class="col-span-2">
                         <label for="keperluan" class="block font-bold text-black mb-1">Keperluan</label>
-                        <textarea class="w-full p-3 rounded-lg border-gray-500 border" id="keperluan" name="keperluan" rows="3"
+                        <textarea class="w-full px-3 pt-3 rounded-lg border-gray-500 border" id="keperluan" name="keperluan" rows="3"
                             placeholder="Jelaskan keperluan Anda" required>{{ old('keperluan') }}</textarea>
                     </div>
                 </div>
@@ -110,11 +110,8 @@
                         class="  bg-green-500 px-8 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110">
                         Simpan
                     </button>
-
                     <a href="/peminjaman"
                     class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">Kembali</a>
-
-
                 </div>
             </main>
 

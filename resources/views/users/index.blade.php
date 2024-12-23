@@ -5,13 +5,30 @@
 
         {{-- Include sidebar --}}
         @include('layouts.sidebar')
-        <div class="flex-1 p-10 bg-gray-100 ">
+
+        {{-- Konten navbar --}}
+        <div class="flex-1  bg-gray-100 ">
+            <div class="bg-blue-600 py-10">
+                <div class="flex items-center">
+                    <i class="fas fa-user text-4xl text-white "></i>  
+                    <h1 class="text-4xl font-bold ml-3 text-white">
+                        Daftar User
+                    </h1>
+                    </h1>
+                    <div class="absolute right-8 flex items-center gap-4">
+                        <h2 class="text-4xl font-bold ml-3 text-white ">
+                            {{ Auth::user()->nama_user ?? 'User' }} |
+                        </h2>
+                        <div class="bg-black rounded-full h-14 w-14"></div>
+                    </div>                    
+                </div>
+            </div> 
 
             <section class="py-4 flex-grow"> <!-- Penambahan padding untuk section -->
-                <div class="max-w-10xl rounded-lg p-8">
-                    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="max-w-10xl rounded-lg p-10">
+                    <div class="bg-white  rounded-lg overflow-hidden">
                         <div class="p-6">
-                            <h2 class="text-2xl font-semibold mb-6">Daftar User</h2>
+                            
                             {{-- Tambah User --}}
                             <div class="flex justify-between items-center mb-4">
                                 <a href="{{ route('users.create') }}"
