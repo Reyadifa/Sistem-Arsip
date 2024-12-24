@@ -76,7 +76,7 @@
                     <div>
                         <label for="tgl_kembali" class="block font-bold text-black mb-1">Tanggal Kembali</label>
                         <input type="date" class="w-full p-3 rounded-lg border-gray-500 border" id="tgl_kembali" name="tgl_kembali"
-                            placeholder="Pilih Tanggal Kembali" value="{{ old('tgl_kembali') }}">
+                            placeholder="Pilih Tanggal Kembali" value="{{ old('tgl_kembali') }}" required>
                     </div>
 
                     <!--new Input Nama Peminjam -->
