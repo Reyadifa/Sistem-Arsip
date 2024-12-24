@@ -74,7 +74,7 @@
                         <div class="flex gap-6 items-center">
                             @if ($arsip->file_path)
                                 <div class="flex items-center space-x-4">
-                                    <button class="bg-gray-500 px-6 py-3 rounded-lg text-white font-semibold">
+                                    <button class="bg-gray-500 px-6 py-3 rounded-lg text-white font-semibold transform transition-transform duration-200 hover:scale-110">
                                         <a href="{{ asset('storage/' . $arsip->file_path) }}" class=" hover:underline"
                                             target="_blank">Lihat File</a> </button>
 
@@ -85,7 +85,7 @@
                             {{-- edit --}}
                             <a href="{{ route('arsip.edit', $arsip->id) }}" class=" ">
                                 <button
-                                    class="bg-green-600 text-white py-3 px-6 font-semibold rounded-md hover:bg-green-700 transition duration-150 justify-center items-center flex">
+                                    class="bg-green-600 text-white py-3 px-6 font-semibold rounded-md hover:bg-green-700 transform transition-transform duration-200 hover:scale-110 justify-center items-center flex">
                                     Edit</button>
                             </a>
                         </div>
@@ -97,10 +97,10 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                    class="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 transition duration-150 font-semibold">Hapus</button>
+                                    class="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700  font-semibold transform transition-transform duration-200 hover:scale-110">Hapus</button>
 
                                     <button type="submit"
-                                    class="px-6 py-3 text-white font-bold bg-blue-500 rounded-lg hover:bg-blue-600 mt-12 transform transition-transform duration-300 hover:scale-110 mb-12">
+                                    class="px-6 py-3 text-white font-bold bg-blue-500 rounded-lg hover:bg-blue-600 mt-12 transform transition-transform duration-200 hover:scale-110 mb-12">
                                     <a href="/arsip" class=" flex items-center">
                                         Kembali
                                     </a>
