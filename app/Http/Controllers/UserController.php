@@ -94,7 +94,7 @@ public function update(Request $request, $NIP)
         $user = User::where('NIP', $NIP)->firstOrFail(); // Mencari user berdasarkan NIP
         $user->delete(); // Menghapus user
 
-        return redirect()->route('users.index')->with('success', 'User berhasil dihapus.');
+        return redirect()->route('users.index')->with('success_delete', 'User berhasil dihapus.');
     }
 
 }

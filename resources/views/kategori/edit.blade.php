@@ -23,6 +23,17 @@
 
             {{-- Form edit --}}
             <div class="max-w-10xl mx-50 rounded-lg p-32">
+                <!-- Notifikasi Error atau Sukses -->
+            @if($errors->any())
+                <div class="bg-red-500 text-white p-4 rounded-md mb-4 relative">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button class="absolute top-2 right-2 text-white" onclick="this.parentElement.style.display='none'">&times;</button>
+                </div>
+            @endif
                 <div
                     class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
                     <span class="material-icons text-blue-500 text-4xl">category</span>

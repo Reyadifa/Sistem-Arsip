@@ -49,10 +49,11 @@ public function index(Request $request)
     {
         $kategoris = Kategori::all();
         return view('arsip.create', compact('kategoris'));
+
     }
 
     public function store(Request $request)
-    {   
+{   
     // Validasi input
     $request->validate([
         'id_kategori' => 'required|exists:kategoris,id_kategori',
@@ -64,7 +65,7 @@ public function index(Request $request)
         'bulan' => 'required',
         'tahun' => 'required|integer',
         'file' => 'file|mimes:pdf|max:2048',
-         ]);
+    ]);
 
     $arsip = new Arsip();
     $arsip->fill($request->only(['id_kategori', 'nama_usaha', 'alamat_usaha', 'nama_pemilik', 'alamat_pemilik', 'npwp', 'bulan', 'tahun']));
@@ -74,8 +75,10 @@ public function index(Request $request)
     }
 
     $arsip->save();
+
+    // Tambahkan notifikasi untuk create
     return redirect()->route('arsip.index')->with('success', 'Arsip berhasil ditambahkan.');
-    }
+}
 
     public function edit(Arsip $arsip)
     {
@@ -120,7 +123,7 @@ public function index(Request $request)
     $arsip->delete();
     
     // Tambahkan notifikasi untuk penghapusan arsip
-    return redirect()->route('arsip.index')->with('success', 'Arsip berhasil dihapus.');
+    return redirect()->route('arsip.index')->with('success_delete', 'Arsip berhasil dihapus.');
     }
 
 

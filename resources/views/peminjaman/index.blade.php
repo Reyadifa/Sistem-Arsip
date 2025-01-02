@@ -25,6 +25,29 @@
             </div> 
             <main class="p-14">        
             
+            <!-- Pesan Sukses atau Error -->
+            @if (session('success'))
+            <div class="bg-green-500 text-white p-4 rounded-lg mb-4 relative">
+                {{ session('success') }}
+                <!-- Icon X untuk menutup notifikasi -->
+                <button onclick="this.parentElement.style.display='none'" 
+                        class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
+                    &times;
+                </button>
+            </div>
+            @endif
+
+            <!-- Pesan Sukses atau Error -->
+            @if (session('success_delete'))
+            <div class="bg-red-500 text-white p-4 rounded-lg mb-4 relative">
+                {{ session('success_delete') }}
+                <!-- Icon X untuk menutup notifikasi -->
+                <button onclick="this.parentElement.style.display='none'" 
+                        class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
+                    &times;
+                </button>
+            </div>
+            @endif
 
             <!-- Tombol Tambah Peminjaman -->
             <div class="mt-20">

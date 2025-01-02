@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
             ]);
             Route::put('/users/{NIP}', [UserController::class, 'update'])->name('users.update');
             Route::resource('peminjaman', PeminjamanController::class);
+            Route::get('/history', [PeminjamanController::class, 'history'])->name('history.index');
         });
         
         // Rute untuk user biasa

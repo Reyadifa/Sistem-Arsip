@@ -33,6 +33,13 @@
             </li>
 
             <li>
+                <a href="/history" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
+                    <span class="material-icons">history</span>
+                    <span class="ml-2">History Peminjaman</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="/kategori" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
                     <span class="material-icons">category</span>
                     <span class="ml-2">Kategori</span>
@@ -59,7 +66,7 @@
                 </a>
             </li>
             @endif
-            <li class="absolute bottom-12">
+            <li class="mt-auto flex-grow">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150 w-full">
@@ -67,7 +74,7 @@
                         <span class="ml-2">Logout</span>
                     </button>
                 </form>
-            </li>            
+            </li>                        
         </ul>
     </nav>
 </aside>

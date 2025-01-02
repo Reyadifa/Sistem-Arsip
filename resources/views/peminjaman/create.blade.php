@@ -46,7 +46,7 @@
                     <!-- Dropdown untuk memilih NPWP dan Nama Usaha -->
                     <div>
                         <label for="npwp" class="block font-bold text-black mb-1">Pilih NPWP dan Nama Usaha</label>
-                        <select name="npwp" id="npwp" class="w-full p-3 rounded-lg border-gray-500 border" onchange="updateArsipDropdown()">
+                        <select name="npwp" id="npwp" class="w-full p-3 rounded-lg border-gray-500 border" onchange="updateArsipDropdown()" required>
                             <option value="">Pilih NPWP dan Nama Usaha</option>
                             @foreach ($arsipsGrouped as $key => $arsips)
                                 @php
@@ -60,7 +60,7 @@
 
                     <div id="arsip-container">
                         <label for="arsip_id" class="block font-bold text-black mb-1">Pilih Arsip</label>
-                        <select name="arsip_id" id="arsip_id" class="w-full p-3 rounded-lg border-gray-500 border" onchange="updateFileInfo()">
+                        <select name="arsip_id" id="arsip_id" class="w-full p-3 rounded-lg border-gray-500 border" onchange="updateFileInfo()" required>
                             <option value="">Pilih Arsip</option>
                         </select>
                     </div>

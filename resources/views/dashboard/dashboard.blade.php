@@ -122,17 +122,17 @@
                         pointBorderColor: 'rgba(0, 123, 255, 1)', // Warna border titik biru muda
                         pointRadius: 3,
                         pointHoverRadius: 5,
-                        fill: true // Menonaktifkan area berwarna di bawah garis
+                        fill: true // Mengaktifkan area berwarna di bawah garis
                     }]
                 },
                 options: {
                     scales: {
                         y: {
                             min: 0, // Set minimal value of y-axis to 0
-                            max: 2000, // Set maximum value of y-axis to 100
+                            max: 500, // Set maximum value of y-axis to 100
                             beginAtZero: true, // Start the scale from zero
                             ticks: {
-                                stepSize: 200, // Ubah step size menjadi 200
+                                stepSize: 50, // Ubah step size menjadi 200
                                 callback: function(value) {
                                     return value; // Tampilkan nilai kelipatan 200
                                 }

@@ -39,18 +39,6 @@
                         <h1>Edit Arsip</h1>
                     </div>
                     <hr class="border-2 border-gray-500 mb-10 w-[600px] mx-auto">
-                    {{-- Pesan Kesalahan --}}
-                    @if ($errors->any())
-                        <div class="mb-4">
-                            <div class="bg-red-200 border border-red-600 text-red-600 p-3 rounded-lg">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
                     <main class=" grid grid-cols-2 gap-6 ">
 
 
@@ -67,6 +55,13 @@
                                     </option>
                                 @endforeach
                             </select>
+                        </div>
+                        {{-- Npwp --}}
+                        <div>
+                            <label for="npwp" class="block text-sm  font-semibold">NPWP</label>
+                            <input type="text" name="npwp" id="npwp" value="{{ $arsip->npwp }}"
+                                class="w-full rounded-lg border-gray-500 border p-4 text-sm shadow-sm"
+                                required>
                         </div>
                         {{-- Nama Usaha --}}
                         <div>
@@ -95,13 +90,6 @@
                                 Pemilik</label>
                             <input type="text" name="alamat_pemilik" id="alamat_pemilik"
                                 value="{{ $arsip->alamat_pemilik }}"
-                                class="w-full rounded-lg border-gray-500 border p-4 text-sm shadow-sm"
-                                required>
-                        </div>
-                        {{-- Npwp --}}
-                        <div>
-                            <label for="npwp" class="block text-sm  font-semibold">NPWP</label>
-                            <input type="text" name="npwp" id="npwp" value="{{ $arsip->npwp }}"
                                 class="w-full rounded-lg border-gray-500 border p-4 text-sm shadow-sm"
                                 required>
                         </div>
