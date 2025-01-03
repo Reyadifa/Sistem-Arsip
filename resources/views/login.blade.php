@@ -5,18 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-     {{-- tailwind config --}}
-     @vite('resources/css/app.css')
+    {{-- tailwind config --}}
+    @vite('resources/css/app.css')
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-screen px-4 sm:px-0" style="background-image: url('img/bg.jpg');">
+<body class="bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-screen px-4 sm:px-0"
+    style="background-image: url('img/bg.jpg');">
     <!-- Form Isi -->
     <div class="bg-blue-600 bg-opacity-80 rounded-3xl py-8 w-full max-w-md text-center relative shadow-xl sm:w-[460px]">
         <!-- Gambar -->
         <div class="bg-white rounded-full w-40 h-40 sm:w-56 sm:h-56 flex mx-auto absolute inset-x-0 -top-20 sm:-top-28">
-            <img alt="BPKAD" class="mx-auto mb-4 h-24 sm:h-32 flex justify-center my-8 sm:my-12" src="{{ asset('img/bpkad.png') }}" />
+            <img alt="BPKAD" class="mx-auto mb-4 h-24 sm:h-32 flex justify-center my-8 sm:my-12"
+                src="{{ asset('img/bpkad.png') }}" />
         </div>
         <div class="p-0 mt-20 sm:mt-32">
             <h1 class="text-white text-3xl sm:text-4xl font-bold mb-4">
@@ -37,8 +39,10 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                         <i class="fa-solid fa-user"></i>
                     </span>
-                    <input class="text-lg sm:text-xl pl-10 pr-4 py-2 rounded-full w-full @error('nama_user') border-red-500 @enderror"
-                        id="nama_user" name="nama_user" placeholder="Nama User" type="text" value="{{ old('nama_user') }}" required />
+                    <input
+                        class="text-lg sm:text-xl pl-10 pr-4 py-2 rounded-full w-full @error('nama_user') border-red-500 @enderror"
+                        id="nama_user" name="nama_user" placeholder="Nama User" type="text"
+                        value="{{ old('nama_user') }}" required />
 
                     @error('nama_user')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -56,10 +60,12 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                         <i class="fas fa-lock text-black"></i>
                     </span>
-                    <input class="text-lg sm:text-xl pl-10 pr-10 py-2 rounded-full w-full @error('password') border-red-500 @enderror"
+                    <input
+                        class="text-lg sm:text-xl pl-10 pr-10 py-2 rounded-full w-full @error('password') border-red-500 @enderror"
                         id="password" name="password" placeholder="Password" type="password" required />
                     <!-- Icon Mata -->
-                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" onclick="togglePasswordVisibility()">
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                        onclick="togglePasswordVisibility()">
                         <i id="eye-icon" class="fa-solid fa-eye text-gray-600"></i>
                     </span>
 
@@ -81,7 +87,8 @@
             @endif
 
             <!-- Login Button -->
-            <button class="bg-yellow-400 text-lg sm:text-xl text-black font-bold py-2 px-4 rounded-full w-full mt-3 transform transition-transform duration-300 hover:scale-110 hover:bg-yellow-500">
+            <button
+                class="bg-yellow-400 text-lg sm:text-xl text-black font-bold py-2 px-4 rounded-full w-full mt-3 transform transition-transform duration-300 hover:scale-110 hover:bg-yellow-500">
                 Log In
             </button>
         </form>
