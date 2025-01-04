@@ -35,6 +35,18 @@
             </div>
 
             <main class=" p-10 mx-32 mt-6">
+                {{-- Pesan Kesalahan --}}
+                @if ($errors->any())
+                <div class="mb-4">
+                    <div class="bg-red-200 border border-red-600 text-red-600 p-3 rounded-lg">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
 
                 <div
                     class="text-center text-2xl font-bold  sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
@@ -45,21 +57,6 @@
                 <hr class="border-2 border-gray-500 w-[600px] mx-auto">
                 <form action="{{ route('arsip.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-
-                    {{-- Pesan Kesalahan --}}
-                    @if ($errors->any())
-                        <div class="mb-4">
-                            <div class="bg-red-200 border border-red-600 text-red-600 p-3 rounded-lg">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
-
-
 
                     {{-- Kotak --}}
                     <main class="grid grid-cols-2 gap-x-6 mt-1 ">

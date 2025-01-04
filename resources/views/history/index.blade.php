@@ -25,10 +25,11 @@
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">Tanggal Minjam</th>
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">Tanggal Kembali</th>
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">Status</th>
+                                <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($peminjamans as $peminjaman)
+                            @forelse ($peminjamans as $peminjaman)
                                 @if ($peminjaman->status == 'Dikembalikan') 
                                     <tr class="hover:bg-gray-100">
                                         <td class="px-4 py-3 text-left text-xs text-black-500 border-r border-black border-b">{{ $peminjaman->nama_peminjam }}</td>
@@ -39,10 +40,27 @@
                                         <td class="px-4 py-3 text-center text-xs text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_minjam }}</td>
                                         <td class="px-4 py-3 text-center text-xs text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_kembali }}</td>
                                         <td class="px-4 py-3 text-left text-xs text-black-500 border-r border-black border-b">{{ $peminjaman->status }}</td>
+                                        <td class="border-black border-b">
+                                            <div class="flex items-center px-2 py-3 justify-center space-x-2">
+                                                <!-- Tombol Hapus -->
+                                                <form action="{{ route('peminjaman.destroy', $peminjaman->id) }}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>                                        
                                     </tr>
                                 @endif
-                            @endforeach
-                        </tbody>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="px-4 py-72 text-center text-xs text-gray-500 font-bold">Tidak ada history untuk saat ini</td>
+                                </tr>
+                            @endforelse
+                        </tbody>                        
                     </table>
                 </div>
 

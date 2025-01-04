@@ -133,12 +133,23 @@
 
 
                     </main>
-                    {{-- File --}}
                     <div class="grid mt-5">
-                        <label for="file" class="block text-sm  font-semibold">File</label>
-                        <input type="file" name="file" id="file"
-                            class="w-full rounded-lg border-gray-500 border p-4 text-sm shadow-sm">
+                        <label for="file" class="block text-sm font-semibold">File</label>
+                        <input type="file" name="file" id="file" class="w-full rounded-lg border-gray-500 border p-4 text-sm shadow-sm">
+                    
+                        <!-- Menampilkan file yang sudah ada -->
+                        @if($arsip->file_path) 
+                            <p class="text-sm text-gray-500 mt-2">
+                                File yang sudah ada: 
+                                <a href="{{ Storage::url($arsip->file_path) }}" target="_blank" class="text-blue-600">
+                                    {{ basename($arsip->file_path) }}
+                                </a>
+                            </p>
+                        @else
+                            <p class="text-sm text-red-500 mt-2">Tidak ada file yang terpasang.</p>
+                        @endif
                     </div>
+                    
                     {{-- Simpan --}}
                     <div class="flex gap-4 ">
                         <button type="submit"

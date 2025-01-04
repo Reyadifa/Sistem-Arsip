@@ -76,7 +76,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($peminjamans as $index => $peminjaman)
+                        @forelse ($peminjamans as $index => $peminjaman)
                             <tr class="hover:bg-gray-100">
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->nama_peminjam }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->nama_usaha }}</td>
@@ -119,7 +119,11 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="px-4 py-60 text-center text-xl text-gray-500 font-bold">Tidak ada peminjaman untuk saat ini</td>
+                                </tr>
+                            @endforelse
                     </tbody>
                 </table>
             </div>

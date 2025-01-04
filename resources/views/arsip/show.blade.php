@@ -82,17 +82,18 @@
                             @else
                                 <p>Tidak ada file yang diunggah.</p>
                             @endif
-                            {{-- edit --}}
-                            <a href="{{ route('arsip.edit', $arsip->id) }}" class=" ">
-                                <button
-                                    class="bg-green-600 text-white py-3 px-6 font-semibold rounded-md hover:bg-green-700 transform transition-transform duration-200 hover:scale-110 justify-center items-center flex">
-                                    Edit</button>
-                            </a>
                         </div>
 
                         {{-- flex 2 --}}
 
                         <div class=" flex items-center">
+                            {{-- edit --}}
+                            <a href="{{ route('arsip.edit', $arsip->id) }}" class=" ">
+                                <button
+                                    class="mr-6 bg-green-600 text-white py-3 px-6 font-semibold rounded-md hover:bg-green-700 transform transition-transform duration-200 hover:scale-110">
+                                    Edit</button>
+                            </a>
+
                             <form action="{{ route('arsip.destroy', $arsip->id) }}" method="POST" class="gap-6 flex items-center">
                                 @csrf
                                 @method('DELETE')

@@ -95,7 +95,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($kategoris as $index => $kategori)
+                                @forelse ($kategoris as $index => $kategori)
                                     <tr>
                                         <td class="px-2 py-2 border border-black text-center text-xs font text-black-500">
                                             {{ $kategoris->firstItem() + $index }} <!-- Perbaikan penggunaan $index -->
@@ -126,7 +126,11 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                    @empty
+                                <tr>
+                                    <td colspan="9" class="px-4 py-60 text-center text-xl text-gray-500 font-bold">Tidak ada kategori untuk saat ini</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>

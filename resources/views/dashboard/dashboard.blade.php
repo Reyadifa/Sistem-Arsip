@@ -18,14 +18,15 @@
                         <h2 class="text-4xl font-bold ml-3 text-white ">
                             {{ Auth::user()->nama_user ?? 'User' }} |
                         </h2>
-                        <div class="bg-gray-500 rounded-full h-14 w-14 overflow-hidden flex justify-center items-center"><i class="fas fa-user text-4xl text-white "></i></div>
+                        <div class="bg-gray-500 rounded-full h-14 w-14 overflow-hidden flex justify-center items-center">
+                            <i class="fas fa-user text-4xl text-white"></i>
+                        </div>
                     </div>                    
                 </div>
             </div>
             {{-- konten --}}
 
             <div class="p-14">
-
 
                 <div class="flex gap-32 mb-8 ">
                     {{-- User --}}
@@ -105,15 +106,14 @@
             ];
 
             // Data yang dikirim dari controller
-            const data =
-            @json($data); // Mengambil data arsip per bulan yang sudah diproses dari controller
+            const data = @json($data); // Mengambil data arsip per bulan yang sudah diproses dari controller
 
             const myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: labels, // Label bulan
                     datasets: [{
-                        label: 'Arsip Masuk Bulanan',
+                        label: '', // Kosongkan label
                         data: Object.values(data), // Data arsip per bulan
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: gradient, // Menggunakan gradasi untuk garis
@@ -126,18 +126,22 @@
                     }]
                 },
                 options: {
+                    plugins: {
+                        legend: {
+                            display: false // Menonaktifkan legend sepenuhnya
+                        }
+                    },
                     scales: {
                         y: {
                             min: 0, // Set minimal value of y-axis to 0
-                            max: 500, // Set maximum value of y-axis to 100
+                            max: 500, // Set maximum value of y-axis to 500
                             beginAtZero: true, // Start the scale from zero
                             ticks: {
-                                stepSize: 50, // Ubah step size menjadi 200
+                                stepSize: 50, // Ubah step size menjadi 50
                                 callback: function(value) {
-                                    return value; // Tampilkan nilai kelipatan 200
+                                    return value; // Tampilkan nilai kelipatan 50
                                 }
                             }
-
                         }
                     }
                 }

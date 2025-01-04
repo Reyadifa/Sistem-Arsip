@@ -7,7 +7,7 @@
         @include('layouts.sidebar')
 
         {{-- Konten navbar --}}
-        <div class="flex-1  bg-gray-100 ">
+        <div class="flex-1">
             <div class="bg-blue-600 py-10">
                 <div class="flex items-center">
                     <i class="fas fa-user text-4xl text-white "></i>  
@@ -26,7 +26,7 @@
 
             <section class="py-4 flex-grow"> <!-- Penambahan padding untuk section -->
                 <div class="max-w-10xl rounded-lg p-10">
-                    <div class="bg-white  rounded-lg overflow-hidden">
+                    <div class="rounded-lg overflow-hidden">
                         <div class="p-6">
                             <!-- Pesan Sukses atau Error -->
                 @if (session('success'))
