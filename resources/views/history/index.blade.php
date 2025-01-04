@@ -13,7 +13,7 @@
             </div>
 
             <main class="p-14">
-                <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t border-black">
+                <div class="overflow-x-auto bg-white shadow-md rounded-xl border border-l  border-black">
                     <table class="min-w-full table-auto divide-y divide-gray-300">
                         <thead class="bg-blue-500">
                             <tr>

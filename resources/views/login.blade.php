@@ -35,7 +35,7 @@
                 <label class="block text-lg sm:text-xl text-white font-bold text-left mb-2" for="nama_user">
                     Nama User
                 </label>
-                <div class="relative">
+                <div class="relative ">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                         <i class="fa-solid fa-user"></i>
                     </span>
@@ -44,10 +44,11 @@
                         id="nama_user" name="nama_user" placeholder="Nama User" type="text"
                         value="{{ old('nama_user') }}" required />
 
-                    @error('nama_user')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+
                 </div>
+                @error('nama_user')
+                    <p class="text-red-500  mt-4">{{ $message }}</p>
+                @enderror
             </div>
 
 
@@ -56,7 +57,7 @@
                 <label class="block text-lg sm:text-xl text-white font-bold text-left mb-2" for="password">
                     Password
                 </label>
-                <div class="relative">
+                <div class="relative ">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                         <i class="fas fa-lock text-black"></i>
                     </span>
