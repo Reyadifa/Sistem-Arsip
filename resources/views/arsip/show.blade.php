@@ -88,6 +88,7 @@
 
                         <div class=" flex items-center">
                             {{-- edit --}}
+                            @if (auth()->user() && auth()->user()->role == '1')
                             <a href="{{ route('arsip.edit', $arsip->id) }}" class=" ">
                                 <button
                                     class="mr-6 bg-green-600 text-white py-3 px-6 font-semibold rounded-md hover:bg-green-700 transform transition-transform duration-200 hover:scale-110">
@@ -99,7 +100,7 @@
                                 @method('DELETE')
                                 <button type="submit"
                                     class="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700  font-semibold transform transition-transform duration-200 hover:scale-110">Hapus</button>
-
+                                    @endif
                                     <button type="submit"
                                     class="px-6 py-3 text-white font-bold bg-blue-500 rounded-lg hover:bg-blue-600 mt-12 transform transition-transform duration-200 hover:scale-110 mb-12">
                                     <a href="/arsip" class=" flex items-center">

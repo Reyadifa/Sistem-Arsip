@@ -154,10 +154,9 @@
                     <div class="flex gap-4 ">
                         <button type="submit"
                             class=" px-6 py-3 text-white font-bold bg-green-500 rounded-lg hover:bg-green-600 mt-12 transform transition-transform duration-300 hover:scale-110">Simpan</button>
-                        <a href="/arsip">
-                            <button type="submit"
+                        <a href="/arsip"
                                 class=" px-6 py-3 text-white font-bold bg-blue-500 rounded-lg hover:bg-blue-600 mt-12 transform transition-transform duration-300 hover:scale-110">
-                                Kembali</button>
+                                Kembali
                         </a>
 
                     </div>

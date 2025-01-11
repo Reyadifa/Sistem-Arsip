@@ -35,8 +35,9 @@ Route::middleware(['auth'])->group(function () {
         
         // Rute untuk user biasa
         Route::middleware(CheckRole::class . ':user')->group(function () {
-            Route::resource('arsip', ArsipController::class);
-            Route::resource('peminjaman', PeminjamanController::class);
+            Route::resource('arsip', ArsipController::class)->only(['index', 'show']);
+            Route::resource('peminjaman', PeminjamanController::class)->only(['index', 'show']);
+            Route::get('/history', [PeminjamanController::class, 'history'])->name('history.index');
         });
     });
     

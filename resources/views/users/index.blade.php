@@ -88,7 +88,7 @@
 
                         <main class="px-6 ">
 
-                            <div class="overflow-hidden rounded-xl border border-black mb-10">
+                            <div class="overflow-hidden border mb-10">
                                 <table class="min-w-full">
                                     <thead class="bg-blue-500 text-white font-bold">
                                         <tr>

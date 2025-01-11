@@ -58,22 +58,48 @@ class PeminjamanController extends Controller
     }
 
     // Menampilkan peminjaman aktif
-    public function index()
+    public function index(Request $request)
 {
-    $peminjamans = Peminjaman::whereIn('status', ['Dipinjam', 'Terlambat'])->paginate(10);
+    // Ambil query pencarian dari request
+    $search = $request->input('search');
+
+    // Query peminjaman dengan filter pencarian dan status
+    $peminjamans = Peminjaman::query()
+        ->whereIn('status', ['Dipinjam', 'Terlambat']) // Filter status
+        ->when($search, function ($query, $search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('nama_peminjam', 'like', "%{$search}%")
+                      ->orWhere('keperluan', 'like', "%{$search}%")
+                      ->orWhere('status', 'like', "%{$search}%");
+            });
+        })
+        ->paginate(10);
+
+    // Kirimkan data ke view
     return view('peminjaman.index', compact('peminjamans'));
 }
 
-    // Menampilkan riwayat peminjaman yang sudah dikembalikan
-    public function history()
+
+public function history(Request $request)
 {
-    // Use paginate instead of get to retrieve paginated results
-    $peminjamans = Peminjaman::where('status', 'Dikembalikan')->paginate(10); // Adjust the number 10 as needed
-    
+    // Ambil query pencarian dari request
+    $search = $request->input('search');
+
+    // Query peminjaman dengan filter pencarian dan status
+    $peminjamans = Peminjaman::query()
+        ->where('status', 'Dikembalikan') // Filter status
+        ->when($search, function ($query, $search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('nama_peminjam', 'like', "%{$search}%")
+                      ->orWhere('keperluan', 'like', "%{$search}%")
+                      ->orWhere('status', 'like', "%{$search}%");
+            });
+        })
+        ->paginate(10);
+
+    // Kirimkan data ke view
     return view('history.index', compact('peminjamans'));
 }
-
-
     public function edit($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
@@ -122,6 +148,15 @@ class PeminjamanController extends Controller
 
         // Redirect kembali ke halaman index dengan pesan sukses
         return redirect()->route('peminjaman.index')->with('success', 'Data peminjaman berhasil diperbarui');
+    }
+
+    public function show($id)
+    {
+        // Ambil data peminjaman berdasarkan ID
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        // Kirim data ke view
+        return view('peminjaman.show', compact('peminjaman'));
     }
 
     public function destroy($id)

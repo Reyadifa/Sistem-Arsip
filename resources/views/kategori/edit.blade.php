@@ -53,10 +53,10 @@
                     <div class="grid grid-cols-2 gap-8 w-96 mt-10">
                         <button id="edit" type="submit"
                             class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition transform duration-200 hover:scale-110 ">Simpan</button>
-                        <button
+                        <a href="/kategori"
                             class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-center text-xl font-semibold transform transition-transform duration-200 hover:scale-110">
-                            <a href="/kategori" class="">Kembali</a>
-                        </button>
+                            Kembali
+                        <a>
                     </div>
                 </form>
 

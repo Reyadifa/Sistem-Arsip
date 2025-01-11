@@ -50,19 +50,43 @@
             @endif
 
             <!-- Tombol Tambah Peminjaman -->
-            <div class="mt-20">
+            @if (auth()->user() && auth()->user()->role == '1')
+            <div class="mt-4">
             <a href="{{ route('peminjaman.create') }}"
                 class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transform transition-transform duration-300 hover:scale-110 ">
                 <i class="fa-solid fa-plus mr-2 font-bold text-lg"></i>
                 <span>Tambah Peminjaman</span>
             </a>
-        </div>
+            </div>
+            @endif
+
+            <form action="{{ route('peminjaman.index') }}" method="GET" class="flex items-center">
+                {{-- Input Cari --}}
+                <div class="flex flex-col relative mr-10 w-full">
+                    <label for="peminjaman" class="pl-1">Cari</label>
+                    <input id="peminjaman" type="text" name="search" value="{{ request('search') }}"
+                           placeholder="Search"
+                           class="border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-full">
+                    <button type="submit" class="absolute top-8 right-3 text-gray-500">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+
+                {{-- Reset --}}
+                <div class="mt-[26px]">
+                    <div
+                        class="bg-gray-500 px-6 py-1 mb-8 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer  ">
+                        <a href="{{ route('arsip.index') }}">Reset</a>
+                    </div>
+                </div>
+            </form>            
 
             {{-- Kotak Border --}}
-            <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t border-black">
+            <div class="overflow-x-auto bg-white shadow-md border-r border-l border-t border-b border-black">
                 <table class="min-w-full table-auto divide-y divide-gray-300">
                     <thead class="bg-blue-500">
                         <tr>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">No</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Nama Peminjam</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Nama Arsip Yang Dipinjam</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">kategori</th>
@@ -78,6 +102,9 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         @forelse ($peminjamans as $index => $peminjaman)
                             <tr class="hover:bg-gray-100">
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
+                                    {{ $peminjamans->firstItem() + $loop->index }}
+                                </td>                                
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->nama_peminjam }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->nama_usaha }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
@@ -99,6 +126,11 @@
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_kembali }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->status }}</td>
                                 <td class="border-black border-b">
+                                    <!-- Tombol Detail -->
+                                    <a href="{{ route('peminjaman.show', $peminjaman->id) }}" class="px-4 py-2 text-white bg-gray-500 hover:bg-gray-600 rounded-lg">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    @if (auth()->user() && auth()->user()->role == '1')
                                     <div class="flex items-center px-2 py-3 justify-center space-x-2">
                                         <!-- Tombol Edit -->
                                         <a href="{{ route('peminjaman.edit', $peminjaman->id) }}"
@@ -116,12 +148,13 @@
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </form>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="px-4 py-60 text-center text-xl text-gray-500 font-bold">Tidak ada peminjaman untuk saat ini</td>
+                                    <td colspan="10" class="px-4 py-60 text-center text-2xl text-gray-500 font-bold">Tidak ada peminjaman untuk saat ini</td>
                                 </tr>
                             @endforelse
                     </tbody>

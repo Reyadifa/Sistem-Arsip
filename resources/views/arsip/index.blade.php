@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <main class="px-10 mt-10">
+            <main class="px-10 mt-16">
                 <!-- Pesan Sukses atau Error -->
                 @if (session('success'))
                 <div class="bg-green-500 text-white p-4 rounded-lg mb-4 relative">
@@ -49,24 +49,24 @@
                 @endif
 
                 <!-- Tombol Tambah Arsip -->
+                @if (auth()->user() && auth()->user()->role == '1')
                 <a href="{{ route('arsip.create') }}"
                     class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transform transition-transform duration-300 hover:scale-110">
                     <i class="fa-solid fa-plus mr-2 font-bold text-lg "></i>
                     <span class="">Tambah Arsip</span></a>
-
+                @endif
+                
                 <form class="flex justify-between py-6" method="GET" action="{{ route('arsip.index') }}">
                     {{-- cari Npwp --}}
-                    <div class="flex flex-col relative mr-10 w-full">
-                        <label for="npwp" class="pl-1">Cari NPWP/Nama Usaha</label>
+                    <div class="flex flex-col relative mr-5 w-full">
+                        <label for="npwp" class="pl-1">Cari</label>
                         <input id="npwp" type="text" name="search" value="{{ request('search') }}"
-                        placeholder="Search"
+                        placeholder="Cari"
                         class="border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-full">
                         <button type="submit" class="absolute top-8 right-3 text-gray-500">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
-
-
 
                     {{-- Reset --}}
                     <div class="mt-[26px]">
@@ -80,7 +80,7 @@
 
                 {{-- Kotak Border --}}
 
-                <div class="overflow-x-auto bg-white shadow-md rounded-xl border-r border-l border-t  border-black ">
+                <div class="overflow-x-auto bg-white shadow-md border-r border-l border-t border-b border-black ">
 
                     <table class="min-w-full table-auto divide-y divide-gray-300  ">
                         <thead class="bg-blue-500">
@@ -89,28 +89,28 @@
                                     class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     No</th>
                                 <th
-                                    class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">
+                                    class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     NPWP</th>
                                 <th
-                                    class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">
+                                    class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     Kategori</th>
                                 <th
-                                    class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">
+                                    class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     Nama Usaha</th>
                                 <th
-                                    class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">
+                                    class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     Alamat Usaha</th>
                                 <th
-                                    class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">
+                                    class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     Nama Pemilik</th>
                                 <th
-                                    class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">
+                                    class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     Tahun</th>
                                 <th
-                                    class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">
+                                    class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     Bulan</th>
                                 <th
-                                    class="px-5 py-3 text-left text-xs font text-white font-bold border-r border-black border-b">
+                                    class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     File</th>
                                 <th class="px-5 py-3 text-center text-xs font text-white font-bold border-black border-b">
                                     Aksi</th>
@@ -123,19 +123,19 @@
                                     <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         {{ $arsips->firstItem() + $index }} <!-- Perbaikan penggunaan $index -->
                                     </td>
-                                    <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
+                                    <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         {{ $arsip->npwp }}
                                     </td>
-                                    <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
+                                    <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         {{ $arsip->kategori->nama_kategori ?? 'Tidak ada kategori' }}
                                     </td>
-                                    <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
+                                    <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         {{ $arsip->nama_usaha }}
                                     </td>
-                                    <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
+                                    <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         {{ $arsip->alamat_usaha }}
                                     </td>
-                                    <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
+                                    <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         {{ $arsip->nama_pemilik }}
                                     </td>
                                     <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
@@ -144,7 +144,7 @@
                                     <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         {{ $arsip->bulan }}
                                     </td>
-                                    <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
+                                    <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         @if ($arsip->file_path)
                                             {{-- Tombol file --}}
                                             <div class="bg-yellow-500 border hover:bg-yellow-600 w-12 text-base py-2 rounded-lg font-bold flex items-center justify-center cursor-pointer">
@@ -162,7 +162,7 @@
                                             <a href="{{ route('arsip.show', $arsip->id) }}" class="px-4 py-2 text-white bg-gray-500 hover:bg-gray-600 rounded-lg">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                        
+                                            @if (auth()->user() && auth()->user()->role == '1')
                                             <!-- Tombol Edit -->
                                             <a href="{{ route('arsip.edit', $arsip->id) }}" class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg">
                                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -176,12 +176,13 @@
                                                     <i class="fa-solid fa-trash-can"></i>
                                                 </button>
                                             </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="px-4 py-60 text-center text-xl text-gray-500 font-bold">Tidak ada arsip untuk saat ini</td>
+                                    <td colspan="9" class="px-4 py-56 text-center text-xl text-gray-500 font-bold">Tidak ada arsip untuk saat ini</td>
                                 </tr>
                             @endforelse
                         </tbody>                        

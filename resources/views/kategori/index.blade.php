@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     {{-- Kotak  --}}
-                    <div class="overflow-hidden bg-white shadow-md rounded-lg border border-black">
+                    <div class="overflow-hidden bg-white shadow-md border">
                         <table class="min-w-full divide-y divide-gray-200 border border-black">
                             <thead class="bg-blue-500 text-black font-bold border border-black">
                                 <tr class="">
