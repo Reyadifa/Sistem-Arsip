@@ -39,6 +39,10 @@
                                 <p>{{ $kategori->nama_kategori }}</p>
                             </div>
                             <div class=" p-4 rounded-lg border border-gray-500">
+                                <p class="font-bold">NPWP:</p>
+                                <p>{{ $arsip->npwp }}</p>
+                            </div>
+                            <div class=" p-4 rounded-lg border border-gray-500">
                                 <p class="font-bold">Nama Usaha:</p>
                                 <p>{{ $arsip->nama_usaha }}</p>
                             </div>
@@ -53,10 +57,6 @@
                             <div class=" p-4 rounded-lg border border-gray-500">
                                 <p class="font-bold">Alamat Pemilik:</p>
                                 <p>{{ $arsip->alamat_pemilik }}</p>
-                            </div>
-                            <div class=" p-4 rounded-lg border border-gray-500">
-                                <p class="font-bold">NPWP:</p>
-                                <p>{{ $arsip->npwp }}</p>
                             </div>
                             <div class=" p-4 rounded-lg border border-gray-500">
                                 <p class="font-bold">Bulan:</p>

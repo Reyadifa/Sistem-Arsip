@@ -7,7 +7,7 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <main class="flex-1  bg-gray-100 ">
+        <main class="flex-1  bg-white ">
             <div>
                 <div class="bg-blue-600 py-14">
                     <div class="flex items-center">
@@ -44,8 +44,9 @@
                         <div class="mb-4">
                             <label for="nama_kategori" class="block text-sm font-medium text-gray-700">Nama Kategori</label>
                             <input type="text" name="nama_kategori" id="nama_kategori"
+                            placeholder="Masukkan Nama Kategori"
                                 class="mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-3 focus:border-blue-500 focus:ring focus:ring-blue-200"
-                                required>
+                                value="{{ old('nama_kategori') }}" required>
                         </div>
                         <div class="grid grid-cols-2 gap-8 w-96 mt-16">
                             <button type="submit"

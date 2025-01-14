@@ -7,7 +7,7 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 bg-gray-100 ">
+        <div class="flex-1 bg-white">
             <div class="bg-blue-600 py-10">
                 <div class="flex items-center">
                     <span class="material-icons text-4xl text-white">archive</span>
@@ -62,7 +62,7 @@
                         <label for="npwp" class="pl-1">Cari</label>
                         <input id="npwp" type="text" name="search" value="{{ request('search') }}"
                         placeholder="Cari"
-                        class="border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-full">
+                        class="border-2 rounded-lg mb-8 border-black py-[9px] text-sm pl-2 w-full">
                         <button type="submit" class="absolute top-8 right-3 text-gray-500">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -181,7 +181,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="px-4 py-56 text-center text-xl text-gray-500 font-bold">Tidak ada arsip untuk saat ini</td>
+                                    <td colspan="9" class="px-4 py-56 text-center text-xl text-gray-500 font-bold">Tidak ada arsip</td>
                                 </tr>
                             @endforelse
                         </tbody>                        

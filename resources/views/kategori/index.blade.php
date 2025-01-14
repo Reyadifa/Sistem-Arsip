@@ -5,7 +5,7 @@
 
         {{-- Include sidebar --}}
         @include('layouts.sidebar')
-        <div class="flex-1  bg-gray-100 ">
+        <div class="flex-1  bg-white">
 
             <div class="bg-blue-600 py-10">
                 <div class="flex items-center">
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <main class="flex-grow p-8 bg-gray-100">
+            <main class="flex-grow p-8 bg-white">
                 <div class="max-w-10xl mx-auto  rounded-lg p-8">
                    
                     

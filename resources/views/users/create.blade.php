@@ -30,18 +30,28 @@
                 <div class="form-container p-8 rounded-lg">
 
                     @if (session('success'))
-                        <div class="bg-green-500 text-white p-3 mb-4 rounded">
+                        <div class="bg-green-500 text-white p-3 mb-4 rounded relative">
                             {{ session('success') }}
+                            <!-- Icon X untuk menutup pesan -->
+                            <button onclick="this.parentElement.style.display='none'" 
+                                    class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
+                                &times;
+                            </button>
                         </div>
                     @endif
 
                     @if ($errors->any())
-                        <div class="bg-red-500 text-white p-3 mb-4 rounded">
+                        <div class="bg-red-500 text-white p-3 mb-4 rounded relative">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
+                            <!-- Icon X untuk menutup pesan -->
+                            <button onclick="this.parentElement.style.display='none'" 
+                                    class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
+                                &times;
+                            </button>
                         </div>
                     @endif
 
@@ -51,14 +61,18 @@
                             <label for="NIP" class="block text-gray-700 text-sm font-bold mb-2">NIP</label>
                             <input type="text"
                                 class="appearance-none border-gray-500 rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="NIP" name="NIP" required>
+                                id="NIP" name="NIP" 
+                                placeholder="Masukkan NIP"
+                                value="{{ old('NIP') }}" required>
                         </div>
                         {{-- Nama User --}}
                         <div>
                             <label for="nama_user" class="block text-gray-700 text-sm font-bold mb-2">Nama User</label>
                             <input type="text"
                                 class="appearance-none border-gray-500 rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="nama_user" name="nama_user" required>
+                                id="nama_user" name="nama_user"
+                                placeholder="Masukkan Nama User"
+                                value="{{ old('nama_user') }}"  required>
                         </div>
                         {{-- Password --}}
                         <div>
@@ -66,7 +80,9 @@
                             <div class="relative">
                                 <input type="password" id="password"
                                     class="appearance-none border-gray-500 rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    name="password" required>
+                                    name="password" 
+                                    placeholder="Masukkan Password"
+                                    value="{{ old('password') }}" required>
                                 <span class="absolute inset-y-0 right-2 flex items-center pr-3 cursor-pointer"
                                     id="tombol">
                                     <i id="eye-icon" class="fa-solid fa-eye text-gray-600"></i>
@@ -74,47 +90,56 @@
                             </div>
                         </div>
 
-                        {{-- Konfirmasi --}}
+                        {{-- Konfirmasi Password --}}
                         <div>
-                            <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Konfirmasi
-                                Password</label>
+                            <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Konfirmasi Password</label>
                             <div class="relative">
                                 <input type="password"
                                     class="appearance-none border-gray-500 rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline relative"
-                                    id="password_confirmation" name="password_confirmation" required>
+                                    id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}" 
+                                    placeholder="Masukkan Kembali Password"
+                                    required>
                                 <span class="absolute inset-y-0 right-2 flex items-center pr-3 cursor-pointer"
                                     id="tombol_confirmation">
                                     <i id="eye-icon-confirmation" class="fa-solid fa-eye text-gray-600"></i>
                                 </span>
                             </div>
                         </div>
-                        {{-- Input role user dan admin --}}
+
+                        {{-- Input Pilih Admin or User --}}
                         <div>
                             <label class="block text-gray-700 text-sm font-bold mb-2">Role</label>
-                            <div class="flex items-center border border-gray-500 rounded-lg px-4 text-lg space-x-6">
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="radio" id="role-admin" name="role" value="1"
-                                        class="hidden peer" />
+                            <div class="flex items-center border border-gray-500 rounded-lg px-4 text-lg">
+                                {{-- Admin --}}
+                                <label class="flex items-center cursor-pointer w-full justify-center">
+                                    <input type="radio" id="role-admin" name="role" value="1" class="hidden peer" 
+                                        {{ old('role') == '1' ? 'checked' : '' }} />
                                     <span
                                         class="text-gray-700 peer-checked:text-white peer-checked:bg-gray-500 peer-checked:rounded-lg px-3 py-2 m-1 h-10 flex items-center font-bold hover:bg-blue-100 transition rounded-lg">
                                         Admin
                                     </span>
                                 </label>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="radio" id="role-user" name="role" value="2"
-                                        class="hidden peer" />
+
+                                {{-- Garis Tengah --}}
+                                <div class="border-l border-gray-500 h-10"></div>
+
+                                {{-- User --}}
+                                <label class="flex items-center cursor-pointer w-full justify-center">
+                                    <input type="radio" id="role-user" name="role" value="2" class="hidden peer" 
+                                        {{ old('role') == '2' ? 'checked' : '' }} />
                                     <span
-                                        class="text-gray-700 peer-checked:text-white peer-checked:bg-gray-500 peer-checked:rounded-lg px-3 py-2 h-10 flex items-center font-bold hover:bg-blue-100 transition rounded-lg">
+                                        class="text-gray-700 peer-checked:text-white peer-checked:bg-gray-500 peer-checked:rounded-lg px-3 py-2 m-1 h-10 flex items-center font-bold hover:bg-blue-100 transition rounded-lg">
                                         User
                                     </span>
                                 </label>
-                            </div>
+                            </div>                            
                         </div>
 
+                        {{-- button --}}
                         <div class="pt-10">
                             <button type="submit"
-                                class="btn-primary bg-green-500 px-8 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110 mr-4">Tambah
-                                User</button>
+                                class="btn-primary bg-green-500 px-6 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110 mr-4">Simpan
+                                </button>
 
                             <a href="{{ route('users.index') }}"
                                 class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">

@@ -55,8 +55,9 @@
                                 @php
                                     $firstArsip = $arsips[0];
                                 @endphp
-                                <option value="{{ $firstArsip->npwp }}">{{ $firstArsip->npwp }} -
-                                    {{ $firstArsip->nama_usaha }}</option>
+                                <option value="{{ $firstArsip->npwp }}" {{ old('npwp') == $firstArsip->npwp ? 'selected' : '' }}>
+                                    {{ $firstArsip->npwp }} - {{ $firstArsip->nama_usaha }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -65,6 +66,14 @@
                         <label for="arsip_id" class="block font-bold text-black mb-1">Pilih Arsip</label>
                         <select name="arsip_id" id="arsip_id" class="w-full p-3 rounded-lg border-gray-500 border" onchange="updateFileInfo()" required>
                             <option value="">Pilih Arsip</option>
+                            @foreach ($arsipsGrouped as $key => $arsips)
+                                @foreach ($arsips as $arsip)
+                                    <option value="{{ $arsip->id }}" {{ old('arsip_id') == $arsip->id ? 'selected' : '' }} 
+                                        data-file="{{ $arsip->file }}">
+                                        {{ $arsip->nama_usaha }} - Kategori: {{ $arsip->kategori->nama_kategori }}, bulan: {{ $arsip->bulan }}, tahun: {{ $arsip->tahun }}
+                                    </option>
+                                @endforeach
+                            @endforeach
                         </select>
                     </div>
 
@@ -82,10 +91,10 @@
                             placeholder="Pilih Tanggal Kembali" value="{{ old('tgl_kembali') }}" required>
                     </div>
 
-                    <!--new Input Nama Peminjam -->
+                    <!-- Input Nama Peminjam -->
                     <div>
-                            <label for="nama_peminjam" class="block font-bold text-black mb-1">Nama Peminjam</label>
-                            <input type="text" class="w-full p-3 rounded-lg border-gray-500 border" id="nama_peminjam" name="nama_peminjam"
+                        <label for="nama_peminjam" class="block font-bold text-black mb-1">Nama Peminjam</label>
+                        <input type="text" class="w-full p-3 rounded-lg border-gray-500 border" id="nama_peminjam" name="nama_peminjam"
                             placeholder="Masukkan Nama Peminjam" value="{{ old('nama_peminjam') }}" required>
                     </div> 
 
@@ -93,9 +102,9 @@
                     <div>
                         <label for="status" class="block font-bold text-black mb-1">Status</label>
                         <select name="status" id="status" class="w-full p-3 rounded-lg border-gray-500 border" required>
-                            <option value="Dipinjam">Dipinjam</option>
-                            <option value="Dikembalikan">Dikembalikan</option>
-                            <option value="Terlambat">Terlambat</option>
+                            <option value="Dipinjam" {{ old('status') == 'Dipinjam' ? 'selected' : '' }}>Dipinjam</option>
+                            <option value="Dikembalikan" {{ old('status') == 'Dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
+                            <option value="Terlambat" {{ old('status') == 'Terlambat' ? 'selected' : '' }}>Terlambat</option>
                         </select>
                     </div>
                     
@@ -110,14 +119,13 @@
                 <!-- Tombol Simpan -->
                 <div class="text-center flex gap-5">
                     <button type="submit"
-                        class="  bg-green-500 px-8 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110">
+                        class="bg-green-500 px-8 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110">
                         Simpan
                     </button>
                     <a href="/peminjaman"
                     class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">Kembali</a>
                 </div>
             </main>
-
 
         </form>
     </div>

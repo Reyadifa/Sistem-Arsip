@@ -4,7 +4,7 @@
     <div class="flex">
         @include('layouts.sidebar')
 
-        <div class="flex-1 bg-gray-100">
+        <div class="flex-1 bg-white">
             <div class="bg-blue-600 py-10">
                 <div class="flex items-center">
                     <i class="fas fa-book text-4xl text-white"></i>
@@ -93,7 +93,7 @@
                                 @endif
                             @empty
                                 <tr>
-                                    <td colspan="9" class="px-4 py-60 text-center text-gray-500 text-2xl font-bold">Tidak ada history untuk saat ini</td>
+                                    <td colspan="9" class="px-4 py-60 text-center text-gray-500 text-2xl font-bold">Tidak ada data history</td>
                                 </tr>
                             @endforelse
                         </tbody>                        

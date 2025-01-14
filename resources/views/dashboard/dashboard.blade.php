@@ -133,13 +133,13 @@
                     },
                     scales: {
                         y: {
-                            min: 0, // Set minimal value of y-axis to 0
-                            max: 500, // Set maximum value of y-axis to 500
-                            beginAtZero: true, // Start the scale from zero
+                            min: 0,
+                            max: 20,
+                            beginAtZero: true,
                             ticks: {
-                                stepSize: 50, // Ubah step size menjadi 50
+                                stepSize: 2, 
                                 callback: function(value) {
-                                    return value; // Tampilkan nilai kelipatan 50
+                                    return value;
                                 }
                             }
                         }

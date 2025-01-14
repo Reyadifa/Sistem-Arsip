@@ -6,7 +6,7 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1  bg-gray-100 ">
+        <div class="flex-1  bg-white">
            
             <div class="bg-blue-600 py-10">
                 <div class="flex items-center">
@@ -66,7 +66,7 @@
                     <label for="peminjaman" class="pl-1">Cari</label>
                     <input id="peminjaman" type="text" name="search" value="{{ request('search') }}"
                            placeholder="Cari"
-                           class="border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-full">
+                           class="border-2 rounded-lg mb-8 border-black py-[9px] text-sm pl-2 w-full">
                     <button type="submit" class="absolute top-8 right-3 text-gray-500">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -107,14 +107,14 @@
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                     {{ $peminjamans->firstItem() + $loop->index }}
                                 </td>                                
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->nama_peminjam }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->nama_usaha }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->nama_peminjam }}</td>
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->nama_usaha }}</td>
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                     {{ $peminjaman->arsip->kategori->nama_kategori }}
                                 </td>                                
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->tahun }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->bulan }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                     @if ($peminjaman->arsip && $peminjaman->arsip->file_path)
                                     {{-- edit --}}
                                         <a href="{{ asset('storage/' . $peminjaman->arsip->file_path) }}" target="_blank" class=" mx-auto flex justify-center">
@@ -126,7 +126,7 @@
 
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_minjam }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_kembali }}</td>
-                                <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->status }}</td>
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->status }}</td>
                                 @if (auth()->user() && auth()->user()->role == '1')
                                 <td class="border-black border-b">
                                     <div class="flex items-center px-2 py-3 justify-center space-x-2">
@@ -156,7 +156,7 @@
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10" class="px-4 py-60 text-center text-xl text-gray-500 font-bold">Tidak ada peminjaman untuk saat ini</td>
+                                    <td colspan="10" class="px-4 py-60 text-center text-xl text-gray-500 font-bold">Tidak ada peminjaman</td>
                                 </tr>
                             @endforelse
                     </tbody>

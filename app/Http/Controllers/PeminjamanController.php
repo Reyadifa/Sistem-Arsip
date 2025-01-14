@@ -57,13 +57,12 @@ class PeminjamanController extends Controller
         return redirect()->route('peminjaman.index')->with('success', 'Peminjaman berhasil disimpan.');
     }
 
-    // Menampilkan peminjaman aktif
     public function index(Request $request)
-{
+    {
     // Ambil query pencarian dari request
     $search = $request->input('search');
 
-    // Query peminjaman dengan filter pencarian dan status
+    //filter pencarian dan status
     $peminjamans = Peminjaman::query()
         ->whereIn('status', ['Dipinjam', 'Terlambat']) // Filter status
         ->when($search, function ($query, $search) {

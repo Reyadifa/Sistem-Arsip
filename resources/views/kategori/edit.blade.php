@@ -7,7 +7,7 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 bg-gray-100 ">
+        <div class="flex-1 bg-white ">
 
             <div class="bg-blue-600 py-14">
                 <div class="flex items-center">
