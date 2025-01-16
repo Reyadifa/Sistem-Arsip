@@ -13,14 +13,12 @@
                 </a>
             @endif
 
-            {{-- Page Numbers (Limit to 5) --}}
-            @foreach (range(1, $paginator->lastPage()) as $page)
+            {{-- Page Numbers --}}
+            @foreach (range(1, min(5, $paginator->lastPage())) as $page)
                 @if ($page == $paginator->currentPage())
                     <span class="font-bold bg-blue-500 text-white px-4 py-2 rounded-full shadow-md">{{ $page }}</span>
-                @elseif ($page <= 3 || $page == $paginator->lastPage())
+                @else
                     <a href="{{ $paginator->url($page) }}" class="bg-gray-100 text-blue-500 px-3 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white transition">{{ $page }}</a>
-                @elseif ($page == 4)
-                    <span class="text-gray-500 px-3">...</span>
                 @endif
             @endforeach
 
@@ -35,5 +33,12 @@
                 </span>
             @endif
         </div>
+
+        {{-- Go to Specific Page --}}
+        <form action="{{ $paginator->url($paginator->currentPage()) }}" method="GET" class="flex items-center space-x-2">
+            <label for="page" class="text-gray-700 font-medium">Page:</label>
+            <input type="number" id="page" name="page" min="1" max="{{ $paginator->lastPage() }}" placeholder="1" class="w-20 border-gray-300 rounded-full px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-blue-400">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-600 transition">Go</button>
+        </form>
     </nav>
 @endif
