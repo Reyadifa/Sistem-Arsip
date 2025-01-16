@@ -78,11 +78,10 @@
                                         <td class="border-black border-b">
                                             <div class="flex items-center px-2 py-3 justify-center space-x-2">
                                                 <!-- Tombol Hapus -->
-                                                <form action="{{ route('peminjaman.destroy', $peminjaman->id) }}" method="POST" style="display: inline;">
+                                                <form action="{{ route('peminjaman.destroy', $peminjaman->id) }}" method="POST" style="display: inline;" class="delete-form">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        class="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg">
+                                                    <button type="submit" class="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
                                                 </form>
@@ -104,4 +103,10 @@
             </main>
         </div>
     </div>
+
+    {{-- Sweetalert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    {{-- Js --}}
+    <script src="{{ asset('js/histori.js') }}"></script>
 @endsection

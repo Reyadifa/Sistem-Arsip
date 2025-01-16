@@ -1,8 +1,3 @@
-
-
-// pop up hapus
-
-
 function confirmDelete(id) {
     Swal.fire({
         title: "Apakah Anda yakin?",
@@ -21,10 +16,8 @@ function confirmDelete(id) {
                 icon: "success",
                 confirmButtonText: "OK"
             }).then(() => {
-                // Menunggu beberapa detik sebelum submit form
-                setTimeout(() => {
-                    document.getElementById('delete-form-' + id).submit();
-                }, 2000); // 1000 ms = 1 detik
+                // Langsung submit form tanpa jeda
+                document.getElementById('delete-form-' + id).submit();
             });
         }
     });
