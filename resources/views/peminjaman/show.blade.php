@@ -76,7 +76,7 @@
                     </div>
                     <h2 class="text-2xl font-semibold mt-8 mb-4">File Arsip</h2>
 
-                    <div class="flex gap-4">
+                    <div class="flex justify-between">
                        
                         <div class="flex gap-6 justify-between">
                             @if ($peminjaman->file_path)
@@ -91,11 +91,11 @@
                             @endif
                         </div>
 
-                        <div class="flex items-center">
-                            @if (auth()->user() && auth()->user()->role == 'admin')
+                        <div class="flex items-center gap-8">
+                            @if (auth()->user() && auth()->user()->role == '1')
                                 <a href="{{ route('peminjaman.edit', $peminjaman->id) }}">
                                     <button
-                                        class="mr-6 bg-green-600 text-white py-3 px-6 font-semibold rounded-md hover:bg-green-700 transform transition-transform duration-200 hover:scale-110">
+                                        class=" bg-green-600 text-white py-3 px-6 font-semibold rounded-md hover:bg-green-700 transform transition-transform duration-200 hover:scale-110">
                                         Edit
                                     </button>
                                 </a>
