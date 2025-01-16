@@ -24,14 +24,15 @@
             </div>
 
             <div class="bg-white shadow-lg rounded-lg overflow-hidden p-10">
-                <div class="text-center text-2xl font-bold sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
+                <div
+                    class="text-center text-2xl font-bold sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
                     <span class="material-icons text-blue-500 text-4xl">folder_open</span>
                     <h1>Detail Peminjaman</h1>
                 </div>
 
                 <hr class="border-2 border-gray-500 w-[600px] mx-auto">
                 <div class="p-6">
-                    <div class="mb-6">
+                    <div class="mb-3">
                         <h2 class="text-2xl font-semibold mb-4">Informasi Peminjaman</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="p-4 rounded-lg border border-gray-500">
@@ -69,45 +70,57 @@
                         </div>
                     </div>
 
-                    <h2 class="text-2xl font-semibold mb-4">Keperluan</h2>
+                    <h2 class="text-2xl font-semibold mb-4 ">Keperluan</h2>
                     <div class="p-4 rounded-lg border border-gray-500">
                         <p>{{ $peminjaman->keperluan }}</p>
                     </div>
-
                     <h2 class="text-2xl font-semibold mt-8 mb-4">File Arsip</h2>
-                    <div class="mb-6 flex gap-6 justify-between">
-                        @if ($peminjaman->file_path)
-                            <div class="flex items-center space-x-4">
-                                <a href="{{ asset('storage/' . $peminjaman->file_path) }}" target="_blank" class="bg-gray-500 px-6 py-3 rounded-lg text-white font-semibold transform transition-transform duration-200 hover:scale-110">
-                                    Lihat File
-                                </a>
-                            </div>
-                        @else
-                            <p>Tidak ada file yang diunggah.</p>
-                        @endif
-                    </div>
 
-                    <div class="flex justify-between items-center">
-                        @if (auth()->user() && auth()->user()->role == 'admin')
-                            <a href="{{ route('peminjaman.edit', $peminjaman->id) }}">
-                                <button class="mr-6 bg-green-600 text-white py-3 px-6 font-semibold rounded-md hover:bg-green-700 transform transition-transform duration-200 hover:scale-110">
-                                    Edit
+                    <div class="flex gap-4">
+                       
+                        <div class="flex gap-6 justify-between">
+                            @if ($peminjaman->file_path)
+                                <div class="flex items-center space-x-4">
+                                    <a href="{{ asset('storage/' . $peminjaman->file_path) }}" target="_blank"
+                                        class="bg-gray-500 px-6 py-3 rounded-lg text-white font-semibold transform transition-transform duration-200 hover:scale-110">
+                                        Lihat File
+                                    </a>
+                                </div>
+                            @else
+                                <p>Tidak ada file yang diunggah.</p>
+                            @endif
+                        </div>
+
+                        <div class="flex items-center">
+                            @if (auth()->user() && auth()->user()->role == 'admin')
+                                <a href="{{ route('peminjaman.edit', $peminjaman->id) }}">
+                                    <button
+                                        class="mr-6 bg-green-600 text-white py-3 px-6 font-semibold rounded-md hover:bg-green-700 transform transition-transform duration-200 hover:scale-110">
+                                        Edit
+                                    </button>
+                                </a>
+                                <form action="{{ route('peminjaman.destroy', $peminjaman->id) }}" method="POST"
+                                    class="gap-6 flex items-center">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 font-semibold transform transition-transform duration-200 hover:scale-110">
+                                        Hapus
+                                    </button>
+                                </form>
+                            @endif
+                            <a href="/peminjaman">
+                                <button
+                                    class="px-6 py-3 text-white font-bold bg-blue-500 rounded-lg hover:bg-blue-600 transform transition-transform duration-200 hover:scale-110">
+                                    Kembali
                                 </button>
                             </a>
-                            <form action="{{ route('peminjaman.destroy', $peminjaman->id) }}" method="POST" class="gap-6 flex items-center">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 font-semibold transform transition-transform duration-200 hover:scale-110">
-                                    Hapus
-                                </button>
-                            </form>
-                        @endif
-                        <a href="/peminjaman">
-                            <button class="px-6 py-3 text-white font-bold bg-blue-500 rounded-lg hover:bg-blue-600 transform transition-transform duration-200 hover:scale-110">
-                                Kembali
-                            </button>
-                        </a>
+                        </div>
+
+
                     </div>
+
+
                 </div>
             </div>
         </main>
