@@ -98,6 +98,7 @@
                                             <th class="py-3 px-4 w-24 border border-gray-500 text-center">No</th>
                                             <th class="py-3 px-4 w-96 border border-gray-500 text-center">NIP</th>
                                             <th class="py-3 px-4 border border-gray-500 text-center">Nama User</th>
+                                            <th class="py-3 px-4 border border-gray-500 text-center">Role</th>
                                             <th class="py-3 px-4 border border-gray-500 w-96 p-24">Aksi</th>
                                         </tr>
                                     </thead>
@@ -112,6 +113,9 @@
                                                 </td>
                                                 <td class="py-2 px-4 border border-gray-500 text-center">
                                                     {{ $user->nama_user }}</td>
+                                                    <td class="py-2 px-4 border border-gray-500 text-center">
+                                                        {{ $user->role == 1 ? 'Admin' : ($user->role == 2 ? 'User' : 'Unknown Role') }}
+                                                    </td>                                                    
                                                 <td class="py-2 px-4 border border-gray-500">
                                                     <div class="flex justify-center gap-5 w-96">
                                                         <a href="{{ route('users.edit', $user->NIP) }}"

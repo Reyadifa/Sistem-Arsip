@@ -30,6 +30,13 @@
         <form action="{{ url('/login') }}" method="POST" class="p-6 sm:p-10">
             @csrf <!-- Laravel CSRF protection -->
 
+            <!-- Notifikasi Error -->
+            @if ($errors->any())
+                <div class="mb-4 bg-red-500 text-white text-center py-2 px-4 rounded-lg">
+                    Login gagal, mohon kembali cek username dan password Anda.
+                </div>
+            @endif
+
             <!-- Nama User Input -->
             <div class="mb-4">
                 <label class="block text-lg sm:text-xl text-white font-bold text-left mb-2" for="nama_user">
@@ -43,12 +50,8 @@
                         class="text-lg sm:text-xl pl-10 pr-4 py-2 rounded-full w-full @error('nama_user') border-red-500 @enderror"
                         id="nama_user" name="nama_user" placeholder="Nama User" type="text"
                         value="{{ old('nama_user') }}" required />
-
-
                 </div>
-                @error('nama_user')
-                    <p class="text-red-500  mt-4">{{ $message }}</p>
-                @enderror
+
             </div>
 
 
@@ -69,23 +72,8 @@
                         onclick="togglePasswordVisibility()">
                         <i id="eye-icon" class="fa-solid fa-eye text-gray-600"></i>
                     </span>
-
-                    @error('password')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
                 </div>
             </div>
-
-            <!-- Error Section -->
-            @if ($errors->any())
-                <div class="mb-4 text-red-600">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
             <!-- Login Button -->
             <button

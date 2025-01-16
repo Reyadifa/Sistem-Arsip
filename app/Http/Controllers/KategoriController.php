@@ -77,7 +77,7 @@ class KategoriController extends Controller
         // Hapus kategori
         $kategori->delete();
 
-        return redirect()->route('kategori.index')->with('success_delete', 'Kategori berhasil dihapus dan arsip yang terkait akan di kosongkan kategorinya.');
+        return redirect()->route('kategori.index')->with('success_delete', 'Kategori berhasil dihapus.');
     }
 
 

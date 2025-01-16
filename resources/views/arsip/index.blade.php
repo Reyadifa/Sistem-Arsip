@@ -58,7 +58,7 @@
                 
                 <form class="flex justify-between py-6" method="GET" action="{{ route('arsip.index') }}">
                     {{-- cari Npwp --}}
-                    <div class="flex flex-col relative mr-5 w-full bg-red-500">
+                    <div class="flex flex-col relative mr-5 w-full">
                         <label for="npwp" class="pl-1">Cari</label>
                         <input id="npwp" type="text" name="search" value="{{ request('search') }}"
                         placeholder="Cari"
