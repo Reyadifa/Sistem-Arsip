@@ -1,35 +1,37 @@
 @if ($paginator->hasPages())
-    <nav class="flex items-center justify-between mt-6">
+    <nav class="flex flex-wrap items-center justify-between mt-6 space-y-4 sm:space-y-0">
+        {{-- Navigation Controls --}}
         <div class="flex items-center space-x-2">
-            {{-- Link ke halaman sebelumnya --}}
+            {{-- Previous Button --}}
             @if ($paginator->onFirstPage())
-                <span class="disabled">«</span>
+                <span class="cursor-not-allowed bg-gray-300 text-gray-500 px-4 py-2 rounded-full shadow-md flex items-center">
+                    <i class="fas fa-angle-left"></i>
+                </span>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="text-blue-500 hover:underline">«</a>
+                <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md flex items-center hover:bg-blue-600 transition">
+                    <i class="fas fa-angle-left"></i>
+                </a>
             @endif
 
-            {{-- Menampilkan link ke halaman numerik --}}
+            {{-- Page Numbers --}}
             @if ($paginator->currentPage() > 3)
-                <a href="{{ $paginator->url(1) }}" class="text-blue-500 hover:underline">1</a>
+                <a href="{{ $paginator->url(1) }}" class="bg-gray-100 text-blue-500 px-3 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white transition">1</a>
                 @if ($paginator->currentPage() > 4)
-                    <span class="disabled">...</span>
+                    <span class="text-gray-500 px-3">...</span>
                 @endif
             @endif
 
             @foreach ($elements as $element)
-                {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <span class="disabled">{{ $element }}</span>
+                    <span class="text-gray-500 px-3">{{ $element }}</span>
                 @endif
 
-                {{-- Link ke halaman numerik --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
-                        {{-- Cek apakah halaman adalah halaman pertama atau terakhir, untuk menghindari duplikasi --}}
-                        @if ($page != $paginator->currentPage() && $page != 1 && $page != $paginator->lastPage())
-                            <a href="{{ $url }}" class="text-blue-500 border border-gray-300 px-3 py-1 rounded hover:bg-blue-500 hover:text-white">{{ $page }}</a>
-                        @elseif ($page == $paginator->currentPage())
-                            <span class="font-bold text-blue-500 border border-blue-500 px-3 py-1 rounded">{{ $page }}</span>
+                        @if ($page == $paginator->currentPage())
+                            <span class="font-bold bg-blue-500 text-white px-4 py-2 rounded-full shadow-md">{{ $page }}</span>
+                        @else
+                            <a href="{{ $url }}" class="bg-gray-100 text-blue-500 px-3 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white transition">{{ $page }}</a>
                         @endif
                     @endforeach
                 @endif
@@ -37,23 +39,27 @@
 
             @if ($paginator->currentPage() < $paginator->lastPage() - 2)
                 @if ($paginator->currentPage() < $paginator->lastPage() - 3)
-                    <span class="disabled">...</span>
+                    <span class="text-gray-500 px-3">...</span>
                 @endif
-                <a href="{{ $paginator->url($paginator->lastPage()) }}" class="text-blue-500 hover:underline">{{ $paginator->lastPage() }}</a>
+                <a href="{{ $paginator->url($paginator->lastPage()) }}" class="bg-gray-100 text-blue-500 px-3 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white transition">{{ $paginator->lastPage() }}</a>
             @endif
 
-            {{-- Link ke halaman berikutnya --}}
+            {{-- Next Button --}}
             @if ($paginator->hasMorePages())
-                <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="text-blue-500 hover:underline">»</a>
+                <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md flex items-center hover:bg-blue-600 transition">
+                    <i class="fas fa-angle-right"></i>
+                </a>
             @else
-                <span class="disabled">»</span>
+                <span class="cursor-not-allowed bg-gray-300 text-gray-500 px-4 py-2 rounded-full shadow-md flex items-center">
+                    <i class="fas fa-angle-right"></i>
+                </span>
             @endif
         </div>
 
-        {{-- Input untuk memasukkan nomor halaman --}}
-        <form action="{{ $paginator->url($paginator->currentPage()) }}" method="GET" class="flex items-center">
-            <input type="number" name="page" min="1" max="{{ $paginator->lastPage() }}" placeholder="Go to..." class="border rounded p-1">
-            <button type="submit" class="ml-2 bg-blue-500 text-white rounded p-1">Go</button>
+        {{-- Go to Specific Page --}}
+        <form action="{{ $paginator->url($paginator->currentPage()) }}" method="GET" class="flex items-center space-x-2">
+            <input type="number" name="page" min="1" max="{{ $paginator->lastPage() }}" placeholder="Page..." class="w-20 border-gray-300 rounded-full px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-blue-400">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-600 transition">Go</button>
         </form>
     </nav>
 @endif

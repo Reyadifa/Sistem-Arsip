@@ -191,6 +191,7 @@
 
                 <!-- Pagination -->
                 {{ $arsips->links('vendor.pagination.tailwind') }}
+                <div class="mb-12"></div>
         </div>
         </main>
     </div>
