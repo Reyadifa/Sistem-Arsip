@@ -22,7 +22,7 @@
 
 </head>
 
-<body class=" ml-64 ">
+<body class=" ml-64">
 
     @yield('content')
 

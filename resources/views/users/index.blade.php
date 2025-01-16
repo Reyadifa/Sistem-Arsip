@@ -10,7 +10,7 @@
         <div class="flex-1">
             <div class="bg-blue-600 py-10">
                 <div class="flex items-center">
-                    <i class="fas fa-user text-4xl text-white "></i>  
+                    <i class="fas fa-user text-4xl text-white "></i>
                     <h1 class="text-4xl font-bold ml-3 text-white">
                         Daftar User
                     </h1>
@@ -19,39 +19,40 @@
                         <h2 class="text-4xl font-bold ml-3 text-white ">
                             {{ Auth::user()->nama_user ?? 'User' }} |
                         </h2>
-                        <div class="bg-gray-500 rounded-full h-14 w-14 overflow-hidden flex justify-center items-center"><i class="fas fa-user text-4xl text-white "></i></div>
-                    </div>                    
+                        <div class="bg-gray-500 rounded-full h-14 w-14 overflow-hidden flex justify-center items-center"><i
+                                class="fas fa-user text-4xl text-white "></i></div>
+                    </div>
                 </div>
-            </div> 
+            </div>
 
             <section class="py-4 flex-grow"> <!-- Penambahan padding untuk section -->
                 <div class="max-w-10xl rounded-lg p-10">
                     <div class="rounded-lg overflow-hidden">
                         <div class="p-6">
                             <!-- Pesan Sukses atau Error -->
-                @if (session('success'))
-                <div class="bg-green-500 text-white p-4 rounded-lg mb-4 relative">
-                    {{ session('success') }}
-                    <!-- Icon X untuk menutup notifikasi -->
-                    <button onclick="this.parentElement.style.display='none'" 
-                            class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
-                        &times;
-                    </button>
-                </div>
-                @endif
+                            @if (session('success'))
+                                <div class="bg-green-500 text-white p-4 rounded-lg mb-4 relative">
+                                    {{ session('success') }}
+                                    <!-- Icon X untuk menutup notifikasi -->
+                                    <button onclick="this.parentElement.style.display='none'"
+                                        class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
+                                        &times;
+                                    </button>
+                                </div>
+                            @endif
 
-                <!-- Pesan Sukses atau Error -->
-                @if (session('success_delete'))
-                <div class="bg-red-500 text-white p-4 rounded-lg mb-4 relative">
-                    {{ session('success_delete') }}
-                    <!-- Icon X untuk menutup notifikasi -->
-                    <button onclick="this.parentElement.style.display='none'" 
-                            class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
-                        &times;
-                    </button>
-                </div>
-                @endif
-                            
+                            <!-- Pesan Sukses atau Error -->
+                            @if (session('success_delete'))
+                                <div class="bg-red-500 text-white p-4 rounded-lg mb-4 relative">
+                                    {{ session('success_delete') }}
+                                    <!-- Icon X untuk menutup notifikasi -->
+                                    <button onclick="this.parentElement.style.display='none'"
+                                        class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
+                                        &times;
+                                    </button>
+                                </div>
+                            @endif
+
                             {{-- Tambah User --}}
                             <div class="flex justify-between items-center mb-4">
                                 <a href="{{ route('users.create') }}"
@@ -60,28 +61,30 @@
                             </div>
 
                             <div class="flex flex-col">
-                                <form action="{{ route('users.index') }}" method="GET"
-                                    class="flex items-center">
-                                    {{-- Cari User --}}
-                                    <div>
+                                <form action="{{ route('users.index') }}" method="GET" class="flex items-center p-4 space-x-4">
+                                    <!-- Input Pencarian -->
+                                    <div class="flex-1">
                                         <input type="text" name="search" value="{{ request('search') }}"
                                             placeholder="Cari User"
-                                            class="border-2 rounded-lg border-gray-400 py-[9px] text-sm pl-4"
-                                            style="width: 1450px;">
+                                            class="border-2 rounded-lg border-gray-400 py-2 px-4 text-sm w-full"
+                                            />
                                     </div>
-                                    {{-- Tombol Cari --}}
+                                    <!-- Tombol Cari -->
                                     <button type="submit"
-                                        class="bg-blue-600 py-1 px-3 h-9 rounded-lg text-white font-semibold ml-auto mr-4 hover:bg-blue-800 cursor-pointer">
-                                        <span class="mr-2">Cari</span>
+                                        class="bg-blue-600 h-9 px-6 rounded-lg text-white font-semibold hover:bg-blue-800 flex items-center justify-center space-x-2">
+                                        <span>Cari</span>
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </button>
-                                    {{-- Tombol Reset --}}
-                                    <div
-                                        class="bg-gray-500 px-3 py-1 t-1 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer">
-                                        <a href="{{ route('users.index') }}">Reset</a>
-                                    </div>
+                                    <!-- Tombol Reset -->
+                                    <a href="{{ route('users.index') }}"
+                                        class="bg-gray-500 h-9 px-6 rounded-lg text-white font-semibold hover:bg-gray-600 flex items-center justify-center">
+                                        Reset
+                                    </a>
                                 </form>
                             </div>
+                            
+
+
                         </div>
 
                         {{-- Kotak Border --}}
@@ -101,20 +104,28 @@
                                     <tbody>
                                         @foreach ($users as $index => $user)
                                             <tr class="hover:bg-gray-100 transition duration-300">
-                                                <td class="px-4 py-3 text-center text-xs font text-black-500 border border-gray-500">
+                                                <td
+                                                    class="px-4 py-3 text-center text-xs font text-black-500 border border-gray-500">
                                                     {{ $users->firstItem() + $index }}
                                                 </td>
-                                                <td class="py-2 px-4 border border-gray-500 text-center">{{ $user->NIP }}</td>
-                                                <td class="py-2 px-4 border border-gray-500 text-center">{{ $user->nama_user }}</td>
+                                                <td class="py-2 px-4 border border-gray-500 text-center">{{ $user->NIP }}
+                                                </td>
+                                                <td class="py-2 px-4 border border-gray-500 text-center">
+                                                    {{ $user->nama_user }}</td>
                                                 <td class="py-2 px-4 border border-gray-500">
                                                     <div class="flex justify-center gap-5 w-96">
-                                                        <a href="{{ route('users.edit', $user->NIP) }}" class="text-white bg-blue-500 hover:bg-blue-700 rounded-xl py-2 px-8 font-semibold">
+                                                        <a href="{{ route('users.edit', $user->NIP) }}"
+                                                            class="text-white bg-blue-500 hover:bg-blue-700 rounded-xl py-2 px-8 font-semibold">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </a>
-                                                        <form id="delete-form-{{ $user->NIP }}" action="{{ route('users.destroy', $user->NIP) }}" method="POST" class="inline">
+                                                        <form id="delete-form-{{ $user->NIP }}"
+                                                            action="{{ route('users.destroy', $user->NIP) }}"
+                                                            method="POST" class="inline">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="button" class="text-white bg-red-500 hover:bg-red-700 rounded-xl py-2 px-8 font-semibold" onclick="confirmDelete({{ $user->NIP }})">
+                                                            <button type="button"
+                                                                class="text-white bg-red-500 hover:bg-red-700 rounded-xl py-2 px-8 font-semibold"
+                                                                onclick="confirmDelete({{ $user->NIP }})">
                                                                 <i class="fa-solid fa-trash-can"></i>
                                                             </button>
                                                         </form>
@@ -125,7 +136,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            
+
 
                         </main>
 
