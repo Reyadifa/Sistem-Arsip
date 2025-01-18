@@ -46,7 +46,23 @@ class ArsipSeeder extends Seeder
             ['bulan' => 'Mei', 'tahun' => 2023],
             ['bulan' => 'Juni', 'tahun' => 2023],
             ['bulan' => 'Juli', 'tahun' => 2023],
-            ['bulan' => 'Agustus', 'tahun' => 2023]
+            ['bulan' => 'Agustus', 'tahun' => 2023],
+            ['bulan' => 'September', 'tahun' => 2023],
+            ['bulan' => 'November', 'tahun' => 2023],
+            ['bulan' => 'Desember', 'tahun' => 2023],
+
+            ['bulan' => 'Januari', 'tahun' => 2024],
+            ['bulan' => 'Februari', 'tahun' => 2024],
+            ['bulan' => 'Maret', 'tahun' => 2024],
+            ['bulan' => 'April', 'tahun' => 2024],
+            ['bulan' => 'Mei', 'tahun' => 2024],
+            ['bulan' => 'Juni', 'tahun' => 2024],
+            ['bulan' => 'Juli', 'tahun' => 2024],
+            ['bulan' => 'Agustus', 'tahun' => 2024],
+            ['bulan' => 'September', 'tahun' => 2024],
+            ['bulan' => 'November', 'tahun' => 2024],
+            ['bulan' => 'Desember', 'tahun' => 2024],
+            ['bulan' => 'Januari', 'tahun' => 2025]
         ];
 
         // Menyiapkan data arsip yang akan dimasukkan ke dalam database

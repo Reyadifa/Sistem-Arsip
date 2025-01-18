@@ -37,6 +37,7 @@ public function index(Request $request)
     })
     ->orderBy('tahun', 'desc')
     ->orderByRaw("FIELD(bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari') ASC")
+    ->orderBy('created_at', 'desc')
     ->paginate(12)
     ->appends(request()->query());
 
