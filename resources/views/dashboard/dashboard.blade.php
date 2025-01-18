@@ -76,9 +76,10 @@
                             <select class="p-2 border rounded" id="yearSelect" onchange="updateYear()">
                                 @foreach ($years as $item)
                                     <option value="{{ $item->tahun }}" @if ($item->tahun == $year) selected @endif>
-                                        {{ $item->tahun }}</option>
+                                        {{ $item->tahun }}
+                                    </option>
                                 @endforeach
-                            </select>
+                            </select>                            
                         </div>
                     </div>
                     <canvas height="200" id="myChart" width="600"></canvas>
@@ -134,10 +135,10 @@
                     scales: {
                         y: {
                             min: 0,
-                            max: 20,
+                            max: 100,
                             beginAtZero: true,
                             ticks: {
-                                stepSize: 2, 
+                                stepSize: 10, 
                                 callback: function(value) {
                                     return value;
                                 }

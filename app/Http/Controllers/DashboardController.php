@@ -15,17 +15,14 @@ class DashboardController extends Controller
         $kategoriCount = Kategori::count();
         $arsipCount = Arsip::count();
 
-        // Ambil tahun dari request atau gunakan tahun sekarang sebagai default
-        $year = request()->get('year', date('Y'));
+        $year = request()->get('year', Arsip::max('tahun')); // Ambil tahun terbaru dari arsip
 
-        // Ambil data arsip per bulan untuk tahun yang dipilih
         $monthlyData = Arsip::select('bulan', DB::raw('COUNT(*) as count'))
             ->where('tahun', $year)
             ->groupBy('bulan')
-            ->orderByRaw("FIELD(bulan, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember')")
+            ->orderByRaw("FIELD(bulan, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember')") // Urutkan berdasarkan bulan dalam urutan kalender
             ->get();
 
-        // Mapping bulan ke angka
         $data = [];
         $bulanMapping = [
             'Januari' => 1, 'Februari' => 2, 'Maret' => 3, 'April' => 4, 'Mei' => 5, 'Juni' => 6,
@@ -33,7 +30,7 @@ class DashboardController extends Controller
         ];
 
         for ($i = 1; $i <= 12; $i++) {
-            $data[$i] = 0; // Inisialisasi data per bulan
+            $data[$i] = 0;
         }
 
         foreach ($monthlyData as $item) {
@@ -41,9 +38,18 @@ class DashboardController extends Controller
             $data[$bulanNumber] = $item->count;
         }
 
-        // Ambil daftar tahun untuk dropdown
+        foreach ($data as $bulan => $count) {
+            if ($count < 0) {
+                $data[$bulan] = 0;
+            } elseif ($count > 100) {
+                $data[$bulan] = 100;
+            }
+        }
+
+        // Mendapatkan daftar tahun arsip
         $years = Arsip::select('tahun')->distinct()->orderBy('tahun', 'desc')->get();
 
+        // Menyiapkan data yang akan dikirim ke view
         return view('dashboard.dashboard', compact('userCount', 'kategoriCount', 'arsipCount', 'data', 'year', 'years'));
     }
 }
