@@ -135,10 +135,10 @@
                     scales: {
                         y: {
                             min: 0,
-                            max: 100,
+                            max: 10,
                             beginAtZero: true,
                             ticks: {
-                                stepSize: 10, 
+                                stepSize: 1, 
                                 callback: function(value) {
                                     return value;
                                 }
