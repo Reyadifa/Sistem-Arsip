@@ -77,7 +77,7 @@
                     <h2 class="text-2xl font-semibold mt-8 mb-4">File Arsip</h2>
 
                     <div class="flex justify-between">
-                       
+
                         <div class="flex gap-6 justify-between">
                             @if ($peminjaman->file_path)
                                 <div class="flex items-center space-x-4">
@@ -99,14 +99,13 @@
                                         Edit
                                     </button>
                                 </a>
-                                <form action="{{ route('peminjaman.destroy', $peminjaman->id) }}" method="POST"
-                                    class="gap-6 flex items-center">
+                                <form id="deleteForm" action="{{ route('peminjaman.destroy', $peminjaman->id) }}"
+                                    method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 font-semibold transform transition-transform duration-200 hover:scale-110">
-                                        Hapus
-                                    </button>
+                                    <button
+                                        class="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 font-semibold transform transition-transform duration-200 hover:scale-110"
+                                        type="button" onclick="confirmDelete()">Hapus</button>
                                 </form>
                             @endif
                             <a href="/peminjaman">
@@ -125,4 +124,25 @@
             </div>
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+        function confirmDelete() {
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33 ',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+    </script>
 @endsection
