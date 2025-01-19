@@ -63,21 +63,18 @@
                             <div class="flex flex-col">
                                 <form action="{{ route('users.index') }}" method="GET" class="flex items-center p-4 space-x-4">
                                     <!-- Input Pencarian -->
-                                    <div class="flex-1">
-                                        <input type="text" name="search" value="{{ request('search') }}"
-                                            placeholder="Cari User"
-                                            class="border-2 rounded-lg border-gray-400 py-2 px-4 text-sm w-full"
-                                            />
+                                    <div class="flex flex-col relative -ml-4 mr-2 w-full">
+                                        <label for="users" class="pl-1">Cari</label>
+                                        <input id="users" type="text" name="search" value="{{ request('search') }}"
+                                        placeholder="Cari"
+                                        class="border-2 rounded-lg border-black py-[9px] text-sm pl-2 w-full">
+                                        <button type="submit" class="absolute top-8 right-3 text-gray-500">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
                                     </div>
-                                    <!-- Tombol Cari -->
-                                    <button type="submit"
-                                        class="bg-blue-600 h-9 px-6 rounded-lg text-white font-semibold hover:bg-blue-800 flex items-center justify-center space-x-2">
-                                        <span>Cari</span>
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
                                     <!-- Tombol Reset -->
                                     <a href="{{ route('users.index') }}"
-                                        class="bg-gray-500 h-9 px-6 rounded-lg text-white font-semibold hover:bg-gray-600 flex items-center justify-center">
+                                        class="bg-gray-500 h-9 px-6 rounded-lg text-white font-semibold mt-6 hover:bg-gray-600 flex items-center justify-center">
                                         Reset
                                     </a>
                                 </form>

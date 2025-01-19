@@ -71,6 +71,7 @@
                                     <option value="{{ $arsip->id }}" {{ old('arsip_id') == $arsip->id ? 'selected' : '' }} 
                                         data-file="{{ $arsip->file }}">
                                         {{ $arsip->nama_usaha }} - Kategori: {{ $arsip->kategori->nama_kategori }}, bulan: {{ $arsip->bulan }}, tahun: {{ $arsip->tahun }}
+                                        orderBy('desc')
                                     </option>
                                 @endforeach
                             @endforeach

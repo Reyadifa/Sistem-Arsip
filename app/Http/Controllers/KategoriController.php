@@ -13,7 +13,9 @@ class KategoriController extends Controller
         $search = $request->input('search');
         $kategoris = Kategori::when($search, function ($query) use ($search) {
             return $query->where('nama_kategori', 'like', '%' . $search . '%');
-        })->paginate(12)->appends(request()->query());
+        })
+        ->orderBy('created_at', 'desc')
+        ->paginate(12)->appends(request()->query());
         
         return view('kategori.index', compact('search', 'kategoris'));
     }

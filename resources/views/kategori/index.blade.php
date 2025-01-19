@@ -60,24 +60,20 @@
 
                         <div class="flex flex-col space-y-4">
                             <form action="{{ route('kategori.index') }}" method="GET" class="flex items-center space-x-4">
-                                <!-- Input Pencarian -->
-                                <div class="relative flex-1">
-                                    <input type="text" name="search" value="{{ request('search') }}"
-                                        placeholder="Cari Kategori"
-                                        class="border-2 rounded-lg border-gray-400 py-2 px-4 text-sm w-full"
-                                        />
+                                {{-- cari kategori --}}
+                                <div class="flex flex-col relative mr-5 w-full">
+                                    <label for="kategori" class="pl-1">Cari</label>
+                                    <input id="kategori" type="text" name="search" value="{{ request('search') }}"
+                                    placeholder="Cari"
+                                    class="border-2 rounded-lg mb-8 border-black py-[9px] text-sm pl-2 w-full">
+                                    <button type="submit" class="absolute top-8 right-3 text-gray-500">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </button>
                                 </div>
-                        
-                                <!-- Tombol Cari -->
-                                <button type="submit"
-                                    class="bg-blue-600 h-9 px-6 rounded-lg text-white font-semibold hover:bg-blue-800 flex items-center justify-center space-x-2">
-                                    <span>Cari</span>
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
                         
                                 <!-- Tombol Reset -->
                                 <a href="{{ route('kategori.index') }}"
-                                    class="bg-gray-500 h-9 px-6 rounded-lg text-white font-semibold hover:bg-gray-600 flex items-center justify-center">
+                                    class="bg-gray-500 h-9 px-6 rounded-lg text-white font-semibold mb-2 hover:bg-gray-600 flex items-center justify-center">
                                     Reset
                                 </a>
                             </form>

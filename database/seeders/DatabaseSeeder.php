@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             ArsipSeeder::class,
             UserSeeder::class,
+            PeminjamanSeeder::class,
         ]);
     }
 }

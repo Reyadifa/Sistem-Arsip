@@ -72,6 +72,7 @@ class PeminjamanController extends Controller
                       ->orWhere('status', 'like', "%{$search}%");
             });
         })
+        ->orderBy('created_at', 'desc')
         ->paginate(10);
 
         $currentDate = now();
