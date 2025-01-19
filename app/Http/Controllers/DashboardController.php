@@ -41,8 +41,8 @@ class DashboardController extends Controller
         foreach ($data as $bulan => $count) {
             if ($count < 0) {
                 $data[$bulan] = 0;
-            } elseif ($count > 100) {
-                $data[$bulan] = 100;
+            } elseif ($count > 10) {
+                $data[$bulan] = 10;
             }
         }
 

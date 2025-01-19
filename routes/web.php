@@ -29,6 +29,8 @@ Route::middleware(['auth'])->group(function () {
                 'users' => 'NIP',
             ]);
             Route::put('/users/{NIP}', [UserController::class, 'update'])->name('users.update');
+            Route::delete('/users/{NIP}', [UserController::class, 'destroy'])->name('users.destroy');
+
             Route::resource('peminjaman', PeminjamanController::class);
             Route::get('/history', [PeminjamanController::class, 'history'])->name('history.index');
         });
