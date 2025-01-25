@@ -58,20 +58,20 @@
                         </a>
 
                         <div class="flex flex-col space-y-4">
-                            <form action="{{ route('kategori.index') }}" method="GET" class="flex items-center space-x-4">
+                            <form action="{{ route('kategori.index') }}" method="GET" class="flex items-center space-x-4 justify-end">
                                 <div>
                                     <input type="text" name="search" value="{{ request('search') }}"
                                         placeholder="Cari Kategori"
                                         class="border-2 rounded-lg border-gray-400 py-[9px] text-sm pl-4"
-                                        style="width: 950px;">
+                                        style="width: 1490px;">
                                 </div>
                                 <button type="submit"
-                                    class="bg-blue-600 py-1 px-3 h-9 rounded-lg text-white font-semibold  hover:bg-blue-800 cursor-pointer">
+                                    class="bg-blue-600 py-1 px-3 h-9 rounded-lg text-white font-semibold  hover:bg-blue-800 cursor-pointer ml-auto">
                                     <span class="mr-2">Cari</span>
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                                 <div
-                                    class="bg-gray-500 px-3 py-1 t-1 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer">
+                                    class="bg-gray-500 px-3 py-1 t-1 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer ml-auto">
                                     <a href="{{ route('kategori.index') }}">Reset</a>
                                 </div>
                             </form>
@@ -83,7 +83,7 @@
                             <thead class="bg-blue-500 text-black font-bold border border-black">
                                 <tr class="">
                                     <th
-                                        class="px-2 py-2 text-center border border-black text-xs uppercase text-white font-extrabold tracking-wider">
+                                        class="px-2 py-2 text-center w-24 border border-black text-xs uppercase text-white font-extrabold tracking-wider">
                                         No</th>
                                     <th
                                         class="px-6 py-3 text-center border border-black text-xs uppercase text-white font-extrabold tracking-wider">

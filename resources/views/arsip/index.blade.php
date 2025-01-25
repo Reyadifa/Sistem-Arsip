@@ -79,8 +79,7 @@
 
 
                 {{-- Kotak Border --}}
-
-                <div class="overflow-x-auto bg-white shadow-md border-r border-l border-t border-b border-black ">
+                <div class="overflow-x-auto bg-white shadow-md border border-black ">
 
                     <table class="min-w-full table-auto divide-y divide-gray-300  ">
                         <thead class="bg-blue-500">
@@ -144,7 +143,7 @@
                                     <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         {{ $arsip->bulan }}
                                     </td>
-                                    <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
+                                    <td class="px-4 py-3 text-center text-xs font justify-items-center text-black-500 border-r border-black border-b">
                                         @if ($arsip->file_path)
                                             {{-- Tombol file --}}
                                             <div class="bg-yellow-500 border hover:bg-yellow-600 w-12 text-base py-2 rounded-lg font-bold flex items-center justify-center cursor-pointer">

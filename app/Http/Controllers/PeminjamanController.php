@@ -75,6 +75,14 @@ class PeminjamanController extends Controller
         })
         ->paginate(10);
 
+        $currentDate = now();
+    foreach ($peminjamans as $peminjaman) {
+        if ($peminjaman->tgl_kembali && $currentDate->greaterThan($peminjaman->tgl_kembali) && $peminjaman->status === 'Dipinjam') {
+            $peminjaman->status = 'Terlambat';
+            $peminjaman->save();
+        }
+    }
+
     // Kirimkan data ke view
     return view('peminjaman.index', compact('peminjamans'));
 }

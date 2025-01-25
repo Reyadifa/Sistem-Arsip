@@ -65,7 +65,7 @@
                 <div class="flex flex-col relative mr-10 w-full">
                     <label for="peminjaman" class="pl-1">Cari</label>
                     <input id="peminjaman" type="text" name="search" value="{{ request('search') }}"
-                           placeholder="Search"
+                           placeholder="Cari"
                            class="border-2 rounded-lg mb-8 border-gray-400 py-[9px] text-sm pl-2 w-full">
                     <button type="submit" class="absolute top-8 right-3 text-gray-500">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -76,7 +76,7 @@
                 <div class="mt-[26px]">
                     <div
                         class="bg-gray-500 px-6 py-1 mb-8 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer  ">
-                        <a href="{{ route('arsip.index') }}">Reset</a>
+                        <a href="{{ route('peminjaman.index') }}">Reset</a>
                     </div>
                 </div>
             </form>            
@@ -96,7 +96,9 @@
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Taanggal Minjam</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Taanggal Kembali</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Status</th>
+                            @if (auth()->user() && auth()->user()->role == '1')
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-black border-b">Aksi</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -125,13 +127,13 @@
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_minjam }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_kembali }}</td>
                                 <td class="px-4 py-3 text-left text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->status }}</td>
+                                @if (auth()->user() && auth()->user()->role == '1')
                                 <td class="border-black border-b">
+                                    <div class="flex items-center px-2 py-3 justify-center space-x-2">
                                     <!-- Tombol Detail -->
                                     <a href="{{ route('peminjaman.show', $peminjaman->id) }}" class="px-4 py-2 text-white bg-gray-500 hover:bg-gray-600 rounded-lg">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
-                                    @if (auth()->user() && auth()->user()->role == '1')
-                                    <div class="flex items-center px-2 py-3 justify-center space-x-2">
                                         <!-- Tombol Edit -->
                                         <a href="{{ route('peminjaman.edit', $peminjaman->id) }}"
                                             class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg"><i
@@ -154,7 +156,7 @@
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10" class="px-4 py-60 text-center text-2xl text-gray-500 font-bold">Tidak ada peminjaman untuk saat ini</td>
+                                    <td colspan="10" class="px-4 py-60 text-center text-xl text-gray-500 font-bold">Tidak ada peminjaman untuk saat ini</td>
                                 </tr>
                             @endforelse
                     </tbody>

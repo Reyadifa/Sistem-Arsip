@@ -21,15 +21,18 @@
                 </div>
             </div>
         </div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        {{-- Pesan Kesalahan --}}
+@if ($errors->any())
+<div class="mb-4">
+    <div class="bg-red-200 border border-red-600 text-red-600 p-3 rounded-lg">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+@endif
 
         <form action="{{ route('peminjaman.store') }}" method="POST">
             @csrf
@@ -82,7 +85,7 @@
                     <!--new Input Nama Peminjam -->
                     <div>
                             <label for="nama_peminjam" class="block font-bold text-black mb-1">Nama Peminjam</label>
-                            <input type="text" class="w-full p-3 rounded-lg border-gray-500 border" id="nohp_peminjam" name="nama_peminjam"
+                            <input type="text" class="w-full p-3 rounded-lg border-gray-500 border" id="nama_peminjam" name="nama_peminjam"
                             placeholder="Masukkan Nama Peminjam" value="{{ old('nama_peminjam') }}" required>
                     </div> 
 

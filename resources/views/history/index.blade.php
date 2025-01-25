@@ -33,7 +33,7 @@
                 <div class="mt-[26px]">
                     <div
                         class="bg-gray-500 px-6 py-1 mr-16 mt-2 rounded-lg text-white font-semibold h-9 hover:bg-gray-600 cursor-pointer  ">
-                        <a href="{{ route('arsip.index') }}">Reset</a>
+                        <a href="{{ route('history.index') }}">Reset</a>
                     </div>
                 </div>
             </form>

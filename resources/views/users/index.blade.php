@@ -59,19 +59,19 @@
                                         class="fa-solid fa-plus mr-2 font-bold text-lg"></i> Tambah User</a>
                             </div>
 
-                            <div class="flex flex-col space-y-4">
+                            <div class="flex flex-col">
                                 <form action="{{ route('users.index') }}" method="GET"
-                                    class="flex items-center space-x-4">
+                                    class="flex items-center">
                                     {{-- Cari User --}}
                                     <div>
                                         <input type="text" name="search" value="{{ request('search') }}"
                                             placeholder="Cari User"
                                             class="border-2 rounded-lg border-gray-400 py-[9px] text-sm pl-4"
-                                            style="width: 950px;">
+                                            style="width: 1450px;">
                                     </div>
                                     {{-- Tombol Cari --}}
                                     <button type="submit"
-                                        class="bg-blue-600 py-1 px-3 h-9 rounded-lg text-white font-semibold  hover:bg-blue-800 cursor-pointer">
+                                        class="bg-blue-600 py-1 px-3 h-9 rounded-lg text-white font-semibold ml-auto mr-4 hover:bg-blue-800 cursor-pointer">
                                         <span class="mr-2">Cari</span>
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </button>
@@ -92,7 +92,7 @@
                                 <table class="min-w-full">
                                     <thead class="bg-blue-500 text-white font-bold">
                                         <tr>
-                                            <th class="py-3 px-4 border border-gray-500 text-center">No</th>
+                                            <th class="py-3 px-4 w-24 border border-gray-500 text-center">No</th>
                                             <th class="py-3 px-4 border border-gray-500 text-left">Nama User</th>
                                             <th class="py-3 px-4 border border-gray-500 w-96 p-24">Aksi</th>
                                         </tr>
