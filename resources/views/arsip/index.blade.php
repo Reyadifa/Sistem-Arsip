@@ -49,7 +49,7 @@
                 @endif
 
                 <!-- Tombol Tambah Arsip -->
-                @if (auth()->user() && auth()->user()->role == '1')
+                @if (auth()->user() && auth()->user()->role == ['1', '2'])
                 <a href="{{ route('arsip.create') }}"
                     class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transform transition-transform duration-300 hover:scale-110">
                     <i class="fa-solid fa-plus mr-2 font-bold text-lg "></i>

@@ -50,7 +50,7 @@
             @endif
 
             <!-- Tombol Tambah Peminjaman -->
-            @if (auth()->user() && auth()->user()->role == '1')
+            @if (auth()->user() && in_array(auth()->user()->role, ['1', '2']))
             <div class="mt-4">
             <a href="{{ route('peminjaman.create') }}"
                 class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transform transition-transform duration-300 hover:scale-110 ">
