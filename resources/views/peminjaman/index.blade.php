@@ -96,7 +96,7 @@
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Taanggal Minjam</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Taanggal Kembali</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Status</th>
-                            @if (auth()->user() && auth()->user()->role == '1')
+                            @if (auth()->user() && in_array(auth()->user()->role, ['1', '2']))
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-black border-b">Aksi</th>
                             @endif
                         </tr>
@@ -127,7 +127,7 @@
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_minjam }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_kembali }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->status }}</td>
-                                @if (auth()->user() && auth()->user()->role == '1')
+                                @if (auth()->user() && auth()->user()->role == ['1', '2'])
                                 <td class="border-black border-b">
                                     <div class="flex items-center px-2 py-3 justify-center space-x-2">
                                     <!-- Tombol Detail -->

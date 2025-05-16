@@ -49,7 +49,7 @@
                 @endif
 
                 <!-- Tombol Tambah Arsip -->
-                @if (auth()->user() && auth()->user()->role == ['1', '2'])
+                @if (auth()->user() && in_array(auth()->user()->role, [1, 3]))
                 <a href="{{ route('arsip.create') }}"
                     class="mb-6 inline-block px-5 py-3 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transform transition-transform duration-300 hover:scale-110">
                     <i class="fa-solid fa-plus mr-2 font-bold text-lg "></i>
@@ -161,7 +161,7 @@
                                             <a href="{{ route('arsip.show', $arsip->id) }}" class="px-4 py-2 text-white bg-gray-500 hover:bg-gray-600 rounded-lg">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                                            @if (auth()->user() && auth()->user()->role == '1')
+                                            @if (auth()->user() && in_array(auth()->user()->role, [1, 3]))
                                             <!-- Tombol Edit -->
                                             <a href="{{ route('arsip.edit', $arsip->id) }}" class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg">
                                                 <i class="fa-solid fa-pen-to-square"></i>
