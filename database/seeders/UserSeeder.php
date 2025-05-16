@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
             //admin
             [
                 'NIP' => '123456789123456789',
-                'nama_user' => 'Pendataan',
+                'nama_user' => 'Admin Pendataan',
                 'password' => bcrypt('pendataan123'),
                 'role' => 1,
             ],
@@ -21,13 +21,13 @@ class UserSeeder extends Seeder
             //user//
         [
                 'NIP' => '1237623',
-                'nama_user' => 'Pelayanan',
+                'nama_user' => 'User Pelayanan',
                 'password' => bcrypt('pelayanan123'),
                 'role' => 2,
             ],
         [
                 'NIP' => '1237625',
-                'nama_user' => 'Pengarsipan',
+                'nama_user' => 'User Pengarsipan',
                 'password' => bcrypt('pengarsipan123'),
                 'role' => 3,
             ],

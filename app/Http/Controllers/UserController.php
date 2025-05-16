@@ -22,7 +22,7 @@ class UserController extends Controller
         'NIP' => 'required|string|max:255|unique:users,NIP',
         'nama_user' => 'required|string|max:255|unique:users,nama_user',
         'password' => 'required|string|min:8|confirmed',
-        'role' => 'required|in:1,2',
+        'role' => 'required|in:1,2,3',
     ], [
         'NIP.unique' => 'NIP telah digunakan, silakan masukkan NIP yang lain.',
     ]);

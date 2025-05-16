@@ -111,7 +111,7 @@
                                                 <td class="py-2 px-4 border border-gray-500 text-center">
                                                     {{ $user->nama_user }}</td>
                                                     <td class="py-2 px-4 border border-gray-500 text-center">
-                                                        {{ $user->role == 1 ? 'Admin' : ($user->role == 2 ? 'User' : 'Unknown Role') }}
+                                                        {{ $user->role == 1 ? 'Pendataan' : ($user->role == 2 ? 'Pelayanan' : ($user->role == 3 ? 'Pengarsipan' : 'Unknown Role')) }}
                                                     </td>                                                    
                                                 <td class="py-2 px-4 border border-gray-500">
                                                     <div class="flex justify-center gap-5 w-96">

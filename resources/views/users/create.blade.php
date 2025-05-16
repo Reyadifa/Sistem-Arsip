@@ -132,6 +132,16 @@
                                         User
                                     </span>
                                 </label>
+
+                                {{-- User --}}
+                                <label class="flex items-center cursor-pointer w-full justify-center">
+                                    <input type="radio" id="role-user" name="role" value="3" class="hidden peer" 
+                                        {{ old('role') == '3' ? 'checked' : '' }} />
+                                    <span
+                                        class="text-gray-700 peer-checked:text-white peer-checked:bg-gray-500 peer-checked:rounded-lg px-3 py-2 m-1 h-10 flex items-center font-bold hover:bg-blue-100 transition rounded-lg">
+                                        User
+                                    </span>
+                                </label>
                             </div>                            
                         </div>
 
