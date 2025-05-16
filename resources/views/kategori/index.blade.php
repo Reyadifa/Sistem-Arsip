@@ -26,8 +26,6 @@
             <main class="flex-grow p-8">
                 <div class=" mx-auto rounded-lg p-8">
 
-
-
                     <!-- Pesan Sukses atau Error -->
                     @if (session('success'))
                         <div class="bg-green-500 text-white p-4 rounded-lg mb-4 relative">
