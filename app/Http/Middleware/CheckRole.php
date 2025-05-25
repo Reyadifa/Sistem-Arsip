@@ -15,25 +15,37 @@ class CheckRole
         3 => 'pengarsipan',
     ];
 
-   public function handle(Request $request, Closure $next, ...$roles)
-{
-    if (!Auth::check()) {
-        abort(403, 'Forbidden: Anda tidak memiliki akses ke halaman ini.');
+    public function handle(Request $request, Closure $next, ...$roles)
+    {
+        // Cek apakah user sudah login
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
+        }
+
+        $user = Auth::user();
+        
+        // Pastikan user memiliki role
+        if (!$user->role) {
+            abort(403, 'Forbidden: Role tidak ditemukan.');
+        }
+
+        Log::info('User role ID: ' . $user->role);
+        Log::info('Roles yang diizinkan: ' . implode(', ', $roles));
+
+        // Dapatkan nama role user berdasarkan ID role
+        $userRoleName = $this->roleMap[$user->role] ?? null;
+        
+        Log::info('User role name: ' . ($userRoleName ?? 'tidak ditemukan'));
+
+        // Cek apakah role user valid dan termasuk dalam roles yang diizinkan
+        if (!$userRoleName) {
+            abort(403, 'Forbidden: Role tidak valid.');
+        }
+
+        if (!in_array($userRoleName, $roles)) {
+            abort(403, 'Forbidden: Anda tidak memiliki akses ke halaman ini.');
+        }
+
+        return $next($request);
     }
-
-    $user = Auth::user();
-    Log::info('User role: ' . $user->role);
-    Log::info('Middleware cek role: ' . implode(',', $roles));
-
-    // Dapatkan nama role user
-    $userRoleName = $this->roleMap[$user->role] ?? null;
-    
-    // Cek apakah role user termasuk dalam roles yang diizinkan
-    if (!$userRoleName || !in_array($userRoleName, $roles)) {
-        abort(403, 'Forbidden: Anda tidak memiliki akses ke halaman ini.');
-    }
-
-    return $next($request);
-}
-
 }

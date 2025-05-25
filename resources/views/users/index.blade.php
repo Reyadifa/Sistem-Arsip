@@ -14,7 +14,6 @@
                     <h1 class="text-4xl font-bold ml-3 text-white">
                         Daftar User
                     </h1>
-                    </h1>
                     <div class="absolute right-8 flex items-center gap-4">
                         <h2 class="text-4xl font-bold ml-3 text-white ">
                             {{ Auth::user()->nama_user ?? 'User' }} |
@@ -61,13 +60,14 @@
                             </div>
 
                             <div class="flex flex-col">
-                                <form action="{{ route('users.index') }}" method="GET" class="flex items-center p-4 space-x-4">
+                                <form action="{{ route('users.index') }}" method="GET"
+                                    class="flex items-center p-4 space-x-4">
                                     <!-- Input Pencarian -->
                                     <div class="flex flex-col relative -ml-4 mr-2 w-full">
                                         <label for="users" class="pl-1">Cari</label>
                                         <input id="users" type="text" name="search" value="{{ request('search') }}"
-                                        placeholder="Cari"
-                                        class="border-2 rounded-lg border-black py-[9px] text-sm pl-2 w-full">
+                                            placeholder="Cari"
+                                            class="border-2 rounded-lg border-black py-[9px] text-sm pl-2 w-full">
                                         <button type="submit" class="absolute top-8 right-3 text-gray-500">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
@@ -79,15 +79,10 @@
                                     </a>
                                 </form>
                             </div>
-                            
-
-
                         </div>
 
                         {{-- Kotak Border --}}
-
                         <main class="px-6 ">
-
                             <div class="overflow-hidden border mb-10">
                                 <table class="min-w-full">
                                     <thead class="bg-blue-500 text-white font-bold">
@@ -102,17 +97,35 @@
                                     <tbody>
                                         @foreach ($users as $index => $user)
                                             <tr class="hover:bg-gray-100 transition duration-300">
-                                                <td
-                                                    class="px-4 py-3 text-center text-xs font text-black-500 border border-gray-500">
-                                                    {{ $users->firstItem() + $index }}
-                                                </td>
-                                                <td class="py-2 px-4 border border-gray-500 text-center">{{ $user->NIP }}
-                                                </td>
+                                                <!-- Nomor urut -->
                                                 <td class="py-2 px-4 border border-gray-500 text-center">
-                                                    {{ $user->nama_user }}</td>
-                                                    <td class="py-2 px-4 border border-gray-500 text-center">
-                                                        {{ $user->role == 1 ? 'Pendataan' : ($user->role == 2 ? 'Pelayanan' : ($user->role == 3 ? 'Pengarsipan' : 'Unknown Role')) }}
-                                                    </td>                                                    
+                                                    {{ $index + 1 }}
+                                                </td>
+                                                <!-- NIP -->
+                                                <td class="py-2 px-4 border border-gray-500 text-center">
+                                                    {{ $user->NIP }}
+                                                </td>
+                                                <!-- Nama User -->
+                                                <td class="py-2 px-4 border border-gray-500 text-center">
+                                                    {{ $user->nama_user }}
+                                                </td>
+                                                <!-- Role dengan badge -->
+                                                <td class="py-2 px-4 border border-gray-500 text-center">
+                                                    @if ($user->role == 1)
+                                                        <span
+                                                            class="bg-blue-500 text-white px-2 py-1 rounded text-xs font-semibold">Pendataan</span>
+                                                    @elseif($user->role == 2)
+                                                        <span
+                                                            class="bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">Pelayanan</span>
+                                                    @elseif($user->role == 3)
+                                                        <span
+                                                            class="bg-orange-500 text-white px-2 py-1 rounded text-xs font-semibold">Pengarsipan</span>
+                                                    @else
+                                                        <span
+                                                            class="bg-gray-500 text-white px-2 py-1 rounded text-xs font-semibold">Unknown</span>
+                                                    @endif
+                                                </td>
+                                                <!-- Aksi -->
                                                 <td class="py-2 px-4 border border-gray-500">
                                                     <div class="flex justify-center gap-5 w-96">
                                                         <a href="{{ route('users.edit', $user->NIP) }}"
@@ -137,24 +150,18 @@
                                     </tbody>
                                 </table>
                             </div>
-
-
                         </main>
-
-
-
-
                     </div>
                     <div class="p-4">
-                        {{ $users->links() }} <!-- Menambahkan pagination -->
+                        @if ($users instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                            {{ $users->links() }}
+                        @endif
+                        <!-- Menambahkan pagination -->
                     </div>
                 </div>
+            </section>
         </div>
-        </section>
     </div>
-    </div>
-
-
 
     {{-- Sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>

@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('NIP')->unsigned()->primary();
             $table->string('nama_user');
             $table->string('password');
-            $table->tinyInteger('role'); // 1 for admin, 2 for user
+            $table->tinyInteger('role');
             $table->timestamps();
         });
     }

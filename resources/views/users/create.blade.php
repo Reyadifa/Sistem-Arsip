@@ -32,7 +32,6 @@
                     @if (session('success'))
                         <div class="bg-green-500 text-white p-3 mb-4 rounded relative">
                             {{ session('success') }}
-                            <!-- Icon X untuk menutup pesan -->
                             <button onclick="this.parentElement.style.display='none'" 
                                     class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
                                 &times;
@@ -42,12 +41,11 @@
 
                     @if ($errors->any())
                         <div class="bg-red-500 text-white p-3 mb-4 rounded relative">
-                            <ul>
+                            <ul class="mb-0">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
-                            <!-- Icon X untuk menutup pesan -->
                             <button onclick="this.parentElement.style.display='none'" 
                                     class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
                                 &times;
@@ -57,48 +55,59 @@
 
                     <form action="{{ route('users.store') }}" method="POST" class="space-y-4">
                         @csrf
+                        
+                        <!-- NIP -->
                         <div>
                             <label for="NIP" class="block text-gray-700 text-sm font-bold mb-2">NIP</label>
                             <input type="text"
-                                class="appearance-none border-gray-500 rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                class="appearance-none rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('NIP') border-red-500 @enderror"
                                 id="NIP" name="NIP" 
                                 placeholder="Masukkan NIP"
                                 value="{{ old('NIP') }}" required>
+                            @error('NIP')
+                                <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
-                        {{-- Nama User --}}
+
+                        <!-- Nama User -->
                         <div>
                             <label for="nama_user" class="block text-gray-700 text-sm font-bold mb-2">Nama User</label>
                             <input type="text"
-                                class="appearance-none border-gray-500 rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                class="appearance-none rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('nama_user') border-red-500 @enderror"
                                 id="nama_user" name="nama_user"
                                 placeholder="Masukkan Nama User"
-                                value="{{ old('nama_user') }}"  required>
+                                value="{{ old('nama_user') }}" required>
+                            @error('nama_user')
+                                <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
-                        {{-- Password --}}
+
+                        <!-- Password -->
                         <div>
                             <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
                             <div class="relative">
                                 <input type="password" id="password"
-                                    class="appearance-none border-gray-500 rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    class="appearance-none rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror"
                                     name="password" 
-                                    placeholder="Masukkan Password"
-                                    value="{{ old('password') }}" required>
+                                    placeholder="Masukkan Password" required>
                                 <span class="absolute inset-y-0 right-2 flex items-center pr-3 cursor-pointer"
                                     id="tombol">
                                     <i id="eye-icon" class="fa-solid fa-eye text-gray-600"></i>
                                 </span>
                             </div>
+                            @error('password')
+                                <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        {{-- Konfirmasi Password --}}
+                        <!-- Konfirmasi Password -->
                         <div>
                             <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Konfirmasi Password</label>
                             <div class="relative">
                                 <input type="password"
-                                    class="appearance-none border-gray-500 rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline relative"
-                                    id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}" 
-                                    placeholder="Masukkan Kembali Password"
-                                    required>
+                                    class="appearance-none border-gray-500 rounded-lg border w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="password_confirmation" name="password_confirmation"
+                                    placeholder="Masukkan Kembali Password" required>
                                 <span class="absolute inset-y-0 right-2 flex items-center pr-3 cursor-pointer"
                                     id="tombol_confirmation">
                                     <i id="eye-icon-confirmation" class="fa-solid fa-eye text-gray-600"></i>
@@ -106,53 +115,51 @@
                             </div>
                         </div>
 
-                        {{-- Input Pilih Admin or User --}}
+                        <!-- Role Selection -->
                         <div>
                             <label class="block text-gray-700 text-sm font-bold mb-2">Role</label>
-                            <div class="flex items-center border border-gray-500 rounded-lg px-4 text-lg">
-                                {{-- Admin --}}
-                                <label class="flex items-center cursor-pointer w-full justify-center">
-                                    <input type="radio" id="role-admin" name="role" value="1" class="hidden peer" 
+                            <div class="grid grid-cols-3 gap-2 border border-gray-500 rounded-lg p-2">
+                                <!-- Pendataan -->
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="role" value="1" class="hidden peer" 
                                         {{ old('role') == '1' ? 'checked' : '' }} />
-                                    <span
-                                        class="text-gray-700 peer-checked:text-white peer-checked:bg-gray-500 peer-checked:rounded-lg px-3 py-2 m-1 h-10 flex items-center font-bold hover:bg-blue-100 transition rounded-lg">
-                                        Admin
+                                    <span class="text-gray-700 peer-checked:text-white peer-checked:bg-blue-500 peer-checked:rounded-lg px-3 py-2 w-full text-center font-bold hover:bg-blue-100 transition rounded-lg">
+                                        Pendataan
                                     </span>
                                 </label>
 
-                                {{-- Garis Tengah --}}
-                                <div class="border-l border-gray-500 h-10"></div>
-
-                                {{-- User --}}
-                                <label class="flex items-center cursor-pointer w-full justify-center">
-                                    <input type="radio" id="role-user" name="role" value="2" class="hidden peer" 
+                                <!-- Pelayanan -->
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="role" value="2" class="hidden peer" 
                                         {{ old('role') == '2' ? 'checked' : '' }} />
-                                    <span
-                                        class="text-gray-700 peer-checked:text-white peer-checked:bg-gray-500 peer-checked:rounded-lg px-3 py-2 m-1 h-10 flex items-center font-bold hover:bg-blue-100 transition rounded-lg">
-                                        User
+                                    <span class="text-gray-700 peer-checked:text-white peer-checked:bg-green-500 peer-checked:rounded-lg px-3 py-2 w-full text-center font-bold hover:bg-green-100 transition rounded-lg">
+                                        Pelayanan
                                     </span>
                                 </label>
 
-                                {{-- User --}}
-                                <label class="flex items-center cursor-pointer w-full justify-center">
-                                    <input type="radio" id="role-user" name="role" value="3" class="hidden peer" 
+                                <!-- Pengarsipan -->
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="role" value="3" class="hidden peer" 
                                         {{ old('role') == '3' ? 'checked' : '' }} />
-                                    <span
-                                        class="text-gray-700 peer-checked:text-white peer-checked:bg-gray-500 peer-checked:rounded-lg px-3 py-2 m-1 h-10 flex items-center font-bold hover:bg-blue-100 transition rounded-lg">
-                                        User
+                                    <span class="text-gray-700 peer-checked:text-white peer-checked:bg-orange-500 peer-checked:rounded-lg px-3 py-2 w-full text-center font-bold hover:bg-orange-100 transition rounded-lg">
+                                        Pengarsipan
                                     </span>
                                 </label>
-                            </div>                            
+                            </div>
+                            @error('role')
+                                <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        {{-- button --}}
+                        <!-- Buttons -->
                         <div class="pt-10">
                             <button type="submit"
-                                class="btn-primary bg-green-500 px-6 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110 mr-4">Simpan
-                                </button>
+                                class="bg-green-500 px-6 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110 mr-4">
+                                Simpan
+                            </button>
 
                             <a href="{{ route('users.index') }}"
-                                class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">
+                                class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">
                                 Kembali
                             </a>
                         </div>
@@ -163,10 +170,11 @@
     </div>
 
     <script>
-        // Function gasan lihat password
-        function icon(inputId, iconId) {
+        // Function untuk toggle password visibility
+        function togglePassword(inputId, iconId) {
             const passwordField = document.getElementById(inputId);
             const eyeIcon = document.getElementById(iconId);
+            
             if (passwordField.type === "password") {
                 passwordField.type = "text";
                 eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
@@ -176,13 +184,25 @@
             }
         }
 
-        // Password 
-        const tombol = document.getElementById('tombol');
-        tombol.addEventListener('click', () => icon("password", "eye-icon"));
+        // Event listeners
+        document.getElementById('tombol').addEventListener('click', () => {
+            togglePassword("password", "eye-icon");
+        });
 
-        // confir password
-        const tombol_confirmation = document.getElementById('tombol_confirmation');
-        tombol_confirmation.addEventListener('click', () => icon("password_confirmation", "eye-icon-confirmation"));
+        document.getElementById('tombol_confirmation').addEventListener('click', () => {
+            togglePassword("password_confirmation", "eye-icon-confirmation");
+        });
+
+        // Auto-hide notifications after 5 seconds
+        setTimeout(() => {
+            const notifications = document.querySelectorAll('.bg-green-500, .bg-red-500');
+            notifications.forEach(notification => {
+                if (notification.style.display !== 'none') {
+                    notification.style.opacity = '0';
+                    setTimeout(() => notification.style.display = 'none', 300);
+                }
+            });
+        }, 5000);
     </script>
 
 @endsection
