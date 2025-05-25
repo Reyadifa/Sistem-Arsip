@@ -16,54 +16,33 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 // Routes yang memerlukan autentikasi
 Route::middleware(['auth'])->group(function () {
     
-    // Logout
+    // Logout - semua role bisa akses
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     
-    // Dashboard - semua role bisa akses
+    // Dashboard - semua role bisa akses (pendataan, pelayanan, pengarsipan)
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard');
     Route::get('/chart-data', [DashboardController::class, 'getChartData'])->name('dashboard.chart');
     
-    // History - semua role bisa akses
-    Route::get('/history', [PeminjamanController::class, 'history'])->name('history.index');
+    // Peminjaman - Admin Pendataan dan User Pelayanan (menggunakan view yang sama)
+    Route::middleware([CheckRole::class . ':pendataan,pelayanan'])->group(function () {
+        Route::resource('peminjaman', PeminjamanController::class);
+        Route::get('/history', [PeminjamanController::class, 'history'])->name('history.index');
+    });
     
-    // Peminjaman - semua role bisa akses
-    Route::resource('peminjaman', PeminjamanController::class);
+    // Arsip - Admin Pendataan dan User Pengarsipan (menggunakan view yang sama)
+    Route::middleware([CheckRole::class . ':pendataan,pengarsipan'])->group(function () {
+        Route::resource('arsip', ArsipController::class);
+    });
     
-    // Arsip - semua role bisa akses  
-    Route::resource('arsip', ArsipController::class);
-    
-    // Routes khusus untuk role Pendataan (role 1)
+    // Kategori - HANYA Admin Pendataan
     Route::middleware([CheckRole::class . ':pendataan'])->group(function () {
-        // Manajemen Kategori
         Route::resource('kategori', KategoriController::class);
-        
-        // Manajemen Users dengan parameter custom NIP
-        Route::resource('users', UserController::class)->parameters([
-            'users' => 'NIP',
-        ]);
-        
-        // Route explicit untuk update dan delete dengan NIP
+    });
+    
+    // Users - HANYA Admin Pendataan
+    Route::middleware([CheckRole::class . ':pendataan'])->group(function () {
+        Route::resource('users', UserController::class)->parameters(['users' => 'NIP']);
         Route::put('/users/{NIP}', [UserController::class, 'update'])->name('users.update');
         Route::delete('/users/{NIP}', [UserController::class, 'destroy'])->name('users.destroy');
-    });
-    
-    // Routes khusus untuk role Pelayanan (role 2)
-    Route::middleware([CheckRole::class . ':pelayanan'])->group(function () {
-        // Tambahkan routes khusus pelayanan di sini
-        // Contoh:
-        // Route::get('/pelayanan-khusus', [SomeController::class, 'method']);
-    });
-
-    // Routes khusus untuk role Pengarsipan (role 3)
-    Route::middleware([CheckRole::class . ':pengarsipan'])->group(function () {
-        // Tambahkan routes khusus pengarsipan di sini
-        // Contoh:
-        // Route::get('/arsip-khusus', [SomeController::class, 'method']);
-    });
-    
-    // Routes untuk multiple roles
-    // Contoh: hanya pendataan dan pelayanan yang bisa akses
-    Route::middleware([CheckRole::class . ':pendataan,pelayanan'])->group(function () {
-        // Route::get('/laporan', [LaporanController::class, 'index']);
     });
 });
