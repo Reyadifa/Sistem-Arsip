@@ -22,6 +22,8 @@ class CreatePeminjamanTable extends Migration
         $table->date('tgl_kembali')->nullable();
         $table->string('status')->default('dipinjam');
         $table->string('file_arsip')->nullable(); // Field baru untuk menyimpan file arsip
+        $table->string('surat_kuasa')->nullable();
+        $table->string('nohp');
         $table->timestamps();
     
         // Foreign key relationship

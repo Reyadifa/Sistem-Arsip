@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     // Dashboard - semua role bisa akses (pendataan, pelayanan, pengarsipan)
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard');
     Route::get('/chart-data', [DashboardController::class, 'getChartData'])->name('dashboard.chart');
+    Route::get('/history/export-pdf', [PeminjamanController::class, 'exportPdf'])->name('history.exportPdf');
     
     // Peminjaman - Admin Pendataan dan User Pelayanan (menggunakan view yang sama)
     Route::middleware([CheckRole::class . ':pendataan,pelayanan'])->group(function () {

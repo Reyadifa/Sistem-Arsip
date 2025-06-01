@@ -14,7 +14,6 @@
                     <h1 class="text-4xl font-bold ml-3 text-white">
                         Peminjaman
                     </h1>
-                    </h1>
                     <div class="absolute right-8 flex items-center gap-4">
                         <h2 class="text-4xl font-bold ml-3 text-white ">
                             {{ Auth::user()->nama_user ?? 'User' }} |
@@ -88,13 +87,15 @@
                         <tr>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">No</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Nama Peminjam</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">No HP</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Nama Arsip Yang Dipinjam</th>
-                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">kategori</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Kategori</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Tahun Arsip Yang Dipinjam</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Bulan Arsip Yang Dipinjam</th>
-                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b ">File</th>
-                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Taanggal Minjam</th>
-                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Taanggal Kembali</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b ">File Arsip</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Surat Kuasa</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Tanggal Pinjam</th>
+                            <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Tanggal Kembali</th>
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">Status</th>
                             @if (auth()->user() && in_array(auth()->user()->role, ['1', '2']))
                             <th class="px-5 py-3 text-center text-xs font text-white font-bold border-black border-b">Aksi</th>
@@ -108,6 +109,7 @@
                                     {{ $peminjamans->firstItem() + $loop->index }}
                                 </td>                                
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->nama_peminjam }}</td>
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->nohp }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->nama_usaha }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                     {{ $peminjaman->arsip->kategori->nama_kategori }}
@@ -116,17 +118,33 @@
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->arsip->bulan }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                     @if ($peminjaman->arsip && $peminjaman->arsip->file_path)
-                                    {{-- edit --}}
-                                        <a href="{{ asset('storage/' . $peminjaman->arsip->file_path) }}" target="_blank" class=" mx-auto flex justify-center">
+                                        <a href="{{ asset('storage/' . $peminjaman->arsip->file_path) }}" target="_blank" class="mx-auto flex justify-center">
                                             <i class="fas fa-file px-4 py-[5px] text-xl text-white bg-yellow-500 hover:bg-yellow-600 rounded-lg"></i> 
                                         </a>
+                                    @else
+                                        <span class="text-gray-500 text-xs">Tidak ada file</span>
                                     @endif
-
                                 </td>
-
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
+                                    @if ($peminjaman->surat_kuasa)
+                                        <a href="{{ asset('storage/' . $peminjaman->surat_kuasa) }}" target="_blank" class="mx-auto flex justify-center">
+                                            <i class="fas fa-file-pdf px-4 py-[5px] text-xl text-white bg-red-500 hover:bg-red-600 rounded-lg"></i> 
+                                        </a>
+                                    @else
+                                        <span class="text-gray-500 text-xs">Tidak ada</span>
+                                    @endif
+                                </td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_minjam }}</td>
                                 <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->tgl_kembali }}</td>
-                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">{{ $peminjaman->status }}</td>
+                                <td class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
+                                    <span class="px-2 py-1 rounded-full text-xs font-semibold
+                                        @if($peminjaman->status == 'Dipinjam') 
+                                        @elseif($peminjaman->status == 'Dikembalikan') 
+                                        @elseif($peminjaman->status == 'Terlambat')
+                                        @endif">
+                                        {{ $peminjaman->status }}
+                                    </span>
+                                </td>
                                 @if (auth()->user() && in_array(auth()->user()->role, ['1', '2']))
                                 <td class="border-black border-b">
                                     <div class="flex items-center px-2 py-3 justify-center space-x-2">
@@ -150,13 +168,13 @@
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </form>
-                                        @endif
                                     </div>
                                 </td>
+                                @endif
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10" class="px-4 py-60 text-center text-xl text-gray-500 font-bold">Tidak ada peminjaman</td>
+                                    <td colspan="13" class="px-4 py-60 text-center text-xl text-gray-500 font-bold">Tidak ada peminjaman</td>
                                 </tr>
                             @endforelse
                     </tbody>

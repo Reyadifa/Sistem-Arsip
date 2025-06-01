@@ -15,13 +15,16 @@
         </div>
     </div>
 
+    {{-- Pesan Kesalahan --}}
     @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+        <div class="mb-4">
+            <div class="bg-red-200 border border-red-600 text-red-600 p-3 rounded-lg">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     @endif
 
@@ -29,20 +32,20 @@
         <i class="fas fa-book text-4xl text-blue-600 "></i>
         <h1>Edit Peminjaman</h1>
     </div>
-    <hr class="border-2 border-gray-500 w-[600px] mx-auto">
+    <hr class="border-2 border-black w-[600px] mx-auto">
 
-    <form action="{{ route('peminjaman.update', $peminjaman->id) }}" method="POST" class="  ">
+    <form action="{{ route('peminjaman.update', $peminjaman->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <main class="p-10 ">
+        <main class="p-10 bg-white max-1xl rounded-xl space-y-6 mx-2">
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
 
                 <!-- Dropdown untuk memilih NPWP dan Nama Usaha -->
-                <div class="mb-1">
-                    <label for="npwp" class="form-label">Pilih NPWP dan Nama Usaha</label>
+                <div>
+                    <label for="npwp" class="block font-bold text-black mb-1">Pilih NPWP dan Nama Usaha</label>
                     <select name="npwp" id="npwp"
-                        class="form-select w-full p-3 rounded-lg border-gray-500 border" onchange="updateArsipDropdown()">
+                        class="w-full p-3 rounded-lg border-black border" onchange="updateArsipDropdown()" required>
                         <option value="">Pilih NPWP dan Nama Usaha</option>
                         @foreach ($arsipsGrouped as $key => $arsips)
                             @php
@@ -57,65 +60,95 @@
                 </div>
 
                 <!-- Dropdown Arsip -->
-                <div class="mb-1">
-                    <label for="arsip_id" class="form-label">Pilih Arsip</label>
+                <div>
+                    <label for="arsip_id" class="block font-bold text-black mb-1">Pilih Arsip</label>
                     <select name="arsip_id" id="arsip_id"
-                        class="form-select w-full p-3 rounded-lg border-gray-500 border">
+                        class="w-full p-3 rounded-lg border-black border" required>
                         <option value="">Pilih Arsip</option>
                         <!-- Arsip akan dimuat melalui JavaScript -->
                     </select>
                 </div>
 
-                <!-- Tanggal Pinjam -->
-                <div class="mb-1">
-                    <label for="tgl_minjam" class="form-label">Tanggal Pinjam</label>
-                    <input type="date" class="form-control w-full p-3 rounded-lg border-gray-500 border"
-                        id="tgl_minjam" name="tgl_minjam" value="{{ old('tgl_minjam', $peminjaman->tgl_minjam) }}"
-                        required>
+                <!-- Input Tanggal Pinjam -->
+                <div>
+                    <label for="tgl_minjam" class="block font-bold text-black mb-1">Tanggal Pinjam</label>
+                    <input type="date" class="w-full p-3 rounded-lg border-black border" id="tgl_minjam"
+                        name="tgl_minjam" placeholder="Pilih Tanggal Pinjam" 
+                        value="{{ old('tgl_minjam', $peminjaman->tgl_minjam) }}" required>
                 </div>
 
-                <!-- Tanggal Kembali -->
-                <div class="mb-1">
-                    <label for="tgl_kembali" class="form-label">Tanggal Kembali</label>
-                    <input type="date" class="form-control w-full p-3 rounded-lg border-gray-500 border"
-                        id="tgl_kembali" name="tgl_kembali" value="{{ old('tgl_kembali', $peminjaman->tgl_kembali) }}">
+                <!-- Input Tanggal Kembali -->
+                <div>
+                    <label for="tgl_kembali" class="block font-bold text-black mb-1">Tanggal Kembali</label>
+                    <input type="date" class="w-full p-3 rounded-lg border-black border" id="tgl_kembali"
+                        name="tgl_kembali" placeholder="Pilih Tanggal Kembali" 
+                        value="{{ old('tgl_kembali', $peminjaman->tgl_kembali) }}" required>
                 </div>
 
-                <!-- Nama Peminjam -->
-                <div class="mb-1">
-                    <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
-                    <input type="text" class="form-control w-full p-3 rounded-lg border-gray-500 border"
-                        id="nama_peminjam" name="nama_peminjam"
+                <!-- Input Nama Peminjam -->
+                <div>
+                    <label for="nama_peminjam" class="block font-bold text-black mb-1">Nama Peminjam</label>
+                    <input type="text" class="w-full p-3 rounded-lg border-black border" id="nama_peminjam"
+                        name="nama_peminjam" placeholder="Masukkan Nama Peminjam" 
                         value="{{ old('nama_peminjam', $peminjaman->nama_peminjam) }}" required>
                 </div>
 
-                <!-- Status -->
-                <div class="mb-1">
-                    <label for="status" class="form-label">Status</label>
-                    <select name="status" id="status"
-                        class="form-select w-full p-3 rounded-lg border-gray-500 border" required>
-                        <option value="Dipinjam" {{ $peminjaman->status == 'Dipinjam' ? 'selected' : '' }}>Dipinjam
-                        </option>
-                        <option value="Dikembalikan" {{ $peminjaman->status == 'Dikembalikan' ? 'selected' : '' }} >
+                <!-- Dropdown Status -->
+                <div>
+                    <label for="status" class="block font-bold text-black mb-1">Status</label>
+                    <select name="status" id="status" class="w-full p-3 rounded-lg border-black border" required>
+                        <option value="Dipinjam" {{ old('status', $peminjaman->status) == 'Dipinjam' ? 'selected' : '' }}>Dipinjam</option>
+                        <option value="Dikembalikan" {{ old('status', $peminjaman->status) == 'Dikembalikan' ? 'selected' : '' }}>
                             Dikembalikan</option>
-                        <option value="Terlambat" {{ $peminjaman->status == 'Terlambat' ? 'selected' : '' }}>Terlambat
+                        <option value="Terlambat" {{ old('status', $peminjaman->status) == 'Terlambat' ? 'selected' : '' }}>Terlambat
                         </option>
                     </select>
                 </div>
 
+                <!-- Input Nomor HP -->
+                <div>
+                    <label for="nohp" class="block font-bold text-black mb-1">Nomor HP</label>
+                    <input type="text" name="nohp" id="nohp" 
+                        value="{{ old('nohp', $peminjaman->nohp) }}"
+                        class="w-full p-3 rounded-lg border border-black" required>
+                </div>
+
+                <!-- Upload Surat Kuasa -->
+                <div>
+                    <label for="surat_kuasa" class="block font-bold text-black mb-1">Upload Surat Kuasa
+                        (Opsional)</label>
+                    <input type="file" name="surat_kuasa" id="surat_kuasa" accept=".jpg,.jpeg,.png,.pdf"
+                        class="w-full p-3 rounded-lg border border-black">
+                    <small class="text-sm text-gray-500">Format: JPG, PNG, atau PDF. Maks. 2MB.</small>
+                    @if($peminjaman->surat_kuasa)
+                        <div class="mt-2">
+                            <small class="text-sm text-blue-600">
+                                File saat ini: 
+                                <a href="{{ asset('storage/' . $peminjaman->surat_kuasa) }}" target="_blank" class="underline">
+                                    {{ basename($peminjaman->surat_kuasa) }}
+                                </a>
+                            </small>
+                        </div>
+                    @endif
+                </div>
+
+                <!-- Textarea Keperluan -->
+                <div class="col-span-2">
+                    <label for="keperluan" class="block font-bold text-black mb-1">Keperluan</label>
+                    <textarea class="w-full px-3 pt-3 rounded-lg border-black border" id="keperluan" name="keperluan" rows="3"
+                        placeholder="Jelaskan keperluan Anda" required>{{ old('keperluan', $peminjaman->keperluan) }}</textarea>
+                </div>
+
             </div>
-            <!-- Keperluan -->
-            <div class="mb-1 mt-6">
-                <label for="keperluan" class="form-label">Keperluan</label>
-                <textarea class="form-control w-full px-3 pt-3 rounded-lg border-gray-500 border" id="keperluan" name="keperluan"
-                    rows="3" required>{{ old('keperluan', $peminjaman->keperluan) }}</textarea>
-            </div>
-            <div class="mt-12">
+
+            <!-- Tombol Simpan -->
+            <div class="text-center flex gap-5">
                 <button type="submit"
-                    class="btn btn-primary bg-green-500 px-8 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110 mr-4">Simpan</button>
-                <button
-                    class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">
-                    <a href="{{ route('peminjaman.index') }}" class="btn btn-secondary ">Kembali</a> </button>
+                    class="bg-green-500 px-8 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110">
+                    Simpan
+                </button>
+                <a href="{{ route('peminjaman.index') }}"
+                    class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 text-center text-xl font-semibold transform transition-transform duration-300 hover:scale-110">Kembali</a>
             </div>
         </main>
     </form>
@@ -124,19 +157,21 @@
 <script>
     const arsipsGrouped = @json($arsipsGrouped); // Mengambil data arsip yang dikelompokkan
 
-function updateArsipDropdown() {
-    const npwpSelect = document.getElementById('npwp');
-    const arsipSelect = document.getElementById('arsip_id');
-    const selectedNpwp = npwpSelect.value;
-    arsipSelect.innerHTML = '<option value="">Pilih Arsip</option>'; // Reset options
+    function updateArsipDropdown() {
+        const npwpSelect = document.getElementById('npwp');
+        const arsipSelect = document.getElementById('arsip_id');
+        const selectedNpwp = npwpSelect.value;
+        
+        arsipSelect.innerHTML = '<option value="">-- Pilih Arsip --</option>'; // Reset options
 
-    if (selectedNpwp) {
-        const arsips = arsipsGrouped[selectedNpwp]; // Ambil arsip yang sesuai dengan NPWP yang dipilih
-        if (arsips) {
+        if (selectedNpwp && arsipsGrouped[selectedNpwp]) {
+            const arsips = arsipsGrouped[selectedNpwp]; // Ambil arsip yang sesuai dengan NPWP yang dipilih
+            
             arsips.forEach(arsip => {
                 const option = document.createElement('option');
                 option.value = arsip.id;
-                option.textContent = `${arsip.nama_usaha} - NPWP: ${arsip.npwp}, Kategori: ${arsip.kategori ? arsip.kategori.nama_kategori : 'Tidak ada kategori'}, bulan: ${arsip.bulan}, tahun: ${arsip.tahun}`;
+                option.textContent = `${arsip.nama_usaha} - Kategori: ${arsip.kategori ? arsip.kategori.nama_kategori : 'Tidak ada kategori'}, Bulan: ${arsip.bulan}, Tahun: ${arsip.tahun}`;
+                
                 // Memilih arsip yang sesuai dengan arsip_id yang ada di peminjaman
                 if (arsip.id == {{ $peminjaman->arsip_id }}) {
                     option.selected = true;
@@ -145,11 +180,10 @@ function updateArsipDropdown() {
             });
         }
     }
-}
 
-// Jalankan fungsi saat halaman dimuat pertama kali
-window.onload = function() {
-    updateArsipDropdown();
-};
+    // Jalankan fungsi saat halaman dimuat pertama kali
+    document.addEventListener('DOMContentLoaded', function() {
+        updateArsipDropdown();
+    });
 </script>
 @endsection

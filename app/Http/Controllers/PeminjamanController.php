@@ -6,6 +6,8 @@ use App\Models\Peminjaman;
 use App\Models\Arsip;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 
 class PeminjamanController extends Controller
 {
@@ -25,6 +27,9 @@ class PeminjamanController extends Controller
             'tgl_minjam' => 'required|date',
             'tgl_kembali' => 'nullable|date',
             'status' => 'required|string',
+            'nohp' => 'required|string|max:15',
+            // Perbaikan: Gunakan konsisten 'file' untuk semua jenis file yang diizinkan
+            'surat_kuasa' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
         // Periksa apakah arsip sudah dipinjam atau terlambat dikembalikan
@@ -34,7 +39,7 @@ class PeminjamanController extends Controller
 
         if ($arsipDipinjam) {
             // Notifikasi arsip sudah dipinjam, tetap di halaman create
-            return redirect()->back()->withErrors(['arsip_id' => 'Arsip ini sedang dipinjam atau belum dikembalikan.']);
+            return redirect()->back()->withErrors(['arsip_id' => 'Arsip ini sedang dipinjam atau belum dikembalikan.'])->withInput();
         }
 
         // Simpan data peminjaman jika arsip tersedia
@@ -45,11 +50,20 @@ class PeminjamanController extends Controller
         $peminjaman->tgl_minjam = $request->tgl_minjam;
         $peminjaman->tgl_kembali = $request->tgl_kembali;
         $peminjaman->status = $request->status;
+        $peminjaman->nohp = $request->nohp;
+
+        // Handle upload surat kuasa - Perbaikan logika
+        if ($request->hasFile('surat_kuasa')) {
+            $file = $request->file('surat_kuasa');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('surat_kuasa', $filename, 'public');
+            $peminjaman->surat_kuasa = $path;
+        }
 
         // Ambil file arsip berdasarkan arsip_id
         $arsip = Arsip::find($request->arsip_id);
         if ($arsip) {
-            $peminjaman->file_path = $arsip->file_path;
+            $peminjaman->file_arsip = $arsip->file_path;
         }
 
         $peminjaman->save();
@@ -59,59 +73,93 @@ class PeminjamanController extends Controller
 
     public function index(Request $request)
     {
-    // Ambil query pencarian dari request
-    $search = $request->input('search');
+        // Ambil query pencarian dari request
+        $search = $request->input('search');
 
-    //filter pencarian dan status
-    $peminjamans = Peminjaman::query()
-        ->whereIn('status', ['Dipinjam', 'Terlambat']) // Filter status
-        ->when($search, function ($query, $search) {
-            $query->where(function ($query) use ($search) {
-                $query->where('nama_peminjam', 'like', "%{$search}%")
-                      ->orWhere('keperluan', 'like', "%{$search}%")
-                      ->orWhere('status', 'like', "%{$search}%");
-            });
-        })
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
+        //filter pencarian dan status
+        $peminjamans = Peminjaman::query()
+            ->whereIn('status', ['Dipinjam', 'Terlambat']) // Filter status
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('nama_peminjam', 'like', "%{$search}%")
+                        ->orWhere('keperluan', 'like', "%{$search}%")
+                        ->orWhere('status', 'like', "%{$search}%")
+                        ->orWhere('nohp', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         $currentDate = now();
-    foreach ($peminjamans as $peminjaman) {
-        if ($peminjaman->tgl_kembali && $currentDate->greaterThan($peminjaman->tgl_kembali) && $peminjaman->status === 'Dipinjam') {
-            $peminjaman->status = 'Terlambat';
-            $peminjaman->save();
+        foreach ($peminjamans as $peminjaman) {
+            if ($peminjaman->tgl_kembali && $currentDate->greaterThan($peminjaman->tgl_kembali) && $peminjaman->status === 'Dipinjam') {
+                $peminjaman->status = 'Terlambat';
+                $peminjaman->save();
+            }
         }
+
+        // Kirimkan data ke view
+        return view('peminjaman.index', compact('peminjamans'));
     }
 
-    // Kirimkan data ke view
-    return view('peminjaman.index', compact('peminjamans'));
-}
+    public function history(Request $request)
+    {
+        // Ambil query pencarian dari request
+        $search = $request->input('search');
 
+        // Query peminjaman dengan filter pencarian dan status
+        $peminjamans = Peminjaman::query()
+            ->where('status', 'Dikembalikan') // Filter status
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('nama_peminjam', 'like', "%{$search}%")
+                        ->orWhere('keperluan', 'like', "%{$search}%")
+                        ->orWhere('status', 'like', "%{$search}%")
+                        ->orWhere('nohp', 'like', "%{$search}%");
+                });
+            })
+            ->paginate(10);
 
-public function history(Request $request)
-{
-    // Ambil query pencarian dari request
-    $search = $request->input('search');
+        // Kirimkan data ke view
+        return view('history.index', compact('peminjamans'));
+    }
 
-    // Query peminjaman dengan filter pencarian dan status
-    $peminjamans = Peminjaman::query()
-        ->where('status', 'Dikembalikan') // Filter status
-        ->when($search, function ($query, $search) {
-            $query->where(function ($query) use ($search) {
-                $query->where('nama_peminjam', 'like', "%{$search}%")
-                      ->orWhere('keperluan', 'like', "%{$search}%")
-                      ->orWhere('status', 'like', "%{$search}%");
-            });
-        })
-        ->paginate(10);
+    public function exportPdf(Request $request)
+    {
+        // Ambil query pencarian dari request (jika ada)
+        $search = $request->input('search');
 
-    // Kirimkan data ke view
-    return view('history.index', compact('peminjamans'));
-}
+        // Query peminjaman dengan filter pencarian dan status (tanpa pagination untuk PDF)
+        $peminjamans = Peminjaman::query()
+            ->where('status', 'Dikembalikan')
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('nama_peminjam', 'like', "%{$search}%")
+                        ->orWhere('keperluan', 'like', "%{$search}%")
+                        ->orWhere('status', 'like', "%{$search}%")
+                        ->orWhere('nohp', 'like', "%{$search}%");
+                });
+            })
+            ->with(['arsip.kategori']) // Eager loading untuk performa
+            ->get();
+
+        // Load view untuk PDF
+        $pdf = PDF::loadView('history.pdf', compact('peminjamans', 'search'));
+
+        // Set paper orientation dan size
+        $pdf->setPaper('A4', 'landscape');
+
+        // Generate filename dengan timestamp
+        $filename = 'history-peminjaman-' . date('Y-m-d-H-i-s') . '.pdf';
+
+        // Download PDF
+        return $pdf->download($filename);
+    }
+
     public function edit($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
-        
+
         // Ambil semua arsip dan kelompokkan berdasarkan NPWP
         $arsips = Arsip::all();
         $arsipsGrouped = $arsips->groupBy('npwp'); // Mengelompokkan arsip berdasarkan NPWP
@@ -122,7 +170,7 @@ public function history(Request $request)
 
     public function update(Request $request, $id)
     {
-        // Validasi data input
+        // Validasi data input - Perbaikan: gunakan 'file' konsisten
         $request->validate([
             'npwp' => 'required|string', // Validasi npwp
             'arsip_id' => 'required|integer', // Validasi arsip_id
@@ -131,6 +179,9 @@ public function history(Request $request)
             'tgl_minjam' => 'required|date',
             'tgl_kembali' => 'required|date',
             'status' => 'required|string',
+            'nohp' => 'required|string|max:15',
+            // Perbaikan: Gunakan 'file' bukan 'image' agar konsisten dengan store()
+            'surat_kuasa' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
         // Cari data peminjaman berdasarkan ID
@@ -138,10 +189,25 @@ public function history(Request $request)
 
         // Cari arsip berdasarkan npwp yang dipilih
         $arsip = Arsip::where('npwp', $request->npwp)->first();
-        
+
         // Jika arsip tidak ditemukan, kembalikan error
         if (!$arsip) {
             return redirect()->back()->withErrors(['npwp' => 'NPWP tidak ditemukan dalam arsip.']);
+        }
+
+        // Handle upload surat kuasa baru
+        if ($request->hasFile('surat_kuasa')) {
+            // Hapus file lama jika ada
+            if ($peminjaman->surat_kuasa && Storage::disk('public')->exists($peminjaman->surat_kuasa)) {
+                Storage::disk('public')->delete($peminjaman->surat_kuasa);
+            }
+
+            $file = $request->file('surat_kuasa');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('surat_kuasa', $filename, 'public');
+            $surat_kuasa = $path;
+        } else {
+            $surat_kuasa = $peminjaman->surat_kuasa; // Pertahankan file lama
         }
 
         // Perbarui data peminjaman
@@ -152,6 +218,8 @@ public function history(Request $request)
             'tgl_minjam' => $request->tgl_minjam,
             'tgl_kembali' => $request->tgl_kembali,
             'status' => $request->status,
+            'nohp' => $request->nohp,
+            'surat_kuasa' => $surat_kuasa,
         ]);
 
         // Redirect kembali ke halaman index dengan pesan sukses
@@ -171,6 +239,11 @@ public function history(Request $request)
     {
         // Cari data peminjaman berdasarkan id
         $peminjaman = Peminjaman::findOrFail($id);
+
+        // Hapus file surat kuasa jika ada
+        if ($peminjaman->surat_kuasa && Storage::disk('public')->exists($peminjaman->surat_kuasa)) {
+            Storage::disk('public')->delete($peminjaman->surat_kuasa);
+        }
 
         // Hapus data peminjaman
         $peminjaman->delete();
