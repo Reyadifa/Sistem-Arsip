@@ -3,7 +3,6 @@
 @section('content')
     @include('layouts.sidebar')
 
-
     <div>
         <div class="">
 
@@ -45,6 +44,26 @@
         </div>
 
         <hr class="border-2 border-black w-[600px] mx-auto">
+
+        <!-- Pilihan Jenis Form -->
+        <div class="bg-gray-50 p-6 rounded-lg border-2 border-gray-300 mb-6">
+            <h3 class="text-lg font-bold text-gray-800 mb-4 text-center">Pilih Jenis Peminjaman</h3>
+            <div class="flex justify-center gap-6">
+                <label class="flex items-center cursor-pointer">
+                    <input type="radio" name="form_type" value="with_surat" id="with_surat" class="mr-3 w-4 h-4" checked onchange="toggleSuratKuasa()">
+                    <span class="text-md font-semibold text-blue-600">
+                        <i class="fas fa-file-contract mr-2"></i>Dengan Surat Kuasa
+                    </span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                    <input type="radio" name="form_type" value="without_surat" id="without_surat" class="mr-3 w-4 h-4" onchange="toggleSuratKuasa()">
+                    <span class="text-md font-semibold text-green-600">
+                        <i class="fas fa-file-alt mr-2"></i>Tanpa Surat Kuasa
+                    </span>
+                </label>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
 
             <!-- Dropdown untuk memilih NPWP dan Nama Usaha -->
@@ -115,10 +134,10 @@
                     class="w-full p-3 rounded-lg border border-black" required>
             </div>
 
-            <!-- Upload Surat Kuasa -->
-            <div>
+            <!-- Upload Surat Kuasa - Kondisional -->
+            <div id="surat_kuasa_section">
                 <label for="surat_kuasa" class="block font-bold text-black mb-1">Upload Surat Kuasa
-                    (Opsional)</label>
+                    <span class="text-red-500">*</span></label>
                 <input type="file" name="surat_kuasa" id="surat_kuasa" accept=".jpg,.jpeg,.png,.pdf"
                     class="w-full p-3 rounded-lg border border-black">
                 <small class="text-sm text-gray-500">Format: JPG, PNG, atau PDF. Maks. 2MB.</small>
@@ -149,6 +168,23 @@
 
     <script>
         const arsipsGrouped = @json($arsipsGrouped);
+
+        // Function untuk toggle surat kuasa section
+        function toggleSuratKuasa() {
+            const withSurat = document.getElementById('with_surat').checked;
+            const suratKuasaSection = document.getElementById('surat_kuasa_section');
+            const suratKuasaInput = document.getElementById('surat_kuasa');
+            
+            if (withSurat) {
+                suratKuasaSection.style.display = 'block';
+                suratKuasaSection.querySelector('label span').style.display = 'inline'; // Show required asterisk
+                suratKuasaInput.setAttribute('required', 'required');
+            } else {
+                suratKuasaSection.style.display = 'none';
+                suratKuasaInput.removeAttribute('required');
+                suratKuasaInput.value = ''; // Clear file input
+            }
+        }
 
         function updateArsipDropdown() {
             const npwpSelect = document.getElementById('npwp');
@@ -182,6 +218,9 @@
             if (npwpSelect.value) {
                 updateArsipDropdown();
             }
+            
+            // Initialize surat kuasa visibility
+            toggleSuratKuasa();
         });
     </script>
 

@@ -28,24 +28,45 @@
         </div>
     @endif
 
-    <div class="text-center text-2xl font-bold sm:text-3xl mb-6 mt-14 flex mx-auto justify-center gap-x-3 text-blue-600">
-        <i class="fas fa-book text-4xl text-blue-600 "></i>
-        <h1>Edit Peminjaman</h1>
-    </div>
-    <hr class="border-2 border-black w-[600px] mx-auto">
-
     <form action="{{ route('peminjaman.update', $peminjaman->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        
         <main class="p-10 bg-white max-1xl rounded-xl space-y-6 mx-2">
+            <div class="text-center text-2xl font-bold sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
+                <i class="fas fa-book text-4xl text-blue-600 "></i>
+                <h1>Edit Peminjaman</h1>
+            </div>
+
+            <hr class="border-2 border-black w-[600px] mx-auto">
+
+            <!-- Pilihan Jenis Form -->
+            <div class="bg-gray-50 p-6 rounded-lg border-2 border-gray-300 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 text-center">Pilih Jenis Peminjaman</h3>
+                <div class="flex justify-center gap-6">
+                    <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="form_type" value="with_surat" id="with_surat" class="mr-3 w-4 h-4" 
+                               {{ $peminjaman->surat_kuasa ? 'checked' : '' }} onchange="toggleSuratKuasa()">
+                        <span class="text-md font-semibold text-blue-600">
+                            <i class="fas fa-file-contract mr-2"></i>Dengan Surat Kuasa
+                        </span>
+                    </label>
+                    <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="form_type" value="without_surat" id="without_surat" class="mr-3 w-4 h-4" 
+                               {{ !$peminjaman->surat_kuasa ? 'checked' : '' }} onchange="toggleSuratKuasa()">
+                        <span class="text-md font-semibold text-green-600">
+                            <i class="fas fa-file-alt mr-2"></i>Tanpa Surat Kuasa
+                        </span>
+                    </label>
+                </div>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
 
                 <!-- Dropdown untuk memilih NPWP dan Nama Usaha -->
                 <div>
                     <label for="npwp" class="block font-bold text-black mb-1">Pilih NPWP dan Nama Usaha</label>
-                    <select name="npwp" id="npwp"
-                        class="w-full p-3 rounded-lg border-black border" onchange="updateArsipDropdown()" required>
+                    <select name="npwp" id="npwp" class="w-full p-3 rounded-lg border-black border" onchange="updateArsipDropdown()" required>
                         <option value="">Pilih NPWP dan Nama Usaha</option>
                         @foreach ($arsipsGrouped as $key => $arsips)
                             @php
@@ -62,10 +83,8 @@
                 <!-- Dropdown Arsip -->
                 <div>
                     <label for="arsip_id" class="block font-bold text-black mb-1">Pilih Arsip</label>
-                    <select name="arsip_id" id="arsip_id"
-                        class="w-full p-3 rounded-lg border-black border" required>
+                    <select name="arsip_id" id="arsip_id" class="w-full p-3 rounded-lg border-black border" onchange="updateFileInfo()" required disabled>
                         <option value="">Pilih Arsip</option>
-                        <!-- Arsip akan dimuat melalui JavaScript -->
                     </select>
                 </div>
 
@@ -113,21 +132,29 @@
                         class="w-full p-3 rounded-lg border border-black" required>
                 </div>
 
-                <!-- Upload Surat Kuasa -->
-                <div>
+                <!-- Upload Surat Kuasa - Kondisional -->
+                <div id="surat_kuasa_section">
                     <label for="surat_kuasa" class="block font-bold text-black mb-1">Upload Surat Kuasa
-                        (Opsional)</label>
+                        <span class="text-red-500">*</span></label>
                     <input type="file" name="surat_kuasa" id="surat_kuasa" accept=".jpg,.jpeg,.png,.pdf"
                         class="w-full p-3 rounded-lg border border-black">
                     <small class="text-sm text-gray-500">Format: JPG, PNG, atau PDF. Maks. 2MB.</small>
                     @if($peminjaman->surat_kuasa)
-                        <div class="mt-2">
+                        <div class="mt-2" id="existing_file">
                             <small class="text-sm text-blue-600">
                                 File saat ini: 
                                 <a href="{{ asset('storage/' . $peminjaman->surat_kuasa) }}" target="_blank" class="underline">
                                     {{ basename($peminjaman->surat_kuasa) }}
                                 </a>
                             </small>
+                            <div class="mt-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" name="hapus_surat_kuasa" id="hapus_surat_kuasa" class="mr-2" onchange="toggleHapusSurat()">
+                                    <span class="text-sm text-red-600 font-semibold">
+                                        <i class="fas fa-trash mr-1"></i>Hapus surat kuasa yang ada
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -155,35 +182,83 @@
 </div>
 
 <script>
-    const arsipsGrouped = @json($arsipsGrouped); // Mengambil data arsip yang dikelompokkan
+    const arsipsGrouped = @json($arsipsGrouped);
+
+    // Function untuk toggle surat kuasa section
+    function toggleSuratKuasa() {
+        const withSurat = document.getElementById('with_surat').checked;
+        const suratKuasaSection = document.getElementById('surat_kuasa_section');
+        const suratKuasaInput = document.getElementById('surat_kuasa');
+        
+        if (withSurat) {
+            suratKuasaSection.style.display = 'block';
+            suratKuasaSection.querySelector('label span').style.display = 'inline'; // Show required asterisk
+            suratKuasaInput.setAttribute('required', 'required');
+        } else {
+            suratKuasaSection.style.display = 'none';
+            suratKuasaInput.removeAttribute('required');
+            suratKuasaInput.value = ''; // Clear file input
+            // Clear hapus checkbox jika ada
+            const hapusCheckbox = document.getElementById('hapus_surat_kuasa');
+            if (hapusCheckbox) {
+                hapusCheckbox.checked = false;
+            }
+        }
+    }
+
+    // Function untuk toggle hapus surat kuasa
+    function toggleHapusSurat() {
+        const hapusCheckbox = document.getElementById('hapus_surat_kuasa');
+        const suratKuasaInput = document.getElementById('surat_kuasa');
+        
+        if (hapusCheckbox.checked) {
+            suratKuasaInput.removeAttribute('required');
+            suratKuasaInput.value = ''; // Clear file input
+        } else {
+            const withSurat = document.getElementById('with_surat').checked;
+            if (withSurat) {
+                suratKuasaInput.setAttribute('required', 'required');
+            }
+        }
+    }
 
     function updateArsipDropdown() {
         const npwpSelect = document.getElementById('npwp');
         const arsipSelect = document.getElementById('arsip_id');
         const selectedNpwp = npwpSelect.value;
-        
-        arsipSelect.innerHTML = '<option value="">-- Pilih Arsip --</option>'; // Reset options
+
+        arsipSelect.innerHTML = '<option value="">-- Pilih Arsip --</option>'; // reset
 
         if (selectedNpwp && arsipsGrouped[selectedNpwp]) {
-            const arsips = arsipsGrouped[selectedNpwp]; // Ambil arsip yang sesuai dengan NPWP yang dipilih
-            
-            arsips.forEach(arsip => {
-                const option = document.createElement('option');
+            arsipSelect.disabled = false;
+
+            arsipsGrouped[selectedNpwp].forEach(arsip => {
+                let option = document.createElement('option');
                 option.value = arsip.id;
-                option.textContent = `${arsip.nama_usaha} - Kategori: ${arsip.kategori ? arsip.kategori.nama_kategori : 'Tidak ada kategori'}, Bulan: ${arsip.bulan}, Tahun: ${arsip.tahun}`;
+                option.textContent = 
+                    `${arsip.nama_usaha} - Kategori: ${arsip.kategori.nama_kategori}, Bulan: ${arsip.bulan}, Tahun: ${arsip.tahun}`;
                 
-                // Memilih arsip yang sesuai dengan arsip_id yang ada di peminjaman
+                // Set selected jika sesuai dengan arsip_id peminjaman
                 if (arsip.id == {{ $peminjaman->arsip_id }}) {
                     option.selected = true;
                 }
                 arsipSelect.appendChild(option);
             });
+        } else {
+            arsipSelect.disabled = true;
         }
     }
 
-    // Jalankan fungsi saat halaman dimuat pertama kali
-    document.addEventListener('DOMContentLoaded', function() {
-        updateArsipDropdown();
+    // On page load, set dropdown arsip sesuai npwp lama
+    document.addEventListener('DOMContentLoaded', () => {
+        const npwpSelect = document.getElementById('npwp');
+        if (npwpSelect.value) {
+            updateArsipDropdown();
+        }
+        
+        // Initialize surat kuasa visibility
+        toggleSuratKuasa();
     });
 </script>
+
 @endsection
