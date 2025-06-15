@@ -30,7 +30,7 @@
                 <div class="form-container p-8 rounded-lg">
 
                     @if (session('success'))
-                        <div class="bg-green-500 text-white p-3 mb-4 rounded relative">
+                        <div class="notification-success bg-green-500 text-white p-3 mb-4 rounded relative">
                             {{ session('success') }}
                             <button onclick="this.parentElement.style.display='none'" 
                                     class="absolute top-2 right-2 text-white text-xl bg-transparent border-none cursor-pointer">
@@ -40,7 +40,7 @@
                     @endif
 
                     @if ($errors->any())
-                        <div class="bg-red-500 text-white p-3 mb-4 rounded relative">
+                        <div class="notification-error bg-red-500 text-white p-3 mb-4 rounded relative">
                             <ul class="mb-0">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -154,7 +154,7 @@
                         <!-- Buttons -->
                         <div class="pt-10">
                             <button type="submit"
-                                class="bg-green-500 px-6 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110 mr-4">
+                                class="btn-submit bg-green-500 px-6 py-3 rounded-lg text-white text-xl hover:bg-green-600 font-bold transform transition-transform duration-300 hover:scale-110 mr-4">
                                 Simpan
                             </button>
 
@@ -184,7 +184,7 @@
             }
         }
 
-        // Event listeners
+        // Event listeners untuk toggle password
         document.getElementById('tombol').addEventListener('click', () => {
             togglePassword("password", "eye-icon");
         });
@@ -193,9 +193,9 @@
             togglePassword("password_confirmation", "eye-icon-confirmation");
         });
 
-        // Auto-hide notifications after 5 seconds
+        // Auto-hide notifications after 5 seconds (hanya untuk notifikasi, bukan tombol)
         setTimeout(() => {
-            const notifications = document.querySelectorAll('.bg-green-500, .bg-red-500');
+            const notifications = document.querySelectorAll('.notification-success, .notification-error');
             notifications.forEach(notification => {
                 if (notification.style.display !== 'none') {
                     notification.style.opacity = '0';
