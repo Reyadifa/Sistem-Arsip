@@ -8,33 +8,40 @@ class CreatePeminjamanTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
-{
-    Schema::create('peminjaman', function (Blueprint $table) {
-        $table->id(); // Primary key untuk tabel peminjaman
-        $table->unsignedBigInteger('arsip_id'); // Foreign key ke tabel arsip
-        $table->string('nama_peminjam');
-        $table->text('keperluan');
-        $table->date('tgl_minjam');
-        $table->date('tgl_kembali')->nullable();
-        $table->string('status')->default('dipinjam');
-        $table->string('file_arsip')->nullable(); // Field baru untuk menyimpan file arsip
-        $table->string('surat_kuasa')->nullable();
-        $table->string('nohp');
-        $table->timestamps();
-    
-        // Foreign key relationship
-        $table->foreign('arsip_id')->references('id')->on('arsips')->onDelete('cascade');
-    });
-}
+    {
+        Schema::create('peminjaman', function (Blueprint $table) {
+            $table->id(); // Primary key
+
+            // Foreign key ke arsips
+            $table->unsignedBigInteger('arsip_id');
+            $table->foreign('arsip_id')->references('id')->on('arsips')->onDelete('cascade');
+
+            // (Opsional) Foreign key ke usahas (jika ingin langsung simpan usaha_id juga)
+            $table->unsignedBigInteger('usaha_id');
+            $table->foreign('usaha_id')->references('id')->on('usahas')->onDelete('cascade');
+
+            // Informasi peminjam
+            $table->string('nama_peminjam');
+            $table->string('nohp');
+            $table->text('keperluan');
+            $table->date('tgl_minjam');
+            $table->date('tgl_kembali')->nullable();
+
+            // Dokumen pendukung
+            $table->string('surat_kuasa')->nullable(); // File surat kuasa (opsional)
+            $table->string('file_arsip')->nullable();  // Scan atau file arsip tambahan (opsional)
+
+            // Status peminjaman
+            $table->string('status')->default('dipinjam'); // dipinjam, dikembalikan, dll
+
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

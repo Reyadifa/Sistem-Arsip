@@ -19,16 +19,19 @@ class Peminjaman extends Model
         'tgl_minjam',
         'tgl_kembali',
         'status',
-        'file_arsip', // Tambahkan ini
+        'file_arsip',
+        'nohp',
+        'surat_kuasa',
+        
     ];
 
     public function arsip()
     {
-        return $this->belongsTo(Arsip::class, 'arsip_id');
+        return $this->belongsTo(Arsip::class);
     }
 
-    public function peminjam()
+    public function usaha()
     {
-        return $this->belongsTo(Peminjaman::class, 'peminjam_id');
+        return $this->belongsTo(Usaha::class);
     }
 }

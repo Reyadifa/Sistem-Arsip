@@ -22,6 +22,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/history/export-pdf', [PeminjamanController::class, 'exportPdf'])->name('history.exportPdf');
     Route::get('/arsip/trash', [ArsipController::class, 'trash'])->name('arsip.trash');
     Route::patch('/arsip/restore/{id}', [ArsipController::class, 'restore'])->name('arsip.restore');
+    Route::put('peminjaman/{id}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('peminjaman.kembalikan');
+
     
     Route::middleware([CheckRole::class . ':pendataan,pelayanan'])->group(function () {
         Route::resource('peminjaman', PeminjamanController::class);
