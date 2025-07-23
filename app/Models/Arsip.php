@@ -4,13 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Arsip extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'id_kategori', 'nama_usaha', 'alamat_usaha', 'nama_pemilik', 'alamat_pemilik', 'npwp', 'bulan', 'tahun', 'file_path',
+        'id_kategori',
+        'usaha_id',
+        'bulan',
+        'tahun',
+        'file_path',
     ];
 
     public function kategori()
@@ -21,5 +26,10 @@ class Arsip extends Model
     public function peminjaman()
     {
         return $this->hasMany(Peminjaman::class, 'arsip_id');
+    }
+
+    public function usaha()
+    {
+        return $this->belongsTo(Usaha::class);
     }
 }

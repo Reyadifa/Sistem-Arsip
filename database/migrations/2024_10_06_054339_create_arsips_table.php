@@ -9,14 +9,14 @@ class CreateArsipsTable extends Migration
     public function up()
     {
         Schema::create('arsips', function (Blueprint $table) {
-            $table->id(); // ID Arsip
-            $table->unsignedBigInteger('id_kategori')->nullable(); // Atur kolom ini menjadi nullable
+            $table->id();
+
+            $table->unsignedBigInteger('id_kategori')->nullable();
             $table->foreign('id_kategori')->references('id_kategori')->on('kategoris')->onDelete('cascade');
-            $table->string('nama_usaha');
-            $table->string('alamat_usaha');
-            $table->string('nama_pemilik');
-            $table->string('alamat_pemilik');
-            $table->string('npwp');
+
+            $table->unsignedBigInteger('usaha_id');
+            $table->foreign('usaha_id')->references('id')->on('usahas')->onDelete('cascade');
+
             $table->string('bulan');
             $table->integer('tahun');
             $table->string('file_path')->nullable();

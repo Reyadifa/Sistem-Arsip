@@ -15,6 +15,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/usahas" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
+                        <span class="material-icons">book</span>
+                        <span class="ml-2">Usaha</span>
+                    </a>
+                </li>
+                <li>
                     <a href="/arsip" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
                         <span class="material-icons">archive</span>
                         <span class="ml-2">Arsip</span>
@@ -42,6 +48,12 @@
                     <a href="/users" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
                         <span class="material-icons">person</span>
                         <span class="ml-2">User</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/arsip/trash" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition duration-150">
+                        <span class="material-icons">restore</span>
+                        <span class="ml-2">Restore Arsip</span>
                     </a>
                 </li>
 
