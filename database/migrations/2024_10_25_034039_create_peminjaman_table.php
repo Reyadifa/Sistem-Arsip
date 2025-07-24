@@ -18,10 +18,6 @@ class CreatePeminjamanTable extends Migration
             $table->unsignedBigInteger('arsip_id');
             $table->foreign('arsip_id')->references('id')->on('arsips')->onDelete('cascade');
 
-            // (Opsional) Foreign key ke usahas (jika ingin langsung simpan usaha_id juga)
-            $table->unsignedBigInteger('usaha_id');
-            $table->foreign('usaha_id')->references('id')->on('usahas')->onDelete('cascade');
-
             // Informasi peminjam
             $table->string('nama_peminjam');
             $table->string('nohp');

@@ -13,7 +13,23 @@ class PeminjamanController extends Controller
     public function create()
     {
         $arsips = Arsip::with(['kategori', 'usaha'])->get();
-        $arsipsGrouped = $arsips->groupBy(fn($arsip) => optional($arsip->usaha)->npwp);
+
+        $arsipsGrouped = [];
+
+        foreach ($arsips as $arsip) {
+            $npwp = optional($arsip->usaha)->npwp;
+            if (!$npwp) continue;
+
+            $arsipsGrouped[$npwp][] = [
+                'id' => $arsip->id,
+                'kategori' => [
+                    'nama_kategori' => optional($arsip->kategori)->nama_kategori,
+                ],
+                'bulan' => $arsip->bulan,
+                'tahun' => $arsip->tahun,
+            ];
+        }
+
         return view('peminjaman.create', compact('arsipsGrouped'));
     }
 
@@ -64,7 +80,7 @@ class PeminjamanController extends Controller
 
         $arsip = Arsip::find($request->arsip_id);
         $peminjaman->file_arsip = $arsip->file_path ?? null;
-        
+
         $peminjaman->save();
 
         return redirect()->route('peminjaman.index')->with('success', 'Peminjaman berhasil disimpan.');

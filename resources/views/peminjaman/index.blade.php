@@ -80,8 +80,6 @@
                                 </th>
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black">Nama
                                     Usaha</th>
-                                <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black">
-                                    Kategori</th>
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black">Tahun
                                 </th>
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black">Bulan
@@ -112,9 +110,6 @@
                                     </td>
                                     <td class="px-4 py-3 text-center text-xs border-r border-black">
                                         {{ $peminjaman->arsip->usaha->nama_usaha ?? '-' }}
-                                    </td>
-                                    <td class="px-4 py-3 text-center text-xs border-r border-black">
-                                        {{ $peminjaman->arsip->kategori->nama_kategori ?? '-' }}
                                     </td>
                                     <td class="px-4 py-3 text-center text-xs border-r border-black">
                                         {{ $peminjaman->arsip->tahun ?? '-' }}</td>

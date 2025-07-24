@@ -138,7 +138,6 @@
                 <th class="col-no">No</th>
                 <th class="col-nama">Nama Peminjam</th>
                 <th class="col-arsip">Nama Arsip Yang Dipinjam</th>
-                <th class="col-kategori">Kategori</th>
                 <th class="col-tahun">Tahun Arsip</th>
                 <th class="col-bulan">Bulan Arsip</th>
                 <th class="col-tgl-pinjam">Tanggal Pinjam</th>
@@ -151,8 +150,7 @@
                 <tr>
                     <td class="text-center">{{ $index + 1 }}</td>
                     <td class="text-left">{{ $peminjaman->nama_peminjam }}</td>
-                    <td class="text-left">{{ $peminjaman->arsip->nama_usaha ?? '-' }}</td>
-                    <td class="text-left">{{ $peminjaman->arsip->kategori->nama_kategori ?? '-' }}</td>
+                    <td class="text-left">{{ optional($peminjaman->arsip->usaha)->nama_usaha ?? '-' }}</td>
                     <td class="text-center">{{ $peminjaman->arsip->tahun ?? '-' }}</td>
                     <td class="text-center">{{ $peminjaman->arsip->bulan ?? '-' }}</td>
                     <td class="text-center">{{ $peminjaman->tgl_minjam }}</td>

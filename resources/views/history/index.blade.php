@@ -63,9 +63,6 @@
                                     class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">
                                     Nama Arsip Yang Dipinjam</th>
                                 <th
-                                    class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">
-                                    Kategori</th>
-                                <th
                                     class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     Tahun Arsip Yang Dipinjam</th>
                                 <th
@@ -100,10 +97,8 @@
                                             {{ $peminjaman->nama_peminjam }}</td>
                                         <td
                                             class="px-4 py-3 text-left text-xs text-black-500 border-r border-black border-b">
-                                            {{ $peminjaman->arsip->nama_usaha }}</td>
-                                        <td
-                                            class="px-4 py-3 text-left text-xs text-black-500 border-r border-black border-b">
-                                            {{ $peminjaman->arsip->kategori->nama_kategori }}</td>
+                                            {{ optional($peminjaman->arsip->usaha)->nama_usaha ?? '-' }}
+                                        </td>
                                         <td
                                             class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                             {{ $peminjaman->arsip->tahun }}</td>

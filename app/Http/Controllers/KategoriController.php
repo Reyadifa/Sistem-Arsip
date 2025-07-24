@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Arsip;
+use App\Models\Usaha;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -14,9 +14,9 @@ class KategoriController extends Controller
         $kategoris = Kategori::when($search, function ($query) use ($search) {
             return $query->where('nama_kategori', 'like', '%' . $search . '%');
         })
-        ->orderBy('created_at', 'desc')
-        ->paginate(12)->appends(request()->query());
-        
+            ->orderBy('created_at', 'desc')
+            ->paginate(12)->appends(request()->query());
+
         return view('kategori.index', compact('search', 'kategoris'));
     }
 
@@ -28,23 +28,23 @@ class KategoriController extends Controller
     }
 
     public function store(Request $request)
-{
-    // Validasi input
-    $request->validate([
-        'nama_kategori' => 'required',
-    ]);
+    {
+        // Validasi input
+        $request->validate([
+            'nama_kategori' => 'required',
+        ]);
 
-    // Cek apakah kategori dengan nama yang sama sudah ada
-    $existingKategori = Kategori::where('nama_kategori', $request->nama_kategori)->first();
-    if ($existingKategori) {
-        return redirect()->back()->withErrors(['nama_kategori' => 'Kategori dengan nama ini sudah ada.'])->withInput();
+        // Cek apakah kategori dengan nama yang sama sudah ada
+        $existingKategori = Kategori::where('nama_kategori', $request->nama_kategori)->first();
+        if ($existingKategori) {
+            return redirect()->back()->withErrors(['nama_kategori' => 'Kategori dengan nama ini sudah ada.'])->withInput();
+        }
+
+        // Simpan kategori baru
+        Kategori::create($request->all());
+
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
-
-    // Simpan kategori baru
-    Kategori::create($request->all());
-
-    return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
-}
 
     public function edit(Kategori $kategori)
     {
@@ -58,11 +58,11 @@ class KategoriController extends Controller
             'nama_kategori' => 'required',
         ]);
 
-           // Cek apakah kategori dengan nama yang sama sudah ada
-    $existingKategori = Kategori::where('nama_kategori', $request->nama_kategori)->first();
-    if ($existingKategori) {
-        return redirect()->back()->withErrors(['nama_kategori' => 'Kategori dengan nama ini sudah ada.'])->withInput();
-    }
+        // Cek apakah kategori dengan nama yang sama sudah ada
+        $existingKategori = Kategori::where('nama_kategori', $request->nama_kategori)->first();
+        if ($existingKategori) {
+            return redirect()->back()->withErrors(['nama_kategori' => 'Kategori dengan nama ini sudah ada.'])->withInput();
+        }
 
         // Update kategori
         $kategori->update($request->all());
@@ -74,13 +74,13 @@ class KategoriController extends Controller
     {
         // Temukan kategori
         $kategori = Kategori::findOrFail($id_kategori);
-        Arsip::where('id_kategori', $id_kategori)->update(['id_kategori' => null]);
+
+        // Set kolom id_kategori di tabel usahas menjadi null
+        Usaha::where('id_kategori', $id_kategori)->update(['id_kategori' => null]);
 
         // Hapus kategori
         $kategori->delete();
 
         return redirect()->route('kategori.index')->with('success_delete', 'Kategori berhasil dihapus.');
     }
-
-
 }

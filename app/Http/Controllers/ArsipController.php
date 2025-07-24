@@ -129,4 +129,18 @@ class ArsipController extends Controller
         $arsip->restore();
         return redirect()->route('arsip.trash')->with('success', 'Arsip berhasil dipulihkan.');
     }
+
+    public function forceDelete($id)
+    {
+        $arsip = Arsip::withTrashed()->findOrFail($id);
+
+        // Hapus file fisik jika ada
+        if ($arsip->file_path && Storage::disk('public')->exists($arsip->file_path)) {
+            Storage::disk('public')->delete($arsip->file_path);
+        }
+
+        $arsip->forceDelete();
+
+        return redirect()->route('arsip.trash')->with('success_delete', 'Arsip dihapus secara permanen.');
+    }
 }
