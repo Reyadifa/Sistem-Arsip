@@ -10,6 +10,7 @@ class Usaha extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_kategori',
         'nama_usaha',
         'alamat_usaha',
         'npwp',
@@ -20,5 +21,10 @@ class Usaha extends Model
     public function arsips()
     {
         return $this->hasMany(Arsip::class);
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori');
     }
 }

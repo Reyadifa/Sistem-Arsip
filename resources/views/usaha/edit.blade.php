@@ -32,7 +32,8 @@
                     </div>
                 @endif
 
-                <div class="text-center text-2xl font-bold sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
+                <div
+                    class="text-center text-2xl font-bold sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
                     <span class="material-icons text-blue-500 text-4xl">edit</span>
                     <h1>Edit Usaha</h1>
                 </div>
@@ -42,6 +43,20 @@
                 <form action="{{ route('usahas.update', $usaha->id) }}" method="POST">
                     @csrf
                     @method('PUT')
+                    {{-- Kategori --}}
+                    <div class="mb-4 mt-10">
+                        <label for="id_kategori" class="block mb-2 text-sm font-bold text-black">Kategori</label>
+                        <select name="id_kategori" id="id_kategori"
+                            class="w-full rounded-lg p-3 text-sm border border-gray-500" required>
+                            <option value="" disabled selected>Pilih Kategori</option>
+                            @foreach ($kategoris as $kategori)
+                                <option value="{{ $kategori->id_kategori }}"
+                                    {{ old('id_kategori', $usaha->id_kategori) == $kategori->id_kategori ? 'selected' : '' }}>
+                                    {{ $kategori->nama_kategori }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="grid grid-cols-2 gap-x-6">
                         <div class="mb-4">
@@ -73,7 +88,8 @@
                         </div>
 
                         <div class="mb-4 col-span-2">
-                            <label for="alamat_pemilik" class="block mb-2 text-sm font-bold text-black">Alamat Pemilik</label>
+                            <label for="alamat_pemilik" class="block mb-2 text-sm font-bold text-black">Alamat
+                                Pemilik</label>
                             <input type="text" name="alamat_pemilik" id="alamat_pemilik"
                                 class="w-full rounded-lg border p-3 text-sm border-gray-500 focus:ring focus:ring-blue-300"
                                 value="{{ old('alamat_pemilik', $usaha->alamat_pemilik) }}" required>

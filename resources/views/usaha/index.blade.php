@@ -57,6 +57,7 @@
                         <thead class="bg-blue-500">
                             <tr>
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">No</th>
+                                <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">Kategori</th>
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">NPWP</th>
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">Nama Usaha</th>
                                 <th class="px-5 py-3 text-center text-xs font-bold text-white border-r border-black border-b">Alamat Usaha</th>
@@ -80,6 +81,10 @@
                             @forelse ($filteredUsahas as $index => $usaha)
                                 <tr class="hover:bg-gray-100">
                                     <td class="px-4 py-3 text-center text-xs text-black border-r border-black border-b">{{ $index + 1 }}</td>
+                                    <td
+                                        class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
+                                        {{ $usaha->kategori->nama_kategori ?? 'Tidak ada kategori' }}
+                                    </td>
                                     <td class="px-4 py-3 text-center text-xs text-black border-r border-black border-b">{{ $usaha->npwp }}</td>
                                     <td class="px-4 py-3 text-center text-xs text-black border-r border-black border-b">{{ $usaha->nama_usaha }}</td>
                                     <td class="px-4 py-3 text-center text-xs text-black border-r border-black border-b">{{ $usaha->alamat_usaha }}</td>

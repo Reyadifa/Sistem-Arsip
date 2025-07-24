@@ -22,7 +22,8 @@
                         <h2 class="text-4xl font-bold ml-3 text-white ">
                             {{ Auth::user()->nama_user ?? 'User' }} |
                         </h2>
-                        <div class="bg-gray-500 rounded-full h-14 w-14 overflow-hidden flex justify-center items-center">
+                        <div
+                            class="bg-gray-500 rounded-full h-14 w-14 overflow-hidden flex justify-center items-center">
                             <i class="fas fa-user text-4xl text-white "></i>
                         </div>
                     </div>
@@ -42,7 +43,8 @@
                     </div>
                 @endif
 
-                <div class="text-center text-2xl font-bold sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
+                <div
+                    class="text-center text-2xl font-bold sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
                     <span class="material-icons text-blue-500 text-4xl">add_business</span>
                     <h1>Tambah Usaha</h1>
                 </div>
@@ -51,6 +53,20 @@
 
                 <form action="{{ route('usahas.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    {{-- Kategori --}}
+                    <div class="mb-4 mt-10">
+                        <label for="id_kategori" class="block mb-2 text-sm font-bold text-black">Kategori</label>
+                        <select name="id_kategori" id="id_kategori"
+                            class="w-full rounded-lg p-3 text-sm border border-gray-500" required>
+                            <option value="" disabled selected>Pilih Kategori</option>
+                            @foreach ($kategoris as $kategori)
+                                <option value="{{ $kategori->id_kategori }}"
+                                    {{ old('id_kategori') == $kategori->id_kategori ? 'selected' : '' }}>
+                                    {{ $kategori->nama_kategori }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="grid grid-cols-2 gap-x-6">
                         <div class="mb-4">
                             <label for="npwp" class="block mb-2 text-sm font-bold text-black">NPWP</label>
@@ -67,22 +83,28 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="alamat_usaha" class="block mb-2 text-sm font-bold text-black">Alamat Usaha</label>
-                            <input type="text" name="alamat_usaha" id="alamat_usaha" placeholder="Masukkan Alamat Usaha"
+                            <label for="alamat_usaha" class="block mb-2 text-sm font-bold text-black">Alamat
+                                Usaha</label>
+                            <input type="text" name="alamat_usaha" id="alamat_usaha"
+                                placeholder="Masukkan Alamat Usaha"
                                 class="w-full rounded-lg border p-3 text-sm border-gray-500 focus:ring focus:ring-blue-300"
                                 value="{{ old('alamat_usaha') }}" required>
                         </div>
 
                         <div class="mb-4">
-                            <label for="nama_pemilik" class="block mb-2 text-sm font-bold text-black">Nama Pemilik</label>
-                            <input type="text" name="nama_pemilik" id="nama_pemilik" placeholder="Masukkan Nama Pemilik"
+                            <label for="nama_pemilik" class="block mb-2 text-sm font-bold text-black">Nama
+                                Pemilik</label>
+                            <input type="text" name="nama_pemilik" id="nama_pemilik"
+                                placeholder="Masukkan Nama Pemilik"
                                 class="w-full rounded-lg border p-3 text-sm border-gray-500 focus:ring focus:ring-blue-300"
                                 value="{{ old('nama_pemilik') }}" required>
                         </div>
 
                         <div class="mb-4 col-span-2">
-                            <label for="alamat_pemilik" class="block mb-2 text-sm font-bold text-black">Alamat Pemilik</label>
-                            <input type="text" name="alamat_pemilik" id="alamat_pemilik" placeholder="Masukkan Alamat Pemilik"
+                            <label for="alamat_pemilik" class="block mb-2 text-sm font-bold text-black">Alamat
+                                Pemilik</label>
+                            <input type="text" name="alamat_pemilik" id="alamat_pemilik"
+                                placeholder="Masukkan Alamat Pemilik"
                                 class="w-full rounded-lg border p-3 text-sm border-gray-500 focus:ring focus:ring-blue-300"
                                 value="{{ old('alamat_pemilik') }}" required>
                         </div>
@@ -103,4 +125,5 @@
         </div>
     </div>
 </body>
+
 </html>

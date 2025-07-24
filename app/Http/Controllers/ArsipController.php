@@ -50,7 +50,6 @@ class ArsipController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_kategori' => 'nullable|exists:kategoris,id_kategori',
             'usaha_id' => 'required|exists:usahas,id',
             'bulan' => 'required',
             'tahun' => 'required|integer',
@@ -58,7 +57,7 @@ class ArsipController extends Controller
         ]);
 
         $arsip = new Arsip();
-        $arsip->fill($request->only(['id_kategori', 'usaha_id', 'bulan', 'tahun']));
+        $arsip->fill($request->only(['usaha_id', 'bulan', 'tahun']));
 
         if ($request->hasFile('file')) {
             $arsip->file_path = $this->storeFile($request->file('file'));
@@ -78,14 +77,13 @@ class ArsipController extends Controller
     public function update(Request $request, Arsip $arsip)
     {
         $request->validate([
-            'id_kategori' => 'nullable|exists:kategoris,id_kategori',
             'usaha_id' => 'required|exists:usahas,id',
             'bulan' => 'required',
             'tahun' => 'required|integer',
             'file' => 'file|mimes:pdf|max:2048',
         ]);
 
-        $arsip->fill($request->only(['id_kategori', 'usaha_id', 'bulan', 'tahun']));
+        $arsip->fill($request->only(['usaha_id', 'bulan', 'tahun']));
 
         if ($request->hasFile('file')) {
             if ($arsip->file_path) {

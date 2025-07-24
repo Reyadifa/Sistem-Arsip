@@ -31,6 +31,14 @@
 
                 <hr class="border-2 border-gray-500 w-[600px] mx-auto mb-8">
 
+                {{-- Kategori (readonly view) --}}
+                <div class="mb-4 mt-10">
+                    <label class="block mb-2 text-sm font-bold text-black">Kategori</label>
+                    <div class="w-full rounded-lg p-3 text-sm border border-gray-500 bg-gray-100">
+                        {{ $usaha->kategori->nama_kategori ?? '-' }}
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-2 gap-x-6">
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-bold text-black">NPWP</label>

@@ -44,22 +44,7 @@
 
                     <hr class="border-2 border-gray-500 w-[600px] mx-auto">
 
-                    <main class="grid grid-cols-2 gap-x-6 mt-1">
-
-                        {{-- Kategori --}}
-                        <div class="mb-4 mt-10">
-                            <label for="id_kategori" class="block mb-2 text-sm font-bold text-black">Kategori</label>
-                            <select name="id_kategori" id="id_kategori"
-                                class="w-full rounded-lg p-3 text-sm border border-gray-500" required>
-                                @foreach ($kategoris as $kategori)
-                                    <option value="{{ $kategori->id_kategori }}"
-                                        {{ $arsip->id_kategori == $kategori->id_kategori ? 'selected' : '' }}>
-                                        {{ $kategori->nama_kategori }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
+                    <main class="w-full mt-1">
                         {{-- Usaha --}}
                         <div class="mb-4 mt-10">
                             <label for="usaha_id" class="block mb-2 text-sm font-bold text-black">Pilih Usaha</label>

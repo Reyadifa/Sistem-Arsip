@@ -52,21 +52,7 @@
                 <form action="{{ route('arsip.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <main class="grid grid-cols-2 gap-x-6 mt-1">
-
-                        {{-- Kategori --}}
-                        <div class="mb-4 mt-10">
-                            <label for="id_kategori" class="block mb-2 text-sm font-bold text-black">Kategori</label>
-                            <select name="id_kategori" id="id_kategori"
-                                class="w-full rounded-lg p-3 text-sm border border-gray-500" required>
-                                <option value="" disabled selected>Pilih Kategori</option>
-                                @foreach ($kategoris as $kategori)
-                                    <option value="{{ $kategori->id_kategori }}" {{ old('id_kategori') == $kategori->id_kategori ? 'selected' : '' }}>
-                                        {{ $kategori->nama_kategori }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <main class="w-full mt-1">
 
                         {{-- Usaha --}}
                         <div class="mb-4 mt-10">

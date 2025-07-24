@@ -92,9 +92,6 @@
                                     NPWP</th>
                                 <th
                                     class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
-                                    Kategori</th>
-                                <th
-                                    class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
                                     Nama Usaha</th>
                                 <th
                                     class="px-5 py-3 text-center text-xs font text-white font-bold border-r border-black border-b">
@@ -126,10 +123,6 @@
                                     <td
                                         class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
                                         {{ $arsip->usaha->npwp ?? '-' }}
-                                    </td>
-                                    <td
-                                        class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">
-                                        {{ $arsip->kategori->nama_kategori ?? 'Tidak ada kategori' }}
                                     </td>
                                     <td
                                         class="px-4 py-3 text-center text-xs font text-black-500 border-r border-black border-b">

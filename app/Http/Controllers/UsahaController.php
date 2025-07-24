@@ -4,23 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Usaha;
 use Illuminate\Http\Request;
+use App\Models\Kategori;
 
 class UsahaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $usahas = Usaha::all();
-        return view('usaha.index', compact('usahas'));
+        $kategoris = Kategori::all();
+        $kategoriId = $request->input('kategori');
+        $usahas = Usaha::with('kategori')->get();
+        return view('usaha.index', compact('usahas', 'kategoris', 'kategoriId'));
     }
 
     public function create()
     {
-        return view('usaha.create');
+        $kategoris = Kategori::all();
+        return view('usaha.create', compact("kategoris"));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'id_kategori' => 'nullable|exists:kategoris,id_kategori',
             'npwp' => 'required|string',
             'nama_usaha' => 'required|string',
             'alamat_usaha' => 'required|string',
@@ -36,12 +41,14 @@ class UsahaController extends Controller
     public function edit($id)
     {
         $usaha = Usaha::findOrFail($id);
-        return view('usaha.edit', compact('usaha'));
+        $kategoris = Kategori::all();
+        return view('usaha.edit', compact('usaha', 'kategoris'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
+            'id_kategori' => 'nullable|exists:kategoris,id_kategori',
             'npwp' => 'required|string',
             'nama_usaha' => 'required|string',
             'alamat_usaha' => 'required|string',
@@ -66,6 +73,7 @@ class UsahaController extends Controller
     public function show($id)
     {
         $usaha = Usaha::findOrFail($id);
-        return view('usaha.show', compact('usaha'));
+        $kategoris = Kategori::all();
+        return view('usaha.show', compact('usaha', 'kategoris'));
     }
 }

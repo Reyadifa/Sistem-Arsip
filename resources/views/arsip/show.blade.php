@@ -32,10 +32,6 @@
                     <h2 class="text-2xl font-semibold mb-4">Informasi Arsip</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="p-4 rounded-lg border border-gray-500">
-                            <p class="font-bold">Kategori:</p>
-                            <p>{{ $kategori->nama_kategori }}</p>
-                        </div>
-                        <div class="p-4 rounded-lg border border-gray-500">
                             <p class="font-bold">NPWP:</p>
                             <p>{{ $usaha->npwp }}</p>
                         </div>

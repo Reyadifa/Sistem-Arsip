@@ -11,7 +11,6 @@ class Arsip extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'id_kategori',
         'usaha_id',
         'bulan',
         'tahun',

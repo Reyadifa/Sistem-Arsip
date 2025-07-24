@@ -11,9 +11,6 @@ class CreateArsipsTable extends Migration
         Schema::create('arsips', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('id_kategori')->nullable();
-            $table->foreign('id_kategori')->references('id_kategori')->on('kategoris')->onDelete('cascade');
-
             $table->unsignedBigInteger('usaha_id');
             $table->foreign('usaha_id')->references('id')->on('usahas')->onDelete('cascade');
 
