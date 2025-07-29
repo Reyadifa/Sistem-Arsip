@@ -16,6 +16,28 @@ class UsahaController extends Controller
         return view('usaha.index', compact('usahas', 'kategoris', 'kategoriId'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->q;
+
+        $query = Usaha::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_usaha', 'like', "%$search%")
+                    ->orWhere('nama_pemilik', 'like', "%$search%")
+                    ->orWhere('npwp', 'like', "%$search%");
+            });
+        }
+
+        $data = $query->select('id', 'nama_usaha', 'nama_pemilik', 'npwp')
+            ->orderBy('nama_usaha')
+            ->limit(20)
+            ->get();
+
+        return response()->json($data);
+    }
+
     public function create()
     {
         $kategoris = Kategori::all();

@@ -5,9 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Arsip</title>
+
+    {{-- Fonts & Icons --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    {{-- Tailwind --}}
     @vite('resources/css/app.css')
+
+    {{-- Select2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body class="bg-gray-20">
@@ -19,11 +26,11 @@
                 <div class="flex items-center">
                     <span class="material-icons text-4xl text-white">archive</span>
                     <div class="absolute right-8 flex items-center gap-4">
-                        <h2 class="text-4xl font-bold ml-3 text-white ">
+                        <h2 class="text-4xl font-bold ml-3 text-white">
                             {{ Auth::user()->nama_user ?? 'User' }} |
                         </h2>
                         <div class="bg-gray-500 rounded-full h-14 w-14 overflow-hidden flex justify-center items-center">
-                            <i class="fas fa-user text-4xl text-white "></i>
+                            <i class="fas fa-user text-4xl text-white"></i>
                         </div>
                     </div>
                 </div>
@@ -43,7 +50,7 @@
                 @endif
 
                 <div class="text-center text-2xl font-bold sm:text-3xl mb-9 flex mx-auto justify-center gap-x-3 text-blue-600">
-                    <span class="material-icons text-blue-500 text-4xl ">archive</span>
+                    <span class="material-icons text-blue-500 text-4xl">archive</span>
                     <h1>Tambah Arsip</h1>
                 </div>
 
@@ -61,7 +68,8 @@
                                 class="w-full rounded-lg p-3 text-sm border border-gray-500" required>
                                 <option value="" disabled selected>Pilih Usaha</option>
                                 @foreach ($usahas as $usaha)
-                                    <option value="{{ $usaha->id }}" {{ old('usaha_id') == $usaha->id ? 'selected' : '' }}>
+                                    <option value="{{ $usaha->id }}"
+                                        {{ old('usaha_id') == $usaha->id ? 'selected' : '' }}>
                                         {{ $usaha->npwp }} - {{ $usaha->nama_usaha }} ({{ $usaha->nama_pemilik }})
                                     </option>
                                 @endforeach
@@ -111,6 +119,37 @@
             </main>
         </div>
     </div>
+
+    {{-- jQuery & Select2 --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#usaha_id').select2({
+                placeholder: 'Cari nama usaha, NPWP, atau pemilik...',
+                allowClear: true,
+                ajax: {
+                    url: '{{ route("usaha.search") }}',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: params.term
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: data.map(item => ({
+                                id: item.id,
+                                text: `${item.npwp} - ${item.nama_usaha} (${item.nama_pemilik})`
+                            }))
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

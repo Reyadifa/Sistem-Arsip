@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/arsip/restore/{id}', [ArsipController::class, 'restore'])->name('arsip.restore');
     Route::delete('/arsip/{id}/force-delete', [ArsipController::class, 'forceDelete'])->name('arsip.forceDelete');
     Route::put('peminjaman/{id}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('peminjaman.kembalikan');
-
+    Route::get('/search', [UsahaController::class, 'search'])->name('usaha.search');
     
     Route::middleware([CheckRole::class . ':pendataan,pelayanan'])->group(function () {
         Route::resource('peminjaman', PeminjamanController::class);
