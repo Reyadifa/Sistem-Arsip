@@ -22,6 +22,7 @@ class PeminjamanController extends Controller
 
             $arsipsGrouped[$npwp][] = [
                 'id' => $arsip->id,
+                'nama_usaha' => optional($arsip->usaha)->nama_usaha,
                 'kategori' => [
                     'nama_kategori' => optional($arsip->kategori)->nama_kategori,
                 ],

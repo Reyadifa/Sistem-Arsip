@@ -54,6 +54,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- NPWP Dropdown -->
                     <div>
                         <label for="npwp" class="block font-bold mb-1">Pilih NPWP</label>
                         <select name="npwp" id="npwp" class="w-full p-3 rounded-lg border border-black"
@@ -67,6 +68,7 @@
                         </select>
                     </div>
 
+                    <!-- Arsip Dropdown -->
                     <div>
                         <label for="arsip_id" class="block font-bold mb-1">Pilih Arsip</label>
                         <select name="arsip_id" id="arsip_id" class="w-full p-3 rounded-lg border border-black" required
@@ -75,49 +77,53 @@
                         </select>
                     </div>
 
+                    <!-- Tanggal Minjam -->
                     <div>
                         <label for="tgl_minjam" class="block font-bold mb-1">Tanggal Pinjam</label>
                         <input type="date" name="tgl_minjam" id="tgl_minjam"
                             class="w-full p-3 rounded-lg border border-black" value="{{ old('tgl_minjam') }}" required>
                     </div>
 
+                    <!-- Tanggal Kembali -->
                     <div>
                         <label for="tgl_kembali" class="block font-bold mb-1">Tanggal Kembali</label>
                         <input type="date" name="tgl_kembali" id="tgl_kembali"
                             class="w-full p-3 rounded-lg border border-black" value="{{ old('tgl_kembali') }}">
                     </div>
 
+                    <!-- Nama Peminjam -->
                     <div>
                         <label for="nama_peminjam" class="block font-bold mb-1">Nama Peminjam</label>
                         <input type="text" name="nama_peminjam" id="nama_peminjam"
                             class="w-full p-3 rounded-lg border border-black" value="{{ old('nama_peminjam') }}" required>
                     </div>
 
+                    <!-- Status -->
                     <div>
                         <label for="status" class="block font-bold mb-1">Status</label>
                         <select name="status" id="status" class="w-full p-3 rounded-lg border border-black" required>
                             <option value="Dipinjam" {{ old('status') == 'Dipinjam' ? 'selected' : '' }}>Dipinjam</option>
-                            <option value="Dikembalikan" {{ old('status') == 'Dikembalikan' ? 'selected' : '' }}>
-                                Dikembalikan</option>
-                            <option value="Terlambat" {{ old('status') == 'Terlambat' ? 'selected' : '' }}>Terlambat
-                            </option>
+                            <option value="Dikembalikan" {{ old('status') == 'Dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
+                            <option value="Terlambat" {{ old('status') == 'Terlambat' ? 'selected' : '' }}>Terlambat</option>
                         </select>
                     </div>
 
+                    <!-- No HP -->
                     <div>
                         <label for="nohp" class="block font-bold mb-1">Nomor HP</label>
                         <input type="text" name="nohp" id="nohp"
                             class="w-full p-3 rounded-lg border border-black" value="{{ old('nohp') }}" required>
                     </div>
 
+                    <!-- Surat Kuasa -->
                     <div id="surat_kuasa_section">
-                        <label for="surat_kuasa" class="block font-bold mb-1">Upload Surat Kuasa <span
-                                class="text-red-500">*</span></label>
+                        <label for="surat_kuasa" class="block font-bold mb-1">Upload Surat Kuasa <span class="text-red-500">*</span></label>
                         <input type="file" name="surat_kuasa" id="surat_kuasa"
                             class="w-full p-3 rounded-lg border border-black" accept=".jpg,.jpeg,.png,.pdf">
                         <small class="text-sm text-gray-500">Maks. 2MB, format: JPG, PNG, PDF.</small>
                     </div>
 
+                    <!-- Keperluan -->
                     <div class="col-span-2">
                         <label for="keperluan" class="block font-bold mb-1">Keperluan</label>
                         <textarea name="keperluan" id="keperluan" class="w-full p-3 rounded-lg border border-black" rows="3" required>{{ old('keperluan') }}</textarea>
@@ -134,7 +140,6 @@
             </main>
         </form>
     </div>
-
 
     <script>
         const arsipsGrouped = @json($arsipsGrouped);
@@ -165,25 +170,21 @@
                 arsipsGrouped[npwp].forEach(arsip => {
                     const option = document.createElement('option');
                     option.value = arsip.id;
-                    option.textContent = `${arsip.bulan}/${arsip.tahun}`;
+                    option.textContent = `${arsip.nama_usaha} (${arsip.bulan}/${arsip.tahun})`;
                     arsipDropdown.appendChild(option);
                 });
                 arsipDropdown.disabled = false;
 
-                // Re-select jika ada old value
                 const oldArsipId = '{{ old('arsip_id') }}';
                 if (oldArsipId) arsipDropdown.value = oldArsipId;
             }
         }
 
-        // On Load
         document.addEventListener('DOMContentLoaded', () => {
             toggleSuratKuasa();
-
             if (document.getElementById('npwp').value) {
                 updateArsipDropdown();
             }
         });
     </script>
-
 @endsection
